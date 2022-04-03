@@ -1,0 +1,11 @@
+{
+    "app":{
+        "cfengine":"lucee@5"
+    },
+    "web":{
+        "rewrites":{
+            "enable":"true"
+        }
+    },
+    "openBrowser":"false"
+}

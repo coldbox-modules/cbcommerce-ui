@@ -1,0 +1,63 @@
+{
+    "name":"cbCommerce",
+    "version":"1.0.0",
+    "author":"Ortus Solutions, Corp",
+    "location":"git@gitlab.ortushq.com:coldbox-modules/cbox-commerce.git#v1.0.0",
+    "homepage":"https://gitlab.ortushq.com/coldbox-modules/cbox-commerce",
+    "documentation":"https://gitlab.ortushq.com/coldbox-modules/cbox-commerce",
+    "repository":{
+        "type":"git",
+        "URL":"https://gitlab.ortushq.com/coldbox-modules/cbox-commerce"
+    },
+    "bugs":"https://gitlab.ortushq.com/coldbox-modules/cbox-commerce/issues",
+    "slug":"cbCommerce",
+    "shortDescription":"An e-commerce module for the coldbox platform",
+    "description":"An e-commerce module for the coldbox platform",
+    "type":"modules",
+    "dependencies":{
+        "cfmigrations":"^3.0.6",
+        "quick":"^4.2.4",
+        "cbsecurity":"^2.15.0",
+        "BCrypt":"^3.0.1",
+        "coldbox-asset-bag":"^1.0.3",
+        "stripecfml":"^1.1.5",
+        "cbi18n":"^2.2.0"
+    },
+    "devDependencies":{
+        "mockdatacfc":"^3.0.0+7"
+    },
+    "installPaths":{
+        "quick":"modules/quick/",
+        "coldbox-asset-bag":"modules/coldbox-asset-bag/",
+        "cfmigrations":"modules/cfmigrations/",
+        "cbsecurity":"modules/cbsecurity/",
+        "cbvalidation":"modules/cbvalidation/",
+        "stripecfml":"modules/stripecfml/",
+        "cbjavaloader":"modules/cbjavaloader/",
+        "mockdatacfc":"modules/mockdatacfc/",
+        "BCrypt":"modules/BCrypt/",
+        "cbi18n":"modules/cbi18n/"
+    },
+    "scripts":{
+        "postVersion":"package set location='git@gitlab.ortushq.com:coldbox-modules/cbox-commerce.git#v`package version`'",
+        "onRelease":"publish",
+        "postPublish":"!git push && !git push --tags",
+        "harness:install":"install && cd test-harness && install"
+    },
+    "ignore":[
+        "**/.*",
+        "test-harness",
+        "examples",
+        "*/.md"
+    ],
+    "cfmigrations":{
+        "connectionInfo":{
+            "password":"${DB_PASSWORD}",
+            "connectionString":"${DB_CONNECTIONSTRING}",
+            "class":"${DB_CLASS}",
+            "username":"${DB_USER}"
+        },
+        "schema":"${DB_DATABASE}",
+        "defaultGrammar":"MySQLGrammar"
+    }
+}
