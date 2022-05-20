@@ -1,0 +1,9 @@
+{
+    "name":"cbcommerce-ui-test-harness",
+    "web":{
+        "rewrites":{
+            "enable":"true"
+        }
+    },
+    "openBrowser":"false"
+}

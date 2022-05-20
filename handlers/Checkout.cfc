@@ -3,7 +3,7 @@ component extends="BaseHandler"{
 
 	function index( event, rc, prc ){
 		// Setup the Module  Entry Point
-		prc.cbCommerceEntryPoint = getModuleConfig( "cbCommerce" ).entryPoint;
+		prc.cbCommerceEntryPoint = getModuleConfig( "cbcommerce-ui" ).entryPoint;
 		// exit Handlers
 		prc.xehShoppingCart = "#prc.cbCommerceEntryPoint#/shopping-cart";
 
@@ -14,7 +14,6 @@ component extends="BaseHandler"{
 
         prc.assetBag.addJavascriptToFooter("https://js.stripe.com/v3/");
 
-        prc.globalData[ "stripeKey" ] = getModuleSettings( "stripecfml" ).publishableKey;
         event.setView( "checkout/index" );
     }
 

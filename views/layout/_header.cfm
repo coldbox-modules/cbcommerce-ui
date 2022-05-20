@@ -14,7 +14,7 @@
 							<cfif prc.isContentBoxContext>
 								#cb.themeSetting( 'headerText', 'Welcome to our Store' )#
 							<cfelse>
-								#getModuleSettings( "cbCommerce", "headerText", "" )#
+								#getModuleSettings( "cbcommerce-ui", "headerText", "" )#
 							</cfif>
                         </div>
                     </div>

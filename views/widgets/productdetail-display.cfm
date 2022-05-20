@@ -1,3 +1,3 @@
 <cfoutput>
-	#renderView( view="product/detail", module="cbCommerce", args=args )#
+	#renderView( view="product/detail", module="cbcommerce-ui", args=args )#
 </cfoutput>

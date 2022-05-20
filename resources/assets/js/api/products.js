@@ -1,4 +1,4 @@
-export const baseAPIHref = "/store/api/v1";
+export const baseAPIHref = window.globalData.baseAPIHref;
 export const getProductsList = api => ( params ) => api.get( '/products', { params : params || undefined } );
 export const createProduct = api => ( data ) => {
   const bodyParams = data;
@@ -36,7 +36,7 @@ export const updateSKU = api => ( data ) => {
   delete payload.originalData;
   delete payload.FK_condition;
   delete payload.FK_subCondition;
-  return api.put( payload.href.replace(baseAPIHref, ''), JSON.stringify( payload ) ); 
+  return api.put( payload.href.replace(baseAPIHref, ''), JSON.stringify( payload ) );
 }
 export const deleteSKU = api => ( id ) => api.delete( '/skus/' + id );
 

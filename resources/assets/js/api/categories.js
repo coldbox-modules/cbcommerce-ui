@@ -18,14 +18,14 @@ export const getCategoryMedia = api => ( id, params ) => api.get( '/product-cate
 export const updateCategoryMediaItem = api => ( data ) => {
   delete data.originalData;
   delete data.FK_category;
-  return api.put(data.href.replace('/store/api/v1', ''), JSON.stringify(data));
+  return api.put(data.href.replace('/cbc/api/v1', ''), JSON.stringify(data));
 }
 export const updateCategoryMediaItemField = api => ( href, field, fieldValue ) => {
   let payload = {};
   payload[ field ] = fieldValue;
-  return api.patch(href.replace('/store/api/v1', ''), JSON.stringify( payload ) );
+  return api.patch(href.replace('/cbc/api/v1', ''), JSON.stringify( payload ) );
 };
-export const deleteCategoryMediaItem = api => (item) => api.delete( item.href.replace('/store/api/v1', '') );
+export const deleteCategoryMediaItem = api => (item) => api.delete( item.href.replace('/cbc/api/v1', '') );
 
 export const categories = api => ({
   get: {

@@ -12,7 +12,7 @@
 			</dismissable-alert>
 
 			<form @submit.prevent="handleSubmit">
-			    
+
 			    <b-row>
 
 			        <b-col cols="12">
@@ -20,9 +20,9 @@
 			            <b-form-group
 							:label="$t( 'category_name' )"
 							label-for="categoryName">
-							<b-form-input 
+							<b-form-input
 		                    	required="required"
-		                    	class="form-control" 
+		                    	class="form-control"
 		                    	id="categoryName"
 		                    	v-model="form.name" />
 						</b-form-group>
@@ -38,8 +38,8 @@
 			            <b-form-group
 							:label="$t( 'category_description' )"
 							label-for="description">
-		                    <html-editor 
-			            		height="200" 
+		                    <html-editor
+			            		height="200"
 			            		:model.sync="form.description"></html-editor>
 						</b-form-group>
 
@@ -58,9 +58,9 @@
 				    		</b-card-header>
 				    		<b-collapse id="images" accordion="product-accordion" role="tabpanel">
 				    			<b-card-body>
-									<gallery-list-sortable 
+									<gallery-list-sortable
 										:images="activeCategory.media"
-										:endpoint="`/store/api/v1/product-categories/${activeCategory.id}/media`"></gallery-list-sortable>
+										:endpoint="`${window.globalData.baseAPIHref}/product-categories/${activeCategory.id}/media`"></gallery-list-sortable>
 
 				    			</b-card-body>
 				    		</b-collapse>
@@ -73,7 +73,7 @@
 
 
 			    <b-row>
-			        
+
 			        <b-col cols="12">
 						<b-form-group :label="$t( 'category_enable' )">
 							<b-form-radio-group
@@ -85,14 +85,14 @@
 			        </b-col>
 
 			    </b-row>
-				
+
 			    <button type="submit" class="btn btn-secondary btn-lg">
-					<i v-if="isSending" class="fa fa-spin fa-spinner"></i> 
+					<i v-if="isSending" class="fa fa-spin fa-spinner"></i>
 					{{ $t( 'save' ) }}
 				</button>
 
 			    <back-button link="/categories" :text="$t( 'categories_back' )"></back-button>
-			    
+
 			</form>
 
 		</div>

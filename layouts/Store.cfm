@@ -9,7 +9,7 @@
 	<html lang="en">
 	<head>
 		<!--- Page Includes --->
-		#renderView( module="cbCommerce", view="layout/_pageIncludes" )#
+		#renderView( module="cbcommerce-ui", view="layout/_pageIncludes" )#
 		<!--- ContentBoxEvent --->
 		#announce( "cbui_beforeHeadEnd" )#
 	</head>
@@ -19,7 +19,7 @@
 
 		<div id="app">
 			<!--- Header --->
-			#renderView( module="cbCommerce", view='layout/_header' )#
+			#renderView( module="cbcommerce-ui", view='layout/_header' )#
 			<!--- ContentBoxEvent --->
 			#announce( "cbui_beforeContent" )#
 			<!--- Main View --->
@@ -45,9 +45,9 @@
 
 			<!--- Footer --->
 			<cfif prc.isContentBoxContext>
-				#renderView( module="cbCommerce", view='layout/_contentbox_footer' )#
+				#renderView( module="cbcommerce-ui", view='layout/_contentbox_footer' )#
 			<cfelse>
-				#renderView( module="cbCommerce", view='layout/_footer' )#
+				#renderView( module="cbcommerce-ui", view='layout/_footer' )#
 			</cfif>
 		</div>
 
@@ -55,7 +55,7 @@
 		#announce( "cbui_beforeBodyEnd" )#
 
 		<!--- before body end includes --->
-		#renderView( module="cbCommerce", view='layout/_beforeBodyEndIncludes' )#
+		#renderView( module="cbcommerce-ui", view='layout/_beforeBodyEndIncludes' )#
 
 	</body>
 </html>

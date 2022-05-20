@@ -15,7 +15,7 @@ export const config = {
   environment: {
     development: {
       api: {
-        base        : '/store/api/v1/',
+        base        : window.globalData.baseAPIHref,
         token       : "",
         timeout     : 60000,
         errorHandler: errorHandler(),
@@ -24,7 +24,7 @@ export const config = {
     stage: {
       debug: false,
       api: {
-        base        : '/store/api/v1/',
+        base        : window.globalData.baseAPIHref,
         timeout     : 60000,
         errorHandler: errorHandler(),
       }
@@ -32,7 +32,7 @@ export const config = {
     production: {
       debug: false,
       api: {
-        base        : '/store/api/v1/',
+        base        : window.globalData.baseAPIHref,
         timeout     : 60000,
         errorHandler: errorHandler(),
       }

@@ -1,0 +1,19 @@
+{
+    "name":"Tester",
+    "version":"0.0.0",
+    "slug":"tester",
+    "private":true,
+    "description":"",
+    "dependencies":{},
+    "devDependencies":{
+        "coldbox":"be",
+        "route-visualizer":"^1.4.0"
+    },
+    "installPaths":{
+        "coldbox":"coldbox/",
+        "route-visualizer":"modules/route-visualizer/"
+    },
+    "testbox":{
+        "runner":"http://localhost:61651/tests/runner.cfm"
+    }
+}

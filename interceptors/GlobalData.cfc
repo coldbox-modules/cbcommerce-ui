@@ -8,42 +8,28 @@
  **/
  component{
     property name="templateCache" inject="cachebox:template";
-    property name="mediaConfig" inject="coldbox:setting:media@cbCommerce";
-    property name="resultsMapper" inject="ResultsMapper@mementifier";
+	property name="moduleSettings" inject="coldbox:moduleSettings:cbcommerce-ui";
 
  	void function preProcess( event, interceptData, buffer, rc, prc ) {
 		prc.isContentBoxContext = getController().getModuleService().isModuleRegistered( "contentbox" );
+
 		if( prc.isContentBoxContext ){
 			prc.cbHelper = getInstance( "CBHelper@cb" );
 		}
-        // set globalData if not present in prc.
-        if( !structKeyExists( prc, "globalData" ) ){
-            prc[ "globalData" ] = {
-                "placeholderImage" : mediaConfig.placeholderImage,
-                "fwLocale" : getFWLocale()
-            };
-        }
 
         // set assetBag if not present in prc
         if( !structKeyExists( prc, "assetBag" ) ){
             prc[ "assetBag" ] = wirebox.getInstance( "AssetBag@coldbox-asset-bag" );
         }
 
-        prc.globalData[ "@token" ] = CSRFGenerateToken( "cbCommerce" );
+		var exposedSettings = [
+			"baseAPIHref",
+			"features"
+		];
 
-        prc.globalData[ "productConditions" ] = templateCache.getOrSet(
-            "cbCommerce_global_productConditions",
-            function(){
-                var model = wirebox.getInstance( "ProductCondition@cbCommerce" );
-                var builder = model.newQuery().where( "isActive", 1 );
-                var conditions = model.get();
-
-				return variables.resultsMapper.process(
-					collection=conditions,
-					includes="parent"
-				);
-            }
-        );
+		exposedSettings.each( function( setting ){
+			prc.globalData[ setting ] = moduleSettings[ setting ];
+		} );
 
 
         // Scope in i18n Resource bundles and format for Vue plugin
@@ -75,11 +61,6 @@
                 return i18nGlobals;
             }
         );
-
-        // if logged in, add the authUser to globalData
-        if( auth().isLoggedIn() ){
-            prc.globalData[ "cbcAuthUser" ] = auth().getUser().getMemento();
-        }
     }
 
     function cbui_beforeBodyEnd( event, interceptData, buffer, rc, prc ){

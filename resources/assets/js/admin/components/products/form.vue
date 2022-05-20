@@ -2,13 +2,13 @@
 
 	<div v-if="!this.isLoading">
 
-		<page-header 
+		<page-header
 			v-if="!isNewProduct"
-			:headerTitle="$t( 'product' ) + `: ${form.name}`">		
+			:headerTitle="$t( 'product' ) + `: ${form.name}`">
 		</page-header>
-		<page-header 
+		<page-header
 			v-else
-			:header-title="$t( 'product_create' )">		
+			:header-title="$t( 'product_create' )">
 		</page-header>
 
 		<dismissable-alert v-if="isSent && !isSending"
@@ -25,9 +25,9 @@
 		            <b-form-group
 						:label="$t( 'name' )"
 						label-for="name">
-						<b-form-input 
+						<b-form-input
 	                    	required="required"
-	                    	class="form-control" 
+	                    	class="form-control"
 	                    	id="name"
 	                    	v-model="form.name" />
 					</b-form-group>
@@ -35,7 +35,7 @@
 		        </b-col>
 
 		    </b-row>
-		    
+
 			<b-form-group :label="$t( 'product_enable' )">
 			 	<b-form-radio-group
 					v-model="form.isActive"
@@ -51,10 +51,10 @@
 					<b-form-group
 						:label="$t( 'categories' )"
 						label-for="categories">
-						<v-select 
+						<v-select
 							v-if="categoriesListArray.length"
-							multiple 
-							v-model="form.categories" 
+							multiple
+							v-model="form.categories"
 							label="name"
 							:options="categoriesListArray"
 						></v-select>
@@ -81,8 +81,8 @@
 									<b-form-group
 										:label="$t( 'short_description' )"
 										label-for="shortDescription">
-										<html-editor 
-						            		height="200" 
+										<html-editor
+						            		height="200"
 						            		:model.sync="form.shortDescription"></html-editor>
 									</b-form-group>
 
@@ -95,8 +95,8 @@
 									<b-form-group
 										:label="$t( 'long_description' )"
 										label-for="description">
-										<html-editor 
-						            		height="200" 
+										<html-editor
+						            		height="200"
 						            		:model.sync="form.description"></html-editor>
 									</b-form-group>
 
@@ -107,7 +107,7 @@
 		    		</b-collapse>
 
 		    	</b-card>
-				
+
 				<b-row v-if="isNewProduct">
 
 					<b-col cols="12">
@@ -125,8 +125,8 @@
 		    		</b-card-header>
 		    		<b-collapse id="images" accordion="product-accordion" role="tabpanel">
 		    			<b-card-body>
-							<gallery-list-sortable 
-								:endpoint="`/store/api/v1/products/${currentProduct.id}/media`"
+							<gallery-list-sortable
+								:endpoint="`${window.globalData.baseAPIHref}/products/${currentProduct.id}/media`"
 								:images="currentProduct.media"></gallery-list-sortable>
 
 		    			</b-card-body>
@@ -144,10 +144,10 @@
 		    			<b-card-body>
 
 		    				<b-col cols="12" class="mb-5">
-		    					<span 
+		    					<span
 		    						class="pull-right">
-		    						<a 
-		    							class="btn btn-success SKUBtn"			    				
+		    						<a
+		    							class="btn btn-success SKUBtn"
 		    							@click="showSKUPanel( { }, 'add' )">
 		    							<i class="fa fa-plus"></i>
 		    						</a>
@@ -155,7 +155,7 @@
 		    				</b-col>
 
 		    				<b-col cols="12">
-		    					
+
 								<b-table
 								    :items="currentProduct.skus"
 								    :fields="productSKUFields">
@@ -172,7 +172,7 @@
 								    	<i v-if="data.item.isActive" class="fa fa-check"></i>
 									</template>
 								    <template  v-slot:cell(actions)="data">
-								        <a 
+								        <a
 								            @click.stop="showSKUPanel( data.item, 'edit' )"
 								            class="btn btn-success SKUBtn float-right">
 								            <i class="fa fa-eye"></i>
@@ -195,7 +195,7 @@
 		    <button type="submit" class="btn btn-secondary btn-lg">{{ $t( 'save' ) }}</button>
 
 		    <back-button link="/products" :text="$t( 'products_back' )"></back-button>
-		    
+
 		</form>
 
 	</div>
@@ -226,7 +226,6 @@ export default {
         return {
 			isLoading         : false,
 			form              : new Form(),
-			url               : '/api/v1/products', /* The URL to post the submission to */
 			moment            : moment,
 			errors            : [],
 			isSending         : false,
@@ -236,19 +235,19 @@ export default {
 			productImages     : [],
 			productSKUs       : [],
 			productSKUFields  : [
-				{ 
+				{
 					key: 'modelNumber'
 				},
-				{ 
+				{
 					key: 'condition'
 				},
-				{ 
+				{
 					key: 'basePrice'
 				},
-				{ 
+				{
 					key: 'isActive'
 				},
-				{ 
+				{
 					key: 'actions'
 				}
 			],

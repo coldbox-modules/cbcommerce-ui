@@ -5,19 +5,19 @@
 		<b-row>
 
 			<b-col cols="11" class="mt-2">
-    
+
 			    <h2>{{ sideBarTitle }}</h2>
-			    
+
 			</b-col>
 
 			<b-col cols="1" class="mt-2">
 				<span class="pull-right">
-					<i 
-						class="fa fa-close closePanelIcon" 
+					<i
+						class="fa fa-close closePanelIcon"
 						@click="closePanel()"></i>
 				</span>
 			</b-col>
-		    
+
 		    <b-col class="mt-3">
 
 				<b-card class="mb-1">
@@ -29,7 +29,7 @@
 							<b-form-group
 								:label="$t( 'product_model' )"
 								label-for="modelNumber">
-								<b-form-input 
+								<b-form-input
 									type="text"
 									id="modelNumber"
 									:required=true
@@ -39,8 +39,8 @@
 							<b-form-group
 								:label="$t( 'condition' )"
 								label-for="condition">
-									<v-select  
-										v-model="form.condition" 
+									<v-select
+										v-model="form.condition"
 										label="name"
 										:options="parentConditions"
 									></v-select>
@@ -49,8 +49,8 @@
 							<b-form-group
 								:label="$t( 'sub_condition' )"
 								label-for="condition">
-									<v-select  
-										v-model="form.subCondition" 
+									<v-select
+										v-model="form.subCondition"
 										label="name"
 										:options="childConditions"
 									></v-select>
@@ -59,10 +59,10 @@
 							<b-form-group
 								:label="$t( 'condition_description' )"
 								label-for="conditionDescription">
-								<html-editor 
-									height="200" 
+								<html-editor
+									height="200"
 									:model.sync="form.conditionDescription"></html-editor>
-							</b-form-group>	
+							</b-form-group>
 
 
 							<b-card no-body class="mb-1" v-if="data.sku.media">
@@ -72,9 +72,9 @@
 								</b-card-header>
 								<b-collapse id="skuImages" accordion="product-accordion" role="tabpanel">
 									<b-card-body>
-										<gallery-list-sortable 
+										<gallery-list-sortable
 											:eventPrefix="eventPrefix"
-											:endpoint="`/store/api/v1/skus/${data.sku.id}/media`"
+											:endpoint="`${window.globalData.baseAPIHref}/skus/${data.sku.id}/media`"
 											:images="data.sku.media"></gallery-list-sortable>
 
 									</b-card-body>
@@ -86,9 +86,9 @@
 								:label="$t( 'product_msrp' )"
 								label-for="MSRP">
 								<b-input-group size="lg" prepend="$">
-									<b-form-input 
+									<b-form-input
 										type="number"
-										id="MSRP" 
+										id="MSRP"
 										:required="true"
 										v-model.trim="form.MSRP"></b-form-input>
 								</b-input-group>
@@ -98,9 +98,9 @@
 								:label="$t( 'product_minimum_retail' )"
 								label-for="miniumumPrice">
 								<b-input-group size="lg" prepend="$">
-									<b-form-input 
+									<b-form-input
 										type="number"
-										id="minimumPrice" 
+										id="minimumPrice"
 										:required="true"
 										v-model.trim="form.miniumumPrice"></b-form-input>
 								</b-input-group>
@@ -110,9 +110,9 @@
 								:label="$t( 'product_minimum_advertised' )"
 								label-for="MAP">
 								<b-input-group size="lg" prepend="$">
-									<b-form-input 
+									<b-form-input
 										type="number"
-										id="MAP" 
+										id="MAP"
 										:required="true"
 										v-model.trim="form.MAP"></b-form-input>
 								</b-input-group>
@@ -122,20 +122,20 @@
 								:label="$t( 'product_selling' )"
 								label-for="basePrice">
 								<b-input-group size="lg" prepend="$">
-									<b-form-input 
+									<b-form-input
 										type="number"
 										id="basePrice"
 										v-model.trim="form.basePrice"></b-form-input>
 								</b-input-group>
-							</b-form-group>																		
+							</b-form-group>
 
 							<b-form-group
 								:label="$t( 'cost' )"
 								label-for="cost">
 								<b-input-group size="lg" prepend="$">
-									<b-form-input 
+									<b-form-input
 										type="number"
-										id="cost" 
+										id="cost"
 										:required="true"
 										v-model.trim="form.cost"></b-form-input>
 								</b-input-group>
@@ -160,11 +160,11 @@
 							<b-form-group v-if="form.isConsigned">
 								<legend>{{ $t( 'product_consignor' ) }}</legend>
 								<h5>Select an existing customer</h5>
-								<v-select  
+								<v-select
 									:label="$t( 'full_name' )"
 									v-model="form.consignor"
-									:filterable="false" 
-									:options="consignorsListArray" 
+									:filterable="false"
+									:options="consignorsListArray"
 									@search="onSearchconsignors"
 									:onChange="setconsignor"
 								></v-select>
@@ -203,7 +203,7 @@
 									:options="booleanOptions"
 									name="allowBackorder"
 								></b-form-radio-group>
-							</b-form-group>							
+							</b-form-group>
 
 							<b-form-group
 								:label="$t( 'product_discontinue_on' )"
@@ -214,11 +214,11 @@
 											<i class="fa fa-calendar"></i>
 										</b-input-group-text>
 									</b-input-group-prepend>
-									<datepicker 
-										:value="form.discontinueOn" 
+									<datepicker
+										:value="form.discontinueOn"
 										name="discontinueOn"
 										input-class="form-control"></datepicker>
-								</b-input-group>								
+								</b-input-group>
 							</b-form-group>
 
 							<hr />
@@ -226,17 +226,17 @@
 							<b-form-group
 								:label="$t( 'product_packaged_weight' )"
 								label-for="packagedWeight">
-								<b-form-input 
+								<b-form-input
 									type="text"
 									id="packagedWeight"
 									:required=true
 									v-model.trim="form.packagedWeight"></b-form-input>
-							</b-form-group>							
+							</b-form-group>
 
 							<b-form-group
 								:label="$t( 'product_packaging_width' )"
 								label-for="packagingX">
-								<b-form-input 
+								<b-form-input
 									type="text"
 									id="packagingX"
 									:required=true
@@ -246,7 +246,7 @@
 							<b-form-group
 								:label="$t( 'product_packaging_height' )"
 								label-for="packagingY">
-								<b-form-input 
+								<b-form-input
 									type="text"
 									id="packagingY"
 									:required=true
@@ -256,16 +256,16 @@
 							<b-form-group
 								:label="$t( 'product_packaging_depth' )"
 								label-for="packagingZ">
-								<b-form-input 
+								<b-form-input
 									type="text"
 									id="packagingZ"
 									:required=true
 									v-model.trim="form.packagingZ"></b-form-input>
 							</b-form-group>
 
-							<button 
+							<button
 								id="saveDetails"
-								class="btn btn-success" 
+								class="btn btn-success"
 								@click="saveDetails">
 								{{ $t( 'product_save_sku' ) }}
 							</button>
@@ -279,7 +279,7 @@
 			</b-col>
 
 		</b-row>
-    
+
     </b-container>
 
 </template>
@@ -360,7 +360,7 @@ export default {
 							var results = XHR.data;
 							results.results.forEach( resultId => {
 								let result = results.resultsMap[ resultId ];
-								result.displayName = result.lastName + ', ' + result.firstName; 
+								result.displayName = result.lastName + ', ' + result.firstName;
 							} )
 							Object.assign( self.consignors, results );
 							loading( false );
@@ -418,7 +418,7 @@ export default {
 }
 </script>
 <style>
-i.closePanelIcon { 
+i.closePanelIcon {
 	cursor: pointer;
 	font-size: 24px;
 }

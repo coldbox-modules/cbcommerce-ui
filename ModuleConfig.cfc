@@ -1,18 +1,17 @@
 component {
 
-    this.name           = "cbCommerce";
-    this.title          = "cbCommerce";
+    this.name           = "cbcommerce-ui";
+    this.title          = "cbCommerce Public UI";
     this.description    = "cbCommerce is the eCommerce Platform for the ContentBox Modular CMS";
-    this.version        = "1.0.0-alpha1";
+    this.version        = "1.0.0";
     this.author         = "Jon Clausen <jclausen@ortussolutions.com>";
     this.webUrl         = "https://github.com/jclausen/cbCommerce";
-    this.cfmapping      = "cbcUi";
-    this.modelNamespace	= "cbcUi";
-    this.entryPoint     = "store";
+    this.cfmapping      = "cbcUI";
+    this.modelNamespace	= "cbcUI";
     this.viewParentLookup = true;
     this.layoutParentLookup = true;
+	this.entryPoint = "store";
     this.dependencies   = [
-        "cbCommerce",
         "cbi18n"
     ];
 
@@ -20,29 +19,34 @@ component {
 	 * Configure Module
 	 */
     function configure() {
-		if( len( getSystemSetting( "CBCOMMERCE_ENTRYPOINT", "" ) ) ){
-			this.entryPoint = getSystemSetting( "CBCOMMERCE_ENTRYPOINT" );
-		}
 
-        settings = {};
+        settings = {
+			"baseAPIHref" : getSystemSetting( "CBCOMMERCE_ENTRYPOINT", "/cbc/api/v1" ),
+			"features" : {
+				"consignment" : getSystemSetting( "CBCOMMERCE_ENABLE_CONSIGNMENT", true ),
+				"used" : getSystemSetting( "CBCOMMERCE_ENABLE_USED_PRODUCTS", true )
+			}
+		};
 
         // Custom Declared Interceptors
 		interceptors = [
 			{
-					class="cbCommerce.interceptors.GlobalData",
-					name="GlobalDataInterceptor"
+					class="cbcUI.interceptors.GlobalData",
+					name="CBCGlobalDataInterceptor"
 			}
         ];
 
     }
 
     function onLoad() {
+		var isAPIRegistered = controller.getModuleService().isModuleRegistered( "cbcommerce-api" );
+		// @TODO: Move to ContentBox module
 		var isContentBoxContext = controller.getModuleService().isModuleRegistered( "contentbox" );
-		if( !isContentBoxContext ){
+		if( isContentBoxContext ){
 			interceptors.append(
 				[
 					{
-						class="cbCommerce.interceptors.CBCMenuHelper",
+						class="cbcUI.interceptors.CBCMenuHelper",
 						name="CBCMenuHelperInterceptor"
 					}
 				],
@@ -57,21 +61,22 @@ component {
 				label="Store Admin",
 				href=menuService.buildModuleLink( 'store', 'admin' )
 			);
+
+			/**
+			* Overload for ContentBox default Sitemap Routing
+			*/
+			appRouter.prepend()
+						.route( "sitemap" )
+						.to( "cbCommerce:Sitemap.index" );
 		}
-        /**
-        * Overload for ContentBox default Sitemap Routing
-        */
-        appRouter.prepend()
-                    .route( "sitemap" )
-                    .to( "cbCommerce:Sitemap.index" );
 
 		moduleSettings = {
 			"cbi18n" : {
 				// Extra resource bundles to load
 				resourceBundles = {
-					"cbCommerce" : "/cbcUi/includes/i18n/cbCommerce",
-					"cbCommerceAdmin" : "/cbcUi/includes/i18n/cbCommerceAdmin",
-					"cbCommerceOrders" : "/cbcUi/includes/i18n/cbCommerceOrders"
+					"cbCommerce" : "/cbcUI/includes/i18n/cbCommerce",
+					"cbCommerceAdmin" : "/cbcUI/includes/i18n/cbCommerceAdmin",
+					"cbCommerceOrders" : "/cbcUI/includes/i18n/cbCommerceOrders"
 				}
 			}
 		};
