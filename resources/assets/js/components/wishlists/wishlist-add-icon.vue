@@ -1,8 +1,8 @@
 <template>
     <span>
         <v-popover  v-if="wishlists && wishlists.results.length > 1" class="text-center">
-            
-            <a 
+
+            <a
                 v-tooltip="{ content: $t('wishlist_add_item') }"
                 :title="$t('wishlist_add_item')"
                 class="addToCart has-tooltip product-wishlist tooltip-target">
@@ -27,7 +27,7 @@
             </template>
 
         </v-popover>
-        <a 
+        <a
             v-else
             @click="onAddItem"
             v-tooltip="{ content: $t('wishlist_add_item') }"
@@ -77,8 +77,8 @@ export default{
             } else {
                 var $actionTarget = $( e.currentTarget );
             }
-            Vue.set( this, "isAdding", true );
-            
+            this.$set( this, "isAdding", true );
+
             if( !self.authUser ){
                 window.location.assign( '/store/account/login' );
             }
@@ -87,10 +87,10 @@ export default{
                 setTimeout( function(){
 
                     let wishlist = $( e.target ).hasClass( 'form-control' ) ? self.wishlists.resultsMap[ $( e.target ).val() ] : self.wishlists.resultsMap[ self.wishlists.results[ 0 ] ];
-                    
+
                     self.addItemToWishlist( { sku : self.skuId, wishlist : wishlist } )
                             .then( () => {
-                                Vue.set( self, "isAdding", false );
+                                this.$set( self, "isAdding", false );
                                 $actionTarget.addClass( 'in-wishlist' );
                                 $actionTarget.closest( '.product' ).addClass( 'in-wishlist' );
                                 // click outside the popover to close it

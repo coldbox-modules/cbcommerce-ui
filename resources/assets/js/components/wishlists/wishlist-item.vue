@@ -17,7 +17,7 @@
                 <div class="wishlist-item-actions">
                     <ul class="list-inline">
                         <li>
-                            <a 
+                            <a
                                 v-if="item.sku.showPricing"
                                 href="javascript:;"
                                 @click="moveToCart"
@@ -28,7 +28,7 @@
                                 <i class="fa fa-shopping-cart"></i> Add to cart
                             </a>
 
-                            <a 
+                            <a
                                 v-else
                                 href="javascript:;"
                                 @click="$emit( 'quote-open' )"
@@ -40,7 +40,7 @@
                                 </a>
 
                         </li>
-                        
+
                         <li>
                             <a href="javascript:;" @click="onDeleteItem">{{$t('Remove')}}</a>
                         </li>
@@ -87,17 +87,17 @@ export default{
             var self = this;
             if( !quantity ) quantity=1;
 
-            Vue.set( self.item, "quantity", quantity );
+            this.$set( self.item, "quantity", quantity );
             // send as a PATCH rather than PUT
-            Vue.set( self.item, "key", "quantity" );
-            Vue.set( self.item, "value", quantity );
+            this.$set( self.item, "key", "quantity" );
+            this.$set( self.item, "value", quantity );
             this.saveWishlistItem( self.item )
                     .catch( err => {
-                        console.log( err );  
+                        console.log( err );
                     })
                     .then( xhr => {
-                        Vue.delete( self.item, "key" );
-                        Vue.delete( self.item, "value" );
+                        self.$delete( self.item, "key" );
+                        self.$delete( self.item, "value" );
                     });
         },
         onDeleteItem( e ){

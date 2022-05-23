@@ -126,7 +126,7 @@
 		    		<b-collapse id="images" accordion="product-accordion" role="tabpanel">
 		    			<b-card-body>
 							<gallery-list-sortable
-								:endpoint="`${window.globalData.baseAPIHref}/products/${currentProduct.id}/media`"
+								:endpoint="`${window.cbcGlobalData.baseAPIHref}/products/${currentProduct.id}/media`"
 								:images="currentProduct.media"></gallery-list-sortable>
 
 		    			</b-card-body>
@@ -277,7 +277,7 @@ export default {
 
 	created() {
 		var self = this;
-		Vue.set( self, "isLoading", true );
+		this.$set( self, "isLoading", true );
 		Event.$on( "saveImageDetails", function( imageData ){
 			self.updateProductImage( imageData );
 		} );
@@ -297,17 +297,17 @@ export default {
 		if( !this.isNewProduct ){
 			this.getProduct( { id: this.$route.params.id, includes: "skus.condition,skus.subCondition,skus.consignor,categories", activeSKUsOnly : false } )
 					.then( product => {
-						Vue.set( self, "form", new Form( product ) );
-						Vue.set( self, "isLoading", false );
+						this.$set( self, "form", new Form( product ) );
+						this.$set( self, "isLoading", false );
 					})
 					.catch( err => {
-						Vue.set( self, "isLoading", false );
+						this.$set( self, "isLoading", false );
 					});
 		} else {
 			this.setActiveProduct({
 				isActive : true
 			});
-			Vue.set( self, "isLoading", false );
+			this.$set( self, "isLoading", false );
 		}
 	},
 	beforeDestroy(){
@@ -355,7 +355,7 @@ export default {
 					self.isSent    = true;
 					self.isSending = false;
 				} else {
-					Vue.set( self, "form", new Form( response ) );
+					this.$set( self, "form", new Form( response ) );
 					self.isSent    = true;
 					self.isSending = false;
 				}

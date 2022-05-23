@@ -38,7 +38,7 @@
 					<br>
 					<br>
 					<a  href="javascript:;"
-                    @click="toggleModal" 
+                    @click="toggleModal"
                     style="margin-bottom:30px"
                     v-tooltip="'Request a quote for your shopping cart'"
                     class="btn btn-secondary btn-lg">
@@ -134,9 +134,9 @@ export default {
             "addItemToWishlist",
             "addItemToComparisonList"
 		]),
-		
+
 		toggleModal(){
-            Vue.set( this, "showQuoteModal", !this.showQuoteModal );
+            this.$set( this, "showQuoteModal", !this.showQuoteModal );
         },
 
         availabilityText( inStock ){

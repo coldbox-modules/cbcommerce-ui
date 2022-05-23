@@ -60,7 +60,7 @@
 				    			<b-card-body>
 									<gallery-list-sortable
 										:images="activeCategory.media"
-										:endpoint="`${window.globalData.baseAPIHref}/product-categories/${activeCategory.id}/media`"></gallery-list-sortable>
+										:endpoint="`${window.cbcGlobalData.baseAPIHref}/product-categories/${activeCategory.id}/media`"></gallery-list-sortable>
 
 				    			</b-card-body>
 				    		</b-collapse>
@@ -150,7 +150,7 @@ export default {
 
 	created() {
 		var self = this;
-		Vue.set( self, "isLoading", true );
+		this.$set( self, "isLoading", true );
 		Event.$on( "saveImageDetails", function( imageData ){
 			self.updateCategoryImage( imageData );
 		} );
@@ -169,13 +169,13 @@ export default {
 		if( self.categoryId ){
 			return Promise.all([
 				this.getCategory( self.$route.params.id, { includes : "parent,children" }  ).then(() => {
-					Vue.set( self, "form", new Form( self.activeCategory ) );
-					Vue.set( self, "isLoading", false );
+					this.$set( self, "form", new Form( self.activeCategory ) );
+					this.$set( self, "isLoading", false );
 				})
 			]);
 		} else {
 			this.$store.commit( "setActiveCategory", {} );
-			Vue.set( self, "isLoading", false );
+			this.$set( self, "isLoading", false );
 		}
 	},
 
@@ -206,8 +206,8 @@ export default {
 			var self = this;
 			self.form.includes = "children,parent";
 			this.saveCategory( self.form );
-			Vue.set( self, "isSent", true );
-			Vue.set( self, "isSending", false );
+			this.$set( self, "isSent", true );
+			this.$set( self, "isSending", false );
     	}
 
 	}

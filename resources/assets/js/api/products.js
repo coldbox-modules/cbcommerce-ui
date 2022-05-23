@@ -1,4 +1,4 @@
-export const baseAPIHref = window.globalData.baseAPIHref;
+export const baseAPIHref = window.cbcGlobalData.baseAPIHref;
 export const getProductsList = api => ( params ) => api.get( '/products', { params : params || undefined } );
 export const createProduct = api => ( data ) => {
   const bodyParams = data;

@@ -10,17 +10,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <input 
+                            <input
                                 @keyup.tab="fetchProducts()"
                                 @keyup.enter="fetchProducts()"
                                 @change="fetchProducts()"
-                                type="text" 
-                                id="refine-from" 
+                                type="text"
+                                id="refine-from"
                                 class="form-control"
                                 v-model="refine_"/>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="widget-title first-widget">
                 <i class="fa fa-money"></i> Price range
@@ -30,30 +30,30 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon">&dollar;</span>
-                            <input 
+                            <input
                                 @keyup.tab="minPriceRangeChange()"
                                 @keyup.enter="minPriceRangeChange()"
                                 @change="minPriceRangeChange()"
-                                type="text" 
-                                id="price-from" 
-                                class="form-control" 
+                                type="text"
+                                id="price-from"
+                                class="form-control"
                                 v-model.number="minPrice" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon">&dollar;</span>
-                            <input 
+                            <input
                                 @keyup.tab="maxPriceRangeChange()"
                                 @keyup.enter="maxPriceRangeChange()"
                                 @change="maxPriceRangeChange()"
-                                type="text" 
-                                id="price-to" 
-                                class="form-control" 
+                                type="text"
+                                id="price-to"
+                                class="form-control"
                                 v-model.number="maxPrice" />
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
 
             <div v-if="activeCategory" class="widget-title">
@@ -71,7 +71,7 @@
                                 v-for="category in activeCategory.children"
                                 :key="`subcat_${category.id}`">
                                 <label>
-                                <input 
+                                <input
                                     type="checkbox"
                                     :name="`category_${category.id}`"
                                     :value="category.id"
@@ -95,7 +95,7 @@
 
                         </ul>
                     </div>
-                </div> 
+                </div>
             </div>
             <div v-if="searchParams.condition && categoriesListArray.length" class="widget-title">
                 <i class="fa fa-arrow-circle-down"></i> {{searchParams.condition}} Categories
@@ -109,7 +109,7 @@
                                 v-for="category in categoriesListArray"
                                 :key="`subcat_${category.id}`">
                                 <label>
-                                <input 
+                                <input
                                     type="checkbox"
                                     :name="`category_${category.id}`"
                                     :value="category.id"
@@ -117,14 +117,14 @@
                             </li>
                         </ul>
                     </div>
-                </div> 
+                </div>
             </div>
 
         </div>
 
         <div class="col-md-9">
 
-            <filter-bar 
+            <filter-bar
                 v-on:productLayoutChange="productLayoutChangeReaction"
                 v-on:perPageChange="perPageChangeReaction"
                 v-on:sortTypeChange="sortTypeChangeReaction"
@@ -160,15 +160,15 @@
             </div>
 
             <div v-else>
-                <products-grid 
-                    v-if="this.isGrid" 
+                <products-grid
+                    v-if="this.isGrid"
                     :products="this.productsListArray"
                     :isLoading="isLoading"
                     :fakes="fakes"
                 ></products-grid>
 
-                <products-list 
-                    v-if="this.isList" 
+                <products-list
+                    v-if="this.isList"
                     :products="this.productsListArray"
                     :isLoading="isLoading"
                     :fakes="fakes"
@@ -246,11 +246,11 @@ export default {
         this.fetchProducts();
 
         if( self.searchParams.condition && self.searchParams.condition !== "New"  ){
-            Vue.set( self, "categoriesLoading", true );
+            this.$set( self, "categoriesLoading", true );
             this.getCategories( { "productCondition" : self.searchParams.condition } )
-                    .then( 
-                        categoriesMap => {  
-                            Vue.set( self, "categoriesLoading", false );
+                    .then(
+                        categoriesMap => {
+                            this.$set( self, "categoriesLoading", false );
                         }
                     );
         }
@@ -278,18 +278,18 @@ export default {
 
         fetchProducts(){
             var self = this;
-            Vue.set( self, "isLoading", true );
+            this.$set( self, "isLoading", true );
             self.searchParams.maxrows = parseInt( self.perPage );
             self.searchParams.page = self.currentPage;
             self.searchParams.search = self.refine_
             self.getListOfProducts( self.searchParams ).then( productsMap => {
             self.setPagination( productsMap.meta.pagination );
-            Vue.set( self, "isLoading", false );
+            this.$set( self, "isLoading", false );
             } );
         },
 
         paginationCallback( pageNum ){
-            Vue.set( this, "currentPage", pageNum );
+            this.$set( this, "currentPage", pageNum );
             document.documentElement.scrollTop = 0;
             document.body.scrollTop = 0;
             this.fetchProducts();
@@ -297,9 +297,9 @@ export default {
 
         setPagination( pagination ){
             var self = this;
-            Vue.set( self, "currentPage" , pagination.page );
-            Vue.set( self, "perPage", pagination.maxrows );
-            Vue.set( self, "pageCount", Math.ceil( pagination.total / pagination.maxrows ) );
+            this.$set( self, "currentPage" , pagination.page );
+            this.$set( self, "perPage", pagination.maxrows );
+            this.$set( self, "pageCount", Math.ceil( pagination.total / pagination.maxrows ) );
         },
 
         categoriesFilterChange( e ){
@@ -321,7 +321,7 @@ export default {
         },
 
         minPriceRangeChange(){
-            if( isNaN( this.minPrice ) ){ 
+            if( isNaN( this.minPrice ) ){
                 delete this.searchParams.minimumPrice;
             } else {
                 this.searchParam.minimumPrice=this.minPrice;
@@ -332,7 +332,7 @@ export default {
             this.fetchProducts();
         },
         maxPriceRangeChange(){
-            if( isNaN( this.maxPrice ) || this.maxPrice == 0 ){ 
+            if( isNaN( this.maxPrice ) || this.maxPrice == 0 ){
                 delete this.searchParams.maximumPrice
             } else {
                 this.searchParams.maximumPrice=this.maxPrice;

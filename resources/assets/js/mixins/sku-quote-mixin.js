@@ -1,4 +1,5 @@
 import { mapState, mapMutations } from "vuex";
+import Vue from "vue";
 export default {
     data(){
         return {

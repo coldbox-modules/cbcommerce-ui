@@ -1,5 +1,6 @@
 import get from "lodash/get";
 import api from "@cbCommerce/api/index";
+import Vue from "vue";
 
 const initialState = {
     activeCategory : null,
@@ -71,7 +72,7 @@ const actions = {
         api().put.categories.updateMedia( image )
             .then( XHR => {
                 context.commit( "updateCategoryImage", XHR.data );
-                resolve( XHR.data );     
+                resolve( XHR.data );
             } )
             .catch( err => {
                 console.error(err);
@@ -82,7 +83,7 @@ const actions = {
         api().patch.categories.updateMediaField( href, field, value )
             .then( XHR => {
                 context.commit( "updateCategoryImage", XHR.data );
-                resolve( XHR.data );     
+                resolve( XHR.data );
             } )
             .catch( err => {
                 console.error(err);
@@ -120,7 +121,7 @@ const mutations = {
         Vue.set( state, "activeCategory", categoryData );
     },
     updateCategoryImage( state, mediaItem ){
-        let index = state.activeCategory.media.findIndex( item => item.id === mediaItem.id ); 
+        let index = state.activeCategory.media.findIndex( item => item.id === mediaItem.id );
         Object.assign(state.activeCategory.media[ index ], mediaItem );
     },
     removeCategoryImage( state, itemId ){

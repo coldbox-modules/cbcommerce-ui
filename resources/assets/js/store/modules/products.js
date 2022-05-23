@@ -1,5 +1,6 @@
 import get from "lodash/get";
 import api from "@cbCommerce/api/index";
+import Vue from "vue";
 
 const initialState = {
 	productsList         : [],
@@ -13,7 +14,7 @@ const getters = {
 	productsList      : state => state.productsList,
 	productsListArray : state => Vue.options.filters.denormalize( state.productsList ),
 	currentProductID  : state => state.currentProductID,
-	currentProduct    : state => 
+	currentProduct    : state =>
 		state.activeProduct || get(state, ["productsList", state.currentProductID], null),
 	currentProductName: state => {
 		const n = get(
@@ -160,7 +161,7 @@ const actions = {
         api().put.products.updateMedia( image )
             .then( XHR => {
                 context.commit( "updateProductImage", XHR.data );
-                resolve( XHR.data );     
+                resolve( XHR.data );
             } )
             .catch( err => {
                 console.error(err);
@@ -171,7 +172,7 @@ const actions = {
         api().patch.products.updateMediaField( href, field, value )
             .then( XHR => {
                 context.commit( "updateProductImage", XHR.data );
-                resolve( XHR.data );     
+                resolve( XHR.data );
             } )
             .catch( err => {
                 console.error(err);
@@ -204,7 +205,7 @@ const actions = {
         api().put.skus.updateMedia( image )
             .then( XHR => {
                 context.commit( "updateSKUImage", XHR.data );
-                resolve( XHR.data );     
+                resolve( XHR.data );
             } )
             .catch( err => {
                 console.error(err);
@@ -215,7 +216,7 @@ const actions = {
         api().patch.skus.updateMediaField( href, field, value )
             .then( XHR => {
                 context.commit( "updateSKUImage", XHR.data );
-                resolve( XHR.data );     
+                resolve( XHR.data );
             } )
             .catch( err => {
                 console.error(err);

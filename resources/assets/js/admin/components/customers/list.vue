@@ -6,7 +6,7 @@
             :headerTitle="$t( 'customers' )"
             :displayToolBarButton="true"
             routeName="newCustomer"
-            buttonIconClass="fa fa-plus">    
+            buttonIconClass="fa fa-plus">
         </page-header>
 
         <b-row>
@@ -32,15 +32,15 @@
             :fields="customerFields"
             :current-page="currentPage"
             :per-page="perPage">
-            
+
             <template slot="createdTime" slot-scope="data">
                 {{ data.item.createdTime | dateToText }}
             </template>
 
             <template slot="actions" slot-scope="data">
-                <router-link 
+                <router-link
                     @click.stop
-                    :to="{ name: 'customerForm', params: { id: data.item.id } }" 
+                    :to="{ name: 'customerForm', params: { id: data.item.id } }"
                     class="btn btn-success float-right">
                     <i class="fa fa-pencil"></i>
                 </router-link>
@@ -119,7 +119,7 @@ export default {
     },
 
     methods: {
-    	
+
     	...mapActions([
     		"getListOfCustomers",
     		"setCurrentCustomer",
@@ -130,7 +130,7 @@ export default {
         },
     	fetchCustomers( ctx ){
     		const self = this;
-            Vue.set( self, "isLoading", true );
+            this.$set( self, "isLoading", true );
             self.searchParams[ "page" ] = self.currentPage;
             self.searchParams[ "maxRows" ] = self.perPage;
             let promise = this.getListOfCustomers( self.searchParams );

@@ -5,6 +5,7 @@ import customers from "@cbCommerce/store/modules/customers";
 import orders from "@cbCommerce/store/modules/orders";
 import products from "@cbCommerce/store/modules/products";
 import createFilters from "@cbCommerce/filters/index";
+import Vue from "vue";
 
 createFilters(Vue);
 

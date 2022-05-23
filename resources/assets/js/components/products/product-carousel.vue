@@ -132,7 +132,7 @@ export default {
             const self = this;
             Promise.resolve( this.getListOfProducts( this.listParams ) )
             .then( () => {
-                Vue.set( self, "isLoading", false );
+                this.$set( self, "isLoading", false );
             } )
             .catch( err => console.error(err) );
         }

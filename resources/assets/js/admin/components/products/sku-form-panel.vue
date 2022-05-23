@@ -74,7 +74,7 @@
 									<b-card-body>
 										<gallery-list-sortable
 											:eventPrefix="eventPrefix"
-											:endpoint="`${window.globalData.baseAPIHref}/skus/${data.sku.id}/media`"
+											:endpoint="`${window.cbcGlobalData.baseAPIHref}/skus/${data.sku.id}/media`"
 											:images="data.sku.media"></gallery-list-sortable>
 
 									</b-card-body>
@@ -317,15 +317,18 @@ export default {
 			return ( this.data.method === 'edit' ) ? this.$t( 'product_sku_edit' ) : this.$t( 'product_sku_add' );
 		},
 		...mapState({
-			parentConditions : state => Vue.options.filters
-													.denormalize( state.globalData.productConditions )
-													.filter( condition => !condition.parent.id ),
-			childConditions : state => Vue.options.filters
-													.denormalize( state.globalData.productConditions )
-													.filter( condition => condition.parent.id )
-		}),
+			parentConditions(state){
+				return this.$options.filters
+					.denormalize( state.globalData.productConditions )
+					.filter( condition => !condition.parent.id );
+			},
+			childConditions( state ){
+				return this.$options.filters
+									.denormalize( state.globalData.productConditions )
+									.filter( condition => condition.parent.id );
+}		}),
 		consignorsListArray(){
-			return Vue.options.filters.denormalize( this.consignors );
+			return this.$options.filters.denormalize( this.consignors );
 		}
 	},
 
@@ -375,8 +378,8 @@ export default {
 
 		saveDetails() {
 			var self = this;
-			Vue.set( this.form, "FK_product", this.currentProduct.id );
-			Vue.set( this.form, "includes", "condition,subCondition,consignor" );
+			this.$set( this.form, "FK_product", this.currentProduct.id );
+			this.$set( this.form, "includes", "condition,subCondition,consignor" );
 			this.saveSKU( this.form ).then(
 				result => {
 					self.closePanel()
@@ -386,7 +389,7 @@ export default {
 
 		setconsignor : function (val) {
 			if( !val ) val = {};
-			Vue.set( this.form, "consignor", val );
+			this.$set( this.form, "consignor", val );
 		}
 	},
 
@@ -406,7 +409,7 @@ export default {
 				this.updateSKUImageField( { href: eventItem.item.href, field: "displayOrder", value : eventItem.sort } );
 			})
 		});
-		Vue.set( this, "form", new Form( this.data.sku || {} ) );
+		this.$set( this, "form", new Form( this.data.sku || {} ) );
 	},
 	beforeDestroy(){
 		Event.$off( this.eventPrefix + "saveImageDetails", this.listener );

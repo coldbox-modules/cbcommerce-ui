@@ -15,7 +15,7 @@ export const config = {
   environment: {
     development: {
       api: {
-        base        : window.globalData.baseAPIHref,
+        base        : window.cbcGlobalData.baseAPIHref,
         token       : "",
         timeout     : 60000,
         errorHandler: errorHandler(),
@@ -24,7 +24,7 @@ export const config = {
     stage: {
       debug: false,
       api: {
-        base        : window.globalData.baseAPIHref,
+        base        : window.cbcGlobalData.baseAPIHref,
         timeout     : 60000,
         errorHandler: errorHandler(),
       }
@@ -32,7 +32,7 @@ export const config = {
     production: {
       debug: false,
       api: {
-        base        : window.globalData.baseAPIHref,
+        base        : window.cbcGlobalData.baseAPIHref,
         timeout     : 60000,
         errorHandler: errorHandler(),
       }

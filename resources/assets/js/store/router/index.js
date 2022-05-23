@@ -6,6 +6,7 @@ import ProductComparison from "@cbCommerce/components/products/product-compariso
 import ProductWishlist from "@cbCommerce/components/products/product-wishlist";
 import ShoppingCart from "@cbCommerce/components/commerce/shopping-cart";
 import Storefront from "@cbCommerce/components/storefront";
+import Vue from "vue";
 
 export const createRouter = (Vue, Router) => {
 	Vue.use(Router);

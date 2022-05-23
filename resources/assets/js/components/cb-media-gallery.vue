@@ -16,9 +16,11 @@
 
 <script>
 	import Viewer from 'v-viewer';
-	Vue.use( Viewer );
 
 	export default {
+		components : [
+			Viewer
+		],
 		props: {
             galleryId: { 				// unique gallery Id
                 type: String,

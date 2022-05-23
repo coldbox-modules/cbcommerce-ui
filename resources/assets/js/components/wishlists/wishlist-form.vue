@@ -2,11 +2,11 @@
     <div class="wishlist-form form-block">
         <div class="form-group">
             <label class="col-xs-12 text-left text-muted">{{ $t( 'wishlist_name' ) }}</label>
-            <input class="form-control" v-model="wishlist.name"/>            
+            <input class="form-control" v-model="wishlist.name"/>
         </div>
         <div class="form-group">
             <label class="col-xs-12 text-left text-muted">{{ $t( 'Description' ) }}</label>
-            <textarea id="new-wishlist-description" class="form-control" rows="5" :v-model="wishlist.description"></textarea>            
+            <textarea id="new-wishlist-description" class="form-control" rows="5" :v-model="wishlist.description"></textarea>
         </div>
         <div class="form-group">
             <slot name="exit"></slot>
@@ -41,9 +41,9 @@ export default{
             this.saveWishlist( this.wishlist )
                     .then( ( { data } ) => {
                         // reset form
-                        Vue.set( self.wishlist, "name", "" );
-                        Vue.set( self.wishlist, "description", "" );
-                        Vue.set( self.wishlist, "isDefault", false );
+                        this.$set( self.wishlist, "name", "" );
+                        this.$set( self.wishlist, "description", "" );
+                        this.$set( self.wishlist, "isDefault", false );
                         $( "#new-wishlist-description" ).val( '' );
                         $( 'i', $btn ).removeClass( 'fa-spin fa-spinner' ).addClass( 'fa-save' );
 
@@ -58,7 +58,7 @@ export default{
     mounted(){
         if( this.wishlistData ){
             Object.assign( this.wishlist, this.wishlistData )
-        } 
+        }
     }
 
 

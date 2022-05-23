@@ -1,5 +1,6 @@
 import createLogger from "vuex/dist/logger";
 import VuexPersist from "vuex-persist";
+import Vue from "vue";
 
 import auth from "@cbCommerce/store/modules/auth";
 import customers from "@cbCommerce/store/modules/customers";

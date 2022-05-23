@@ -8,7 +8,7 @@
 
 	            <tr class="card_product_name">
 	                <th>Details</th>
-	                <th 
+	                <th
 	                	v-for="(sku, index) in comparisonItems"
 	                	:key="index"
 	                >
@@ -31,9 +31,9 @@
 	                	class="card_product_image"
 	                	:data-th="sku.product.name">
 							<a :href="`/store/product/${sku.product.id}`">
-								<img 
-									:title="sku.product.name" 
-									:alt="sku.product.name" 
+								<img
+									:title="sku.product.name"
+									:alt="sku.product.name"
 									:src="primaryImage( sku )" />
 							</a>
 	               	</td>
@@ -49,10 +49,10 @@
 	                	:data-th="sku.product.name">
 	                    <div class="product-rating">
 
-	                        <star-rating 
+	                        <star-rating
 	                        	:inline="true"
                                 :show-rating="false"
-                                :item-size="10" 
+                                :item-size="10"
                                 :read-only="true"
                                 :rating="sku.product.reviewSummary.averageRating"
                             ></star-rating>
@@ -73,7 +73,7 @@
 	                	{{ sku.product.shortDescription | removeHTML }}
 						<h4>Specifications:</h4>
                         <ul class="list-unstyled">
-                            <li 
+                            <li
                                 v-for="(spec, index) in sku.options.specifications"
                                 :key="index"
                                 class="description">
@@ -107,7 +107,7 @@
 	            </tr>
 	            <tr>
 	                <td class="card_product_image" data-th="Products">Availability</td>
-	                
+
 	                <td
 	                	v-for="(sku, index) in comparisonItems"
 	                	:key="index"
@@ -128,7 +128,7 @@
 	                	class="card_product_quantity"
 	                	:data-th="sku.product.name">
 
-		                <quantity-control 
+		                <quantity-control
 							:sku="sku"
 		                	:componentID="'quantity_' + index"
 		                    :showLabel="false"
@@ -153,7 +153,7 @@
 	                        <div class="product-caption">
 	                            <p class="product-price" v-if="sku.showPricing">{{ sku.basePrice | currency }}</p>
 								<p class="text-muted" v-else>Available Upon Request</p>
-	                        </div> 
+	                        </div>
 	                    </div>
 	                </td>
 	            </tr>
@@ -169,7 +169,7 @@
 	                	<div class="product">
 	                        <div class="product-caption">
 
-	                        	<a 
+	                        	<a
 	                        		@click="addItemToCart( { sku: sku.id, quantity: sku.quantity || 1 } )"
 	                        		:data-id="index"
 	                				:data-product-id="sku.product.id"
@@ -179,14 +179,14 @@
 	                        	</a>
 
 								<div class="product-request" v-else>
-			                    	<a 
-			                    		@click="showSkuQuoteForm( sku.id )" 
+			                    	<a
+			                    		@click="showSkuQuoteForm( sku.id )"
 			                    		class="btn">
 			                    		<i class="fa fa-envelope"></i> Request quote
 			                    	</a>
 		                    	</div>
 
-	                        </div> 
+	                        </div>
 	                    </div>
 	                </td>
 
@@ -286,7 +286,7 @@ export default {
 			console.log( sku );
 			let item = this.getSkuFromList( sku );
 			if( !item ) return;
-			Vue.set( item, "quantity", quantity );
+			this.$set( item, "quantity", quantity );
 		}
 
     }

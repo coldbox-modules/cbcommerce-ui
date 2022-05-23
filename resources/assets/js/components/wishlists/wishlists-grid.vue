@@ -6,9 +6,9 @@
         <div v-if="!wishlists" class="overlay">
             <generic-loader message="Loading wishlists. Please wait..."></generic-loader>
         </div>
-        <div 
+        <div
             v-else
-            v-for="wishlistId in wishlists.results" 
+            v-for="wishlistId in wishlists.results"
             :key="wishlistId"
             class="wishlists-grid-item col-md-4 col-sm-6 col-xs-12"
             >
@@ -17,7 +17,7 @@
         <div class="wishlists-grid-item col-md-4 col-sm-6 col-xs-12">
             <article id="new-wishlist" class="wishlist light">
                 <figure class="figure-hover-overlay text-center">
-                    <v-popover 
+                    <v-popover
                         :disabled="disablePopover"
                         placement="right"
                     >
@@ -60,12 +60,12 @@ export default {
         onWishlistSaved( wishlist ){
             var self = this;
             this.appendWishlist( wishlist );
-            Vue.set( this, "disablePopover", true );
+            this.$set( this, "disablePopover", true );
             // reset the popover availability
             setTimeout( function( ){
-                Vue.set( self, "disablePopover", false );
+                this.$set( self, "disablePopover", false );
             }, 300 )
-            
+
         }
     },
     mounted(){

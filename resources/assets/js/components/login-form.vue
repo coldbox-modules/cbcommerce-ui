@@ -15,7 +15,7 @@
 			<p v-if="resetRequestProcessed" class="alert alert-success">
 				{{$t( 'password_reset_success_message' )}}
 			</p>
-			
+
 			<div class="form-group" v-if="!resetRequestProcessed">
 				<button class="btn btn-primary btn-lg" @click="processReset">{{ $t( 'Reset Password' ) }}</button>
 				<a @click="resetPassword=false"><i class="fa fa-undo"></i> {{ $t( 'Cancel' ) }}</a>
@@ -68,7 +68,7 @@
 			redirectUrl(){
 				return this.successUrl || document.referrer.indexOf( "login" ) === -1 ? document.referrer : '/'
 			}
-		},	
+		},
 		methods: {
 			...mapActions( [
 				"authenticate",
@@ -76,18 +76,18 @@
 			] ),
 			loginUser( e ){
 				var self = this;
-				Vue.set( self, "authenticating", true );
+				this.$set( self, "authenticating", true );
 				this.authenticate( { email: this.email, password: this.password } )
 						.then( xhr => {
 							console.log( "Authenticated!" )
-							Vue.set( self, "authenticating", false );
-							Vue.set( self, "authenticated", true );
+							this.$set( self, "authenticating", false );
+							this.$set( self, "authenticated", true );
 							self.$emit( 'cbCommerce.onAuthenticationSuccess' );
 							window.location.replace( self.redirectUrl );
 						})
 						.catch( err => {
 							console.log( "Not authenticated!" )
-							Vue.set( self, "authenticating", false );
+							this.$set( self, "authenticating", false );
 							self.$emit( "cbCommerce.onAuthenticationFailure" );
 						} );
 			},
@@ -106,15 +106,15 @@
 		},
 		mounted(){
 			var self = this;
-	
+
 			if( self.authUser ){
 				self.$emit( 'cbCommerce.onAuthenticationSuccess' );
-				Vue.set( self, "authenticating", true );
+				this.$set( self, "authenticating", true );
 				window.location.replace( self.redirectUrl );
 			}
 
 			this.$on( "cbCommerce.onAuthenticationFailure", ( err ) => {
-				Vue.set( self, "showAuthFailure", true );
+				this.$set( self, "showAuthFailure", true );
 			} );
 		}
 	}

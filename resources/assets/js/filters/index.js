@@ -1,4 +1,5 @@
 import moment from "moment";
+import Vue from "vue";
 
 const formatNumber = value =>
   value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0;

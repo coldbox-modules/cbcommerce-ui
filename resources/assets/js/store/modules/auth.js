@@ -1,5 +1,6 @@
 import get from "lodash/get";
 import api from "@cbCommerce/api/index";
+import Vue from "vue";
 
 const initialState = {};
 

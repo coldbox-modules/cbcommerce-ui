@@ -3,7 +3,10 @@
     "web":{
         "rewrites":{
             "enable":"true"
-        }
+        },
+		"aliases":{
+			"/moduleroot/cbcommerce-ui/includes":"../includes"
+		}
     },
     "openBrowser":"false"
 }

@@ -407,11 +407,11 @@ export default {
       self.isLoading = true;
       self.getProduct(self.productId).then(product => {
         product.skus.forEach((sku, index) => {
-          Vue.set(sku, "value", sku.id);
+          this.$set(sku, "value", sku.id);
           if (sku.condition.name !== "New") {
-            Vue.set(sku, "label", sku.modelNumber + " (Used)");
+            this.$set(sku, "label", sku.modelNumber + " (Used)");
           } else {
-            Vue.set(sku, "label", sku.modelNumber);
+            this.$set(sku, "label", sku.modelNumber);
           }
         });
         self.setactiveSku(product.skus[0]);
@@ -419,20 +419,20 @@ export default {
       });
     },
     setactiveSku(sku) {
-      Vue.set(this, "activeSkuId", sku.id);
+      this.$set(this, "activeSkuId", sku.id);
     },
     selectActiveSku(sku) {
       this.setactiveSku(sku);
       let skus_elements = this.getSKUsElements();
-      for (let index = 0; index < skus_elements.length; index++) { 
-        this.removeSelectedClass(skus_elements[index].id); 
-      } 
+      for (let index = 0; index < skus_elements.length; index++) {
+        this.removeSelectedClass(skus_elements[index].id);
+      }
       this.addSelectedClass(sku.id);
     },
 
     quantityChangeReaction: function({ quantity, sku }) {
       if (!quantity) quantity = 1;
-      Vue.set(this, "chosenQuantity", quantity);
+      this.$set(this, "chosenQuantity", quantity);
     },
 
     addSelectedClass(id) {

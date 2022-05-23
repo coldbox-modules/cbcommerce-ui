@@ -34,7 +34,7 @@ export default{
         ] ),
         categoryId : () => {
             var locationParts = window.location.pathname.split( '/' );
-            return locationParts[ locationParts.length - 1 ]; 
+            return locationParts[ locationParts.length - 1 ];
         }
     },
     methods : {
@@ -52,10 +52,10 @@ export default{
     },
     created(){
         var self = this;
-        Vue.set( self, "isLoading", true );
-        Vue.set( 
-            self, 
-            "initialParams", 
+        this.$set( self, "isLoading", true );
+        this.$set(
+            self,
+            "initialParams",
             {
                 category : this.categoryId,
                 condition: this.categoryId !== "used" ? "New" : undefined
@@ -67,7 +67,7 @@ export default{
         }  );
         this.getCategory( { id: self.categoryId, params : { includes : "children.children.children" } } ).then( category => {
             self.updateCategoryViews( self.categoryId );
-            Vue.set( self, "isLoading", false );
+            this.$set( self, "isLoading", false );
         } );
     }
 

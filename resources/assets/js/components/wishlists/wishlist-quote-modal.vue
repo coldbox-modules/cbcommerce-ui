@@ -168,15 +168,15 @@ export default{
 				self.formData.subject = self.contactSubject;
 			}
 
-			Vue.set( self, "contactErrors", [] );
-			
+			this.$set( self, "contactErrors", [] );
+
 			self.apiInstance.post.wishlistQuote( self.wishlist.id, self.formData )
 				.then( XHR => {
 					self.isSent    = true;
 					self.isSending = false;
-					Vue.set( 
-						self, 
-						"formData", 
+					this.$set(
+						self,
+						"formData",
 						{
 							name    : '',
 							email   : '',
@@ -196,7 +196,7 @@ export default{
 					self.isSending = false;
 				});
 
-	        
+
 
     	}
     }

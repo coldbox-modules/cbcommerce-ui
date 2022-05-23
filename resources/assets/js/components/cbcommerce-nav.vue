@@ -58,8 +58,8 @@ export default {
     computed: {
         ...mapState({
             rootMenu : state => state.globalData.rootMenu,
-            categoriesNav : state => {
-                let categories = Vue.options.filters.denormalize( state.globalData.categoriesMap );
+            categoriesNav( state ){
+                let categories = this.$options.filters.denormalize( state.globalData.categoriesMap );
                 if( ! categories.length ) return [];
                 let navBase = {
                     listClass : state.globalData.rootMenu.listClass,

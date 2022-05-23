@@ -1,5 +1,6 @@
 import get from "lodash/get";
 import api from "@cbCommerce/api/index";
+import Vue from "vue";
 
 const initialState = {
 	isAuthenticated : false,
@@ -29,11 +30,11 @@ const actions = {
 			return;
 		}
 		if( !wishlist ) wishlist = state.wishlists.resultsMap[ getters.defaultWishList ];
-		
+
 		const wishlistItem = wishlist.items.find( item => item.id === sku );
 
 		console.log( sku );
-		
+
 		if (!wishlistItem) {
 			api()
 				.post.wishlists.addItem( wishlist.id, { sku : sku } )
@@ -68,8 +69,8 @@ const actions = {
 		}
 		return api().get.wishlists.get( id, params )
 	},
-	saveWishlist: ( { state, commit, getters }, data ) => !data.id 
-															? api().post.wishlists.create( data ) 
+	saveWishlist: ( { state, commit, getters }, data ) => !data.id
+															? api().post.wishlists.create( data )
 															: api().put.wishlists.update( data ),
 	deleteWishlist:( context, wishlistId ) => api().delete.wishlists.delete( wishlistId )
 
@@ -93,7 +94,7 @@ const mutations = {
 	},
 	setWishlistData( state, data ){
 		Vue.set( state.wishlists.resultsMap, data.id, data );
-		
+
 		if (state.wishlists.results.indexOf(data.id) === -1) {
 			state.wishlists.results.push(data.id);
 		}

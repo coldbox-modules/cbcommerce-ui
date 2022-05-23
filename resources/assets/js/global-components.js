@@ -1,6 +1,7 @@
 /**
  * Global Third-Party Imports
  **/
+import Vue from "vue";
 import { WOW } from "wowjs/dist/wow.js";
 import "owl.carousel/dist/owl.carousel.min.js";
 import VueTruncate from "vue-truncate-filter";

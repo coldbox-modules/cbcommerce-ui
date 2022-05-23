@@ -226,7 +226,7 @@
 						<p v-if="!globalData.stripeKey" class="alert alert-danger">
 							<strong>Warning</strong> : The Stripe integration for this site is not configured correctly.  Checkout will be unavailable until the correct configuration is provided.
 						</p>
-						
+
 	                    <form role="form" method="post" action="#" data-vv-scope="form-payment">
 		                    <div class="row">
 		                    	<div class="col-md-6 ">
@@ -683,12 +683,12 @@ export default {
      mounted() {
 		// scope in our global data user
 		if( this.authUser ){
-			Vue.set( this.selectedShippingAddress, "firstName", this.authUser.firstName );
-			Vue.set( this.selectedShippingAddress, "lastName", this.authUser.lastName );
-			Vue.set( this.selectedBillingAddress, "firstName", this.authUser.firstName );
-			Vue.set( this.selectedBillingAddress, "lastName", this.authUser.lastName );
-			Vue.set( this, "email", this.authUser.email );
-			Vue.set( this, "phone", this.authUser.primaryPhone );
+			this.$set( this.selectedShippingAddress, "firstName", this.authUser.firstName );
+			this.$set( this.selectedShippingAddress, "lastName", this.authUser.lastName );
+			this.$set( this.selectedBillingAddress, "firstName", this.authUser.firstName );
+			this.$set( this.selectedBillingAddress, "lastName", this.authUser.lastName );
+			this.$set( this, "email", this.authUser.email );
+			this.$set( this, "phone", this.authUser.primaryPhone );
 		}
 		this.isLoading = false;
 
@@ -804,7 +804,7 @@ export default {
 						self.$scrollTo( $firstError[ 0 ] );
 					}
 	  			} else {
-	  				Vue.set( self, 'token', result.token );
+	  				this.$set( self, 'token', result.token );
 	  				self.$validator.validate( 'form-payment.*' ).then(( result ) => {
 				    	if ( result && self.token != null ) {
 				          self.isValidated.payment = true;
@@ -862,7 +862,7 @@ export default {
 	  				self.hasCardErrors = true;
 	  				self.cardErrorMessage = result.error.message;
 	  			} else {
-	  				Vue.set( self, 'token', result.token );
+	  				this.$set( self, 'token', result.token );
 	  			}
 		    });
 

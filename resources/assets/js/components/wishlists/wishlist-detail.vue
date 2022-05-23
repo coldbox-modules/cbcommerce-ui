@@ -9,17 +9,17 @@
         </div>
 
         <div class="col-md-9 col-sm-8 col-xs-12 wishlist-items" v-if="!isLoading">
-            
-            <wishlist-item 
-                v-for="item in wishlist.items" 
+
+            <wishlist-item
+                v-for="item in wishlist.items"
                 :key="item.id"
                 :item="item"
                 v-on:delete-item="onDeleteItem"
                 v-on:save-item="onSaveItem"
                 v-on:quote-open="toggleModal"
             ></wishlist-item>
-            
-            <div 
+
+            <div
                 v-if="!wishlist.items.length"
                 class="alert alert-info text-center"
             >
@@ -31,14 +31,14 @@
         <div class="col-md-3 col-sm-4 col-xs-12" v-if="!isLoading">
             <div v-if="wishlist.items.length" class="product-request">
                 <a  href="javascript:;"
-                    @click="toggleModal" 
+                    @click="toggleModal"
                     style="margin-bottom:30px"
                     v-tooltip="'Request a quote for this item'"
                     class="btn btn-lg btn-secondary btn-fluid"><i class="fa fa-envelope"></i> {{ $t('request_wishlist_quote') }}</a>
             </div>
 
             <div v-if="wishlist.items.length && pricingAvailable" class="product-cart">
-                <a 
+                <a
                     @click="addAllToCart"
                      style="margin-bottom:30px"
                     v-tooltip="$t( 'Add all items to your cart' )"
@@ -79,7 +79,7 @@ export default{
         ...mapGetters( [ "authUser" ] ),
         wishlistId : () => {
             var locationParts = window.location.pathname.split( '/' );
-            return locationParts[ locationParts.length - 1 ]; 
+            return locationParts[ locationParts.length - 1 ];
         },
         pricingAvailable(){
             var available = true;
@@ -99,18 +99,18 @@ export default{
     methods : {
         ...mapActions( [ "fetchWishlist", "saveWishlist", "deleteWishlist", "addItemToCart" ] ),
         toggleModal(){
-            Vue.set( this, "showQuoteModal", !this.showQuoteModal );
+            this.$set( this, "showQuoteModal", !this.showQuoteModal );
         },
         fetchWishlistDetail: function(){
             var self    = this;
             self.isLoading = true;
             self.fetchWishlist( { id : self.wishlistId, includes : "items.sku.product" } ).then( ( { data } ) => {
-                Vue.set( self, "isLoading", false );
-                Vue.set( self, "wishlist", data );
+                this.$set( self, "isLoading", false );
+                this.$set( self, "wishlist", data );
             } );
         },
         updateWishlistName( e ){
-            Vue.set( this.wishlist, "name", $( e.target ).html() );
+            this.$set( this.wishlist, "name", $( e.target ).html() );
             this.saveWishlist( { id : this.wishlist.id, name : this.wishlist.name } );
         },
         onDeleteItem( id ){
@@ -121,7 +121,7 @@ export default{
                 }
             } );
             if( itemIndex !== null ){
-                Vue.delete( this.wishlist.items, itemIndex );    
+                this.$delete( this.wishlist.items, itemIndex );
             }
         },
         addAllToCart(){

@@ -9,7 +9,7 @@
                                      <article class="product list" v-if="sku">
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-4 col-md-4 text-center">
-                                                <figure class="figure-hover-overlay text-center">                                                                        
+                                                <figure class="figure-hover-overlay text-center">
                                                     <a :href="`/store/product/${sku.product.id}`" class="figure-href"></a>
 
                                                     <div class="product-item-image" v-if="skuImageSrc.length" :style="`background-image:url(${skuImageSrc})`"></div>
@@ -19,7 +19,7 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8">
                                                 <div class="product-caption">
-                                                
+
                                                     <div class="block-name">
                                                         <h4>Request a Quote for <span v-if="sku" v-html="sku.product.name"></span></h4>
                                                     </div>
@@ -183,7 +183,7 @@ export default{
 		// Hide our SPAM honeypot
         $( '.fm-hp', $( this.$el ) ).css( 'display', 'none' );
         this.getSKUWithProduct( this.skuId )
-                .then( ( { data } ) => Vue.set( self, "sku", data ) )
+                .then( ( { data } ) => this.$set( self, "sku", data ) )
                 .catch( ( err ) => console.error( err) );
     },
 
@@ -208,15 +208,15 @@ export default{
 				self.formData.subject = self.contactSubject;
 			}
 
-			Vue.set( self, "contactErrors", [] );
-			
+			this.$set( self, "contactErrors", [] );
+
 			self.apiInstance.post.skuQuote( self.skuId, self.formData )
 				.then( XHR => {
 					self.isSent    = true;
 					self.isSending = false;
-					Vue.set( 
-						self, 
-						"formData", 
+					this.$set(
+						self,
+						"formData",
 						{
 							name    : '',
 							email   : '',
@@ -249,7 +249,7 @@ export default{
 					})
 				});
 
-	        
+
 
     	}
     }

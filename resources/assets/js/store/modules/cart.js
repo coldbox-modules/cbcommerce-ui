@@ -1,7 +1,9 @@
 import get from "lodash/get";
 import api from "@cbCommerce/api/index";
 // ES6 Modules or TypeScript
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+
+import Vue from "vue";
 
 const initialState = {
 	cart 		  : { "items" : [] },

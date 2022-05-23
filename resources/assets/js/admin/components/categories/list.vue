@@ -6,14 +6,14 @@
             :headerTitle="$t( 'categories' )"
             :displayToolBarButton="true"
             routeName="newCategory"
-            buttonIconClass="fa fa-plus">    
+            buttonIconClass="fa fa-plus">
         </page-header>
 		<p class="text-muted">{{ $t( 'categories_order' ) }} Click the <i class="fa fa-pencil"></i> icon to edit.</p>
-	
+
 		<div class="nestable-categories-list nested-expandable col-xs-12">
 			<generic-loader v-if="!categoryTree" :message="$t( 'categories_loading' )"></generic-loader>
-			<vue-nestable 
-				v-else 
+			<vue-nestable
+				v-else
 				v-model="categoryTree"
 				v-on:input="reviseHierarchy"
 			>
@@ -32,7 +32,7 @@
 						</div>
 						<div class="col col-6" v-html="item.description"></div>
 						<div class="col col-2">
-							<a 
+							<a
 								href="javascript:;"
 								@click="toggleExpand"
 								class="btn btn-default btn-sm float-right"
@@ -40,9 +40,9 @@
 							>
 								<i class="fa fa-caret-down fa-2x"></i>
 							</a>
-							
 
-							<a 
+
+							<a
 								:href="`/store/category/${item.id}`"
 								target="blank"
 								class="btn btn-link btn-sm float-right"
@@ -52,15 +52,15 @@
 							>
 								<i class="fa fa-globe"></i>
 							</a>
-							
-							<router-link 
-							:to="{ name: 'categoryForm', params: { id: item.id } }" 
+
+							<router-link
+							:to="{ name: 'categoryForm', params: { id: item.id } }"
 							class="btn btn-default btn-sm float-right">
 								<i class="fa fa-pencil"></i>
 							</router-link>
 						</div>
 					</div>
-				
+
 				</vue-nestable-handle>
 			</vue-nestable>
 		</div>
@@ -109,7 +109,7 @@ export default {
     },
 
     methods: {
-    	
+
     	...mapActions([
 			"getCategories",
 			"saveCategory"
@@ -124,7 +124,7 @@ export default {
 			$( 'i', $btn ).toggleClass( 'fa-caret-down' ).toggleClass( 'fa-caret-up' );
 		},
 		reviseHierarchy( topLevels ){
-			Vue.set( this, "variations", this.variations + 1 );
+			this.$set( this, "variations", this.variations + 1 );
 			if( this.variations <= 1 ) return;
 			var self = this;
 			// the arguments provided are the newly adjusted levels, from the top down.
@@ -134,13 +134,13 @@ export default {
 				if( cat.FK_parent !== parentId || cat.displayOrder !== displayOrder  ){
 					cat.FK_parent = parentId;
 					cat.displayOrder = displayOrder;
-					self.saveCategory( 
+					self.saveCategory(
 						{
 							"id" : cat.id,
 							"displayOrder" : displayOrder,
 							"FK_parent" : parentId
 
-						} 
+						}
 					);
 				}
 				self.reviseChildHierarcies( cat );
@@ -155,7 +155,7 @@ export default {
 				if( cat.FK_parent !== parentId || cat.displayOrder !== displayOrder  ){
 					cat.FK_parent = parentId;
 					cat.displayOrder = displayOrder;
-					self.saveCategory( 
+					self.saveCategory(
 						{
 							"id" : cat.id,
 							"displayOrder" : displayOrder,
@@ -169,11 +169,11 @@ export default {
 		},
     	fetchCategories(){
 			const self = this;
-			Vue.set( this, "variations", 0 );
-			Vue.set( self, "categoryTree", null );
+			this.$set( this, "variations", 0 );
+			this.$set( self, "categoryTree", null );
 			this.getCategories( this.filterParams )
 					.then( ( result ) => {
-						Vue.set( self, "categoryTree", self.$options.filters.denormalize( result ) );
+						this.$set( self, "categoryTree", self.$options.filters.denormalize( result ) );
 					} )
 					.catch( ( err ) => console.error( err ) );
 
