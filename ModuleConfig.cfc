@@ -25,7 +25,9 @@ component {
 			"features" : {
 				"consignment" : getSystemSetting( "CBCOMMERCE_ENABLE_CONSIGNMENT", true ),
 				"used" : getSystemSetting( "CBCOMMERCE_ENABLE_USED_PRODUCTS", true )
-			}
+			},
+			"displayCategoriesNav" : true,
+			"storeName" : "cbCommerce Demo Store"
 		};
 
         // Custom Declared Interceptors
@@ -40,18 +42,18 @@ component {
 
     function onLoad() {
 		var isAPIRegistered = controller.getModuleService().isModuleRegistered( "cbcommerce-api" );
+		interceptors.append(
+			[
+				{
+					class="cbcUI.interceptors.CBCMenuHelper",
+					name="CBCMenuHelperInterceptor"
+				}
+			],
+			true
+		);
 		// @TODO: Move to ContentBox module
 		var isContentBoxContext = controller.getModuleService().isModuleRegistered( "contentbox" );
 		if( isContentBoxContext ){
-			interceptors.append(
-				[
-					{
-						class="cbcUI.interceptors.CBCMenuHelper",
-						name="CBCMenuHelperInterceptor"
-					}
-				],
-				true
-			);
 			// Add our menu item
 			var menuService = controller.getWireBox().getInstance( "AdminMenuService@cb" );
 

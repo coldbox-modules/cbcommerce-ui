@@ -9,7 +9,7 @@
 		<div class="header-top-row">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-6 hidden-xs hidden-sm">
+					<div class="col-lg-6 hidden-xs hidden-sm">
                         <div class="top-welcome">
 							<cfif prc.isContentBoxContext>
 								#cb.themeSetting( 'headerText', 'Welcome to our Store' )#
@@ -18,7 +18,7 @@
 							</cfif>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
 						<div class="top-welcome pull-left hidden-md hidden-lg">
                         </div>
                         <ul class="pull-right secondary-nav">
@@ -45,7 +45,7 @@
                         <div id="container-fixed">
                         	<div class="row flex-center">
                         		<!--- logo --->
-                                <div class="col-md-3">
+                                <div class="col-lg-3">
                                     <cfif prc.isContentBoxContext && cb.themeSetting( 'headerLogo' ) is "">
 										<a href="#cb.linkHome()#" class="navbar-brand" title="#cb.siteTagLine()#" data-toggle="tooltip">
 											<strong>#cb.siteName()#</strong>
@@ -58,19 +58,19 @@
 										</a>
 									</cfif>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-lg-5">
 									<div class="top-search-form">
 										<form id="search-form" name="searchForm" method="get" action="/store/category">
 											<div class="input-group">
 												<input type="text" class="form-control" placeholder="Search" name="search" id="searchInput" value="#event.getValue( "search", "" )#">
 												<span class="input-group-btn">
-													<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+													<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 												</span>
 											</div>
 										</form>
 									</div>
                                 </div>
-                                <div class="col-md-4 hidden-xs hidden-sm"></div>
+                                <div class="col-lg-4 hidden-xs hidden-sm"></div>
                             </div>
                         </div>
                         <cbcommerce-nav :prepend-categories="true"></cbcommerce-nav>

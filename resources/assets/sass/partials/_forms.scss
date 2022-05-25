@@ -1,38 +1,12 @@
 .block-form {
 	margin-bottom: 30px;
 
-	p {
-	  color: rgba(14, 14, 14, 0.7);
-	}
-
 	textarea.form-control {
 		height: 100px;
 	}
 	label {
 		margin: 10px 0 0;
-		font-family: $font-family-sans-serif;
 		font-weight: 400
-	}
-	.form-control {
-		border-radius: 0;
-		margin: 10px 0;
-		border-color: #eaeaea;
-		height: 40px
-	}
-	
-
-	.btn-default-1 {
-	  border-color: rgba(14, 14, 14, 0.3);
-	  background-color: #ffffff;
-	  color: rgba(14, 14, 14, 0.7);
-	  margin: 5px 20px 10px 0;
-	  display: inline-block;
-	}
-
-	.btn-default-1:hover {
-	  border-color: #790000;
-	  background-color: #790000;
-	  color: #ffffff;
 	}
 
 	.alert {
@@ -53,8 +27,8 @@
 .block-product-detail{
 	.v-select {
 		.dropdown-toggle{
-			.clear { 
-				display:none; 
+			.clear {
+				display:none;
 			}
 		}
 		.vs__selected-options{
@@ -118,16 +92,4 @@
 	    line-height: 1.42857;
 
 	}
-}
-
-/* remove radius on selects */
-
-select.form-control {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -webkit-border-radius: 0px;
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPScxLjEnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZycgeG1sbnM6eGxpbms9J2h0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0Jz48cGF0aCBmaWxsPScjNDQ0JyBkPSdNNy40MDYgNy44MjhsNC41OTQgNC41OTQgNC41OTQtNC41OTQgMS40MDYgMS40MDYtNiA2LTYtNnonPjwvcGF0aD48L3N2Zz4=");
-    background-position: 99% 50%;
-    background-repeat: no-repeat;
-    background-size: 14px;
 }

@@ -10,8 +10,8 @@
 
             <article class="product list">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-4 col-md-4 text-center">
-                        <figure class="figure-hover-overlay text-center">                                                                        
+                    <div class="col-sm-12 col-md-4 col-lg-4 text-center">
+                        <figure class="figure-hover-overlay text-center">
                             <a :href="`/store/product/${product.id}`" class="figure-href"></a>
                             <div v-if="this.isNew" class="product-new">new</div>
                             <div class="product-sale" v-if="product.startingPrice && product.startingPrice.basePrice < product.startingPrice.MSRP">{{ percentOff }} <br> off</div>
@@ -25,9 +25,9 @@
 
                         </figure>
                     </div>
-                    <div class="col-xs-12 col-sm-8 col-md-8">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
                         <div class="product-caption">
-                        
+
                             <div class="block-name">
                                 <a :href="`/store/product/${product.id}`" class="product-name">{{ product.name | removeHTML( 100 ) }}</a>
                                     <div v-if="product.startingPrice && product.startingPrice.basePrice">
@@ -42,7 +42,7 @@
                                         <p class="product-price">&nbsp;</p>
                                     </div>
                             </div>
-                            <p class="tag_number">
+                            <p v-if="product.externalId" class="tag_number">
                                 {{product.externalId}}
                             </p>
                             <div v-if="product.startingPrice.pickUpInStore" class="round_section_label">
@@ -53,7 +53,7 @@
                             </div>
 
                             <div v-if="product.startingPrice && product.startingPrice.basePrice" class="product-cart">
-                                <a 
+                                <a
                                     @click="addItemToCart( { sku: product.startingPrice.SKU, quantity: 1 } )"
                                     v-tooltip="'Add this item to your cart'"
                                     class="btn"><i class="fa fa-shopping-cart"></i> Add to cart</a>
@@ -141,12 +141,12 @@ export default {
         imageProgress: function( instance, image ){
             var result = image.src ? 'loaded' : 'broken';
         }
-        
+
 
     }
 }
 </script>
 
 <style>
-    
+
 </style>

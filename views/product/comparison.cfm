@@ -1,11 +1,27 @@
 <cfoutput>
-    <section id="productComparison">
 
-        <div class="container">
+	<section id="productComparison">
 
-            <product-comparison></product-comparison>
+		<div class="container">
 
-        </div>
+			<div class="header-for-light">
+                <h1 class="wow fadeInRight animated animated" data-wow-duration="1s">
+                	Product <span>Comparison</span>
+                </h1>
+            </div>
 
-    </section>
+            <div class="row">
+
+            	<div class="col-lg-12">
+
+		  			<product-comparison></product-comparison>
+
+		  		</div>
+
+		  	</div>
+
+	    </div>
+
+	</section>
+
 </cfoutput>

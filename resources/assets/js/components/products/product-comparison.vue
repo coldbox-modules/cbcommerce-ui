@@ -272,9 +272,9 @@ export default {
 			if( !sku ) return;
 
 			if( sku.media.length ){
-				return sku.media[ 0 ].src;
+				return sku.media[ 0 ].mediaItem.src;
 			} else {
-				return sku.product.media[ 0 ].src
+				return sku.product.media[ 0 ].mediaItem.src
 			}
 		},
 		getSkuFromList( sku ){

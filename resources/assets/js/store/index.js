@@ -57,6 +57,18 @@ export const createStore = (Vue, Vuex) => {
 			}
 		},
 		actions: {
+			refreshToken( {state, commit } ){
+				console.log( api() );
+				api().get.authentication.token()
+					.then( XHR => {
+						window.cbcGlobalData[ "@token" ] = XHR.data[ "@token" ];
+						state.globalData[ "@token" ] = XHR.data[ "@token" ];
+					} )
+					.catch(err => {
+						console.error(err);
+						reject("Error: Could could not retrieve an api token" );
+					})
+			},
 			addItemToComparisonList: ({ state, commit }, sku) =>
 				new Promise((resolve, reject) => {
 					const comparisonItem = state.productComparisonList.find(item => item.id === sku);

@@ -6,7 +6,7 @@
 	<div class="footer-social">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-lg-4">
 					<div class="social">
 						<cfif cb.themeSetting( 'socialFB', '' ) is not "">
 							<span class="fa-stack fa-1x">
@@ -66,7 +66,7 @@
 						</cfif>
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-lg-8">
 				</div>
 			</div>
 		</div>
@@ -74,18 +74,18 @@
 	<div class="footer-information">
     	<div class="container">
     		<div class="row">
-	    		<div class="col-md-6">
-	    			<div class="col-md-12 footerInfoBox">
+	    		<div class="col-lg-6">
+	    			<div class="col-lg-12 footerInfoBox">
 	    				#cb.themeSetting( 'footerInfoBox', '' )#
 	    			</div>
-	    			<div class="col-md-6">
+	    			<div class="col-lg-6">
 	    				#cb.menu( prc.footerNav1 )#
 	    			</div>
-	    			<div class="col-md-6">
+	    			<div class="col-lg-6">
 	    				#cb.menu( prc.footerNav2 )#
 	    			</div>
 	    		</div>
-	    		<div class="col-md-6">
+	    		<div class="col-lg-6">
 
 	    			<div
 						class="block-form box-border wow fadeInLeft animated"
@@ -105,13 +105,13 @@
 
 	<div class="footer-copy">
 		<div class="container">
-			<div class="col-md-4">
+			<div class="col-lg-4">
 				#cb.themeSetting( 'footerBox', '' )#
 			</div>
-			<div class="col-md-4 text-center">
+			<div class="col-lg-4 text-center">
 				#cb.themeSetting( 'footerBox2', '' )#
 			</div>
-			<div class="col-md-4 text-right">
+			<div class="col-lg-4 text-right">
 				<p class="text-muted">Copyright &copy; #cb.siteName()#.  All rights reserved.</p>
 				<p class="text-muted">Powered by ContentBox v#cb.getContentBoxVersion()#</p>
 			</div>

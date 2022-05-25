@@ -10,7 +10,7 @@
         </page-header>
 		<p class="text-muted">{{ $t( 'categories_order' ) }} Click the <i class="fa fa-pencil"></i> icon to edit.</p>
 
-		<div class="nestable-categories-list nested-expandable col-xs-12">
+		<div class="nestable-categories-list nested-expandable col-sm-12">
 			<generic-loader v-if="!categoryTree" :message="$t( 'categories_loading' )"></generic-loader>
 			<vue-nestable
 				v-else

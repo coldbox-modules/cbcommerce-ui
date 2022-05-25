@@ -7,9 +7,9 @@
 			<div class="row">
 
 
-				<div class="col-md-6">
+				<div class="col-lg-6">
 
-					<div 
+					<div
 						class="block-form wow fadeInLeft animated"
 						data-wow-duration="1s">
 
@@ -24,10 +24,10 @@
 				</div>
 
 
-				<div class="col-md-6">
+				<div class="col-lg-6">
 
-					<div 
-						class="block-form wow fadeInLeft animated" 
+					<div
+						class="block-form wow fadeInLeft animated"
 						data-wow-duration="1s">
 
 						<h3>Customer <span class="heading-highlight">Care</span></h3>

@@ -1,14 +1,14 @@
 <template>
 
-    <div>
+    <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-lg-3">
             <div class="widget-title first-widget">
                 <i class="fa fa-search"></i> Search
             </div>
             <div class="widget-block">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-lg-12">
                         <div class="input-group">
                             <input
                                 @keyup.tab="fetchProducts()"
@@ -27,7 +27,7 @@
             </div>
             <div class="widget-block">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                         <div class="input-group">
                             <span class="input-group-addon">&dollar;</span>
                             <input
@@ -40,7 +40,7 @@
                                 v-model.number="minPrice" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                         <div class="input-group">
                             <span class="input-group-addon">&dollar;</span>
                             <input
@@ -56,54 +56,56 @@
                 </div>
             </div>
 
-            <div v-if="activeCategory" class="widget-title">
-                <i class="fa fa-arrow-circle-down"></i> Sub-Categories
-            </div>
-            <div v-if="activeCategory" class="widget-block">
-                <div class="overlay" v-if="isLoading">
-                    <generic-loader message="Please wait..."></generic-loader>
-                </div>
+			<template v-if="activeCategory && activeCategory.children.length">
+				<div class="widget-title">
+					<i class="fa fa-arrow-circle-down"></i> Sub-Categories
+				</div>
+				<div class="widget-block">
+					<div class="overlay" v-if="isLoading">
+						<generic-loader message="Please wait..."></generic-loader>
+					</div>
 
-                <div class="row">
-                    <div class="col-xs-12">
-                        <ul class="subcategory-links list-unstyled">
-                            <li
-                                v-for="category in activeCategory.children"
-                                :key="`subcat_${category.id}`">
-                                <label>
-                                <input
-                                    type="checkbox"
-                                    :name="`category_${category.id}`"
-                                    :value="category.id"
-                                    @change="categoriesFilterChange"> {{category.name}}</label>
+					<div class="row">
+						<div class="col-sm-12">
+							<ul class="subcategory-links list-unstyled">
+								<li
+									v-for="category in activeCategory.children"
+									:key="`subcat_${category.id}`">
+									<label>
+									<input
+										type="checkbox"
+										:name="`category_${category.id}`"
+										:value="category.id"
+										@change="categoriesFilterChange"> {{category.name}}</label>
 
-                                <ul :id="`childrens_${category.id}`" v-if="category.children.length" style="display: none;" class="subcategory-children-links list-unstyled">
-                                    <li
-                                        v-for="categoryc in category.children"
-                                        :key="`subcat_${categoryc.id}`">
-                                        <label>
-                                        <input
-                                            type="checkbox"
-                                            :name="`category_${categoryc.id}`"
-                                            :value="categoryc.id"
-                                            @change="categoriesFilterChange"> {{categoryc.name}}</label>
-                                    </li>
+									<ul :id="`childrens_${category.id}`" v-if="category.children.length" style="display: none;" class="subcategory-children-links list-unstyled">
+										<li
+											v-for="categoryc in category.children"
+											:key="`subcat_${categoryc.id}`">
+											<label>
+											<input
+												type="checkbox"
+												:name="`category_${categoryc.id}`"
+												:value="categoryc.id"
+												@change="categoriesFilterChange"> {{categoryc.name}}</label>
+										</li>
 
-                                </ul>
+									</ul>
 
-                            </li>
+								</li>
 
-                        </ul>
-                    </div>
-                </div>
-            </div>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</template>
             <div v-if="searchParams.condition && categoriesListArray.length" class="widget-title">
                 <i class="fa fa-arrow-circle-down"></i> {{searchParams.condition}} Categories
             </div>
             <div v-if="searchParams.condition && categoriesListArray.length" class="widget-block">
                 <generic-loader v-if="categoriesLoading" message="Loading categories..."></generic-loader>
                 <div v-else class="row">
-                    <div class="col-xs-12">
+                    <div class="col-sm-12">
                         <ul class="subcategory-links list-unstyled">
                             <li
                                 v-for="category in categoriesListArray"
@@ -122,7 +124,7 @@
 
         </div>
 
-        <div class="col-md-9">
+        <div class="col-lg-9">
 
             <filter-bar
                 v-on:productLayoutChange="productLayoutChangeReaction"
@@ -146,20 +148,20 @@
 
             </div>
 
-            <div v-if="isLoading">
-                <div class="col-md-4" v-for="(n, index) in 25" :key="`loading-${index}`">
+            <template v-if="isLoading">
+                <div class="col-lg-4" v-for="(n, index) in 25" :key="`loading-${index}`">
                     <product-item-loading></product-item-loading>
                 </div>
-            </div>
+            </template>
 
-            <div v-else-if="!this.productsListArray.length">
+            <template v-else-if="!this.productsListArray.length">
                 <div class="text-center alert alert-info">
                     <h5 class="text-center">There are no products matching the requested criteria</h5>
                 </div>
 
-            </div>
+            </template>
 
-            <div v-else>
+            <template v-else>
                 <products-grid
                     v-if="this.isGrid"
                     :products="this.productsListArray"
@@ -173,7 +175,7 @@
                     :isLoading="isLoading"
                     :fakes="fakes"
                 ></products-list>
-            </div>
+            </template>
 
             <div class="block-pagination" v-if="!isLoading">
 
@@ -283,7 +285,7 @@ export default {
             self.searchParams.page = self.currentPage;
             self.searchParams.search = self.refine_
             self.getListOfProducts( self.searchParams ).then( productsMap => {
-            self.setPagination( productsMap.meta.pagination );
+            self.setPagination( productsMap.pagination );
             this.$set( self, "isLoading", false );
             } );
         },

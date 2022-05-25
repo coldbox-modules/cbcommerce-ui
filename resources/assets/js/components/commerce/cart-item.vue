@@ -1,6 +1,6 @@
 <template>
 	<div class="row cart-product-row">
-		<div class="col-sm-7">
+		<div class="col-md-7">
 			<div class="cart-product">
 				<div class="cart-product-image">
 					<a :href="`/store/product/${item.product.id}`">
@@ -24,12 +24,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-md-2">
 			<div class="cart-product-price">
 				<span class="sr-only">unit price</span>{{ item.sku.basePrice | currency }}
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="cart-product-quantity">
                 <quantity-control
                     :showLabel="false"

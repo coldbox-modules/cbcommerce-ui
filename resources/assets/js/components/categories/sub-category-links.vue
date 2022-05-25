@@ -1,6 +1,6 @@
 <template>
 
-    <div class="col-sm-12 col-md-6 subCatLink">
+    <div class="col-md-12 col-lg-6 subCatLink">
         <a :href="this.catLink">{{ this.catName }}</a>
     </div>
 
@@ -44,5 +44,5 @@ export default {
 </script>
 
 <style>
-    
+
 </style>

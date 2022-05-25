@@ -1,12 +1,12 @@
 <template>
 
 	<div>
-        
+
         <page-header
             :headerTitle="$t( 'products' )"
             :displayToolBarButton="true"
             routeName="newProduct"
-            buttonIconClass="fa fa-plus">    
+            buttonIconClass="fa fa-plus">
         </page-header>
 
         <b-row>
@@ -64,21 +64,21 @@
                     :current-page="currentPage"
                     :per-page="perPage">
                     <template v-slot:cell(thumbnail)="data">
-                        <router-link 
+                        <router-link
                             @click.stop
                             :to="{ name: 'productForm', params: { id: data.item.id } }">
                             <b-img v-if="data.value"
-                                thumbnail 
-                                :src="data.value" 
-                                fluid 
-                                :alt="data.item.name" 
-                                :title="data.item.name" 
-                                width="80" 
+                                thumbnail
+                                :src="data.value"
+                                fluid
+                                :alt="data.item.name"
+                                :title="data.item.name"
+                                width="80"
                                 height="80" />
                         </router-link>
                     </template>
                     <template v-slot:cell(name)="data">
-                        <router-link 
+                        <router-link
                             @click.stop
                             :to="{ name: 'productForm', params: { id: data.item.id } }">
                             {{ data.item.name }}
@@ -91,9 +91,9 @@
                         {{ data.item.isActive | itemStatusToText }}
                     </template>
                     <template v-slot:cell(actions)="data">
-                        <router-link 
+                        <router-link
                             @click.stop
-                            :to="{ name: 'productForm', params: { id: data.item.id } }" 
+                            :to="{ name: 'productForm', params: { id: data.item.id } }"
                             class="btn btn-success float-right">
                             <i class="fa fa-eye"></i>
                         </router-link>
@@ -133,7 +133,7 @@ export default {
             },
             conditionOptions : [ { text : this.$t( 'new' ), value : "New" }, {text : this.$t( 'used' ), value : "Used" } ],
             productsFields: [
-                {   
+                {
                     key: 'thumbnail',
                     formatter: ( value, key, item ) => {
                         const primaryMedia = this.$options.filters.denormalize( item.media ).filter( mediaItem => mediaItem.isPrimary );
@@ -177,13 +177,13 @@ export default {
     },
 
     methods: {
-    	
+
     	...mapActions([
     		"getListOfProducts",
     		"setCurrentProduct",
     		"clearCurrentProduct"
         ]),
-        
+
         refreshList( e ){
             this.$refs.productsTable.refresh();
         },
@@ -195,9 +195,9 @@ export default {
             self.searchParams[ "maxRows" ] = self.perPage;
             let promise = this.getListOfProducts( self.searchParams );
             return promise.then( ( results ) => {
-                self.currentPage = parseInt( results.meta.pagination.page );
-                self.perPage = parseInt( results.meta.pagination.maxrows );
-                self.totalRows = parseInt( results.meta.pagination.total );
+                self.currentPage = parseInt( results.pagination.page );
+                self.perPage = parseInt( results.pagination.maxrows );
+                self.totalRows = parseInt( results.pagination.total );
                 const productsArray = self.$options.filters.denormalize( results );
                 return( productsArray );
                 self.isLoading=false;

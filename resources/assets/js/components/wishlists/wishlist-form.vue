@@ -1,11 +1,11 @@
 <template>
     <div class="wishlist-form form-block">
         <div class="form-group">
-            <label class="col-xs-12 text-left text-muted">{{ $t( 'wishlist_name' ) }}</label>
+            <label class="col-sm-12 text-left text-muted">{{ $t( 'wishlist_name' ) }}</label>
             <input class="form-control" v-model="wishlist.name"/>
         </div>
         <div class="form-group">
-            <label class="col-xs-12 text-left text-muted">{{ $t( 'Description' ) }}</label>
+            <label class="col-sm-12 text-left text-muted">{{ $t( 'Description' ) }}</label>
             <textarea id="new-wishlist-description" class="form-control" rows="5" :v-model="wishlist.description"></textarea>
         </div>
         <div class="form-group">

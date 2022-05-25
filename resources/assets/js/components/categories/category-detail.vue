@@ -1,10 +1,10 @@
 <template>
     <div class="category-detail">
-        <div class="col-md-12 productDetailHeader" v-if="activeCategory">
+        <div class="col-xs-12 productDetailHeader" v-if="activeCategory">
             <h1 class="wow fadeInRight animated animated" data-wow-duration="1s">{{activeCategory.name}}</h1>
             <p v-html="activeCategory.description"></p>
         </div>
-        <div class="col-xs-12 category-products" v-if="!isLoading">
+        <div class="col-sm-12 category-products" v-if="!isLoading">
             <product-filter-page :initialParams="initialParams"></product-filter-page>
         </div>
     </div>

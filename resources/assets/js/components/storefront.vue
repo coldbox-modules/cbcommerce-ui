@@ -1,10 +1,10 @@
 <template>
     <div class="store-front">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
             <product-carousel></product-carousel>
         </div>
-        <div class="col-xs-12">
-            
+        <div class="col-sm-12">
+
         </div>
     </div>
 </template>

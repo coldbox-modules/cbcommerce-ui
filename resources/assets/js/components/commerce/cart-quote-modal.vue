@@ -10,7 +10,7 @@
 
                         <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="inputFirstName" class="control-label">Name:<span class="text-error">*</span></label>
                                             <div>
@@ -24,7 +24,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="inputLastName" class="control-label">Email:<span class="text-error">*</span></label>
                                             <div>
@@ -37,7 +37,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="inputSubject" class="control-label">Phone:<span class="text-error">*</span></label>
                                             <div>
@@ -50,13 +50,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 fm-hp">
+                                    <div class="col-lg-12 fm-hp">
                                         <div class="form-group">
                                             <label>Do not enter text in to the following field</label>
                                             <input type="text" v-model="formData.hpInfo"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="inputText" class="control-label">Message/Additional Items Requested:</label>
                                             <div>

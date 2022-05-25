@@ -3,12 +3,12 @@
         <div v-if="isLoading" class="overlay">
      		<generic-loader :message="$t('wishlist_loader_message')"></generic-loader>
      	</div>
-        <div class="col-md-12 header-for-light" v-if="wishlist">
+        <div class="col-lg-12 header-for-light" v-if="wishlist">
             <h1 class="wow fadeInRight animated animated" data-wow-duration="1s">{{ $t( 'Wishlist' ) }}: <span contenteditable="true" @blur="updateWishlistName">{{wishlist.name}}</span></h1>
             <p v-html="wishlist.description"></p>
         </div>
 
-        <div class="col-md-9 col-sm-8 col-xs-12 wishlist-items" v-if="!isLoading">
+        <div class="col-lg-9 col-md-8 col-sm-12 wishlist-items" v-if="!isLoading">
 
             <wishlist-item
                 v-for="item in wishlist.items"
@@ -28,7 +28,7 @@
             </div>
 
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-12" v-if="!isLoading">
+        <div class="col-lg-3 col-md-4 col-sm-12" v-if="!isLoading">
             <div v-if="wishlist.items.length" class="product-request">
                 <a  href="javascript:;"
                     @click="toggleModal"

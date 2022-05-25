@@ -1,6 +1,6 @@
 <template>
     <div class="category-detail">
-        <div class="col-md-12 productDetailHeader">
+        <div class="col-xs-12 productDetailHeader">
             <h1 class="wow fadeInRight animated animated" data-wow-duration="1s">Used Products</h1>
         </div>
         <div class="col-xs-12 category-products">

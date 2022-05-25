@@ -25,14 +25,14 @@
 			<!--- Main View --->
 			<section id="body-main" class="body-main-page">
 				<!--- Blank breadcrumbs, for now, so our page layout remains intact --->
-				<div id="body-breadcrumbs" class="col-sm-12"></div>
+				<div id="body-breadcrumbs" class="col-md-12"></div>
 				<!--- Determine span length due to sidebar or homepage --->
 				<cfif ( prc.isContentBoxContext && cb.isHomePage() ) OR !args.sidebar>
 					<cfset args.span = 12>
 				<cfelse>
 					<cfset args.span = 9>
 				</cfif>
-				<div class="col-sm-">
+				<div class="col-md-">
 					<cfif prc.isContentBoxContext>
 						#cb.mainView( args=args )#
 					<cfelse>

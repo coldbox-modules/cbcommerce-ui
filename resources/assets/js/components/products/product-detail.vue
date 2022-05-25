@@ -2,11 +2,11 @@
   <div>
     <product-detail-loading v-if="!currentProduct"></product-detail-loading>
 
-    <div class="col-md-12 productDetailHeader" v-if="currentProduct">
-      <div class="col-md-1">
+    <div class="col-xs-12 productDetailHeader" v-if="currentProduct">
+      <div class="col-lg-1">
         <a href="javascript:window.history.back()"><div class="back-button"></div></a>
       </div>
-      <div class="col-md-11">
+      <div class="col-lg-11">
         <h1
           class="wow fadeInRight animated animated"
           data-wow-duration="1s"
@@ -14,14 +14,14 @@
         ></h1>
       </div>
     </div>
-    <div class="col-md-12 col-lg-12">
-      <div class="col-md-9" v-if="activeSku">
+    <div class="col-lg-12 col-xl-12">
+      <div class="col-lg-9" v-if="activeSku">
         <div class="block-product-detail">
           <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
               <product-images-gallery :media="displayedMedia"></product-images-gallery>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
               <div class="product-detail-section">
                 <div class="product-rating">
                   <star-rating
@@ -110,7 +110,7 @@
         </div>
       </div>
 
-        <div class="col-md-3 col-lg-3 product-detail-sidebar-section">
+        <div class="col-lg-3 col-xl-3 product-detail-sidebar-section">
           <div class="product-information" v-if="!isLoading">
             <div v-if="activeSku.showPricing">
               <quantity-control
@@ -236,7 +236,7 @@
           <div class="tab-pane" id="review">
             <br>
             <div class="row" v-if="currentProductReviews.length">
-              <div class="col-md-12">
+              <div class="col-lg-12">
                 <h3>Reviews</h3>
                 <hr>
                 <product-review
@@ -251,7 +251,7 @@
             <product-review-form v-if="authUser" v-on:reviewSubmission="reviewSubmissionReaction"></product-review-form>
             <!-- End product review form -->
             <div class="row" v-else>
-              <div class="col-xs-12">
+              <div class="col-sm-12">
                 <h3>Sign in to Review This Product</h3>
                 <login-form></login-form>
               </div>

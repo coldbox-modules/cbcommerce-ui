@@ -1,8 +1,8 @@
 <template>
-    <div class="col-xs-12">
-        <div class="col-md-6 col-md-offset-3">
-            <page-header 
-                :header-title="$t( 'log_in' )">		
+    <div class="col-sm-12">
+        <div class="col-lg-6 col-lg-offset-3">
+            <page-header
+                :header-title="$t( 'log_in' )">
             </page-header>
 
             <login-form></login-form>

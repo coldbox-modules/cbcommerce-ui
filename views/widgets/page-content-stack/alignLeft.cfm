@@ -7,10 +7,10 @@
 	</cfif>
 		<div class="container-fluid #args.flexClass#">
 			<cfif args.contentResults.pages[ args.x ].getFeaturedImageURL() is not "" >
-				<div class="col-md-5">
+				<div class="col-lg-5">
 					#args.contentResults.pages[ args.x ].renderContent()#
 				</div>
-				<div class="col-md-7">
+				<div class="col-lg-7">
 					<img src="#args.contentResults.pages[ args.x ].getFeaturedImageURL()#" class="img-featured img-responsive"/>
 				</div>
 			<cfelse>

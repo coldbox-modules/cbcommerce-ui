@@ -6,7 +6,7 @@
 		<div class="block-form">
 			<form role="form" action="javascript:void(0)" data-vv-scope="form-account">
 				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
+					<div class="col-lg-6 col-lg-offset-3">
 						<div class="form-group">
 							<label for="email" class="control-label">Email:
 								<span class="text-danger">*</span>
@@ -119,7 +119,7 @@
 								</span>
 							</div>
 						</div>
-						
+
                         <p v-if="errorMessage" class="alert alert-danger">
 							{{ errorMessage }}
 						</p>
@@ -127,7 +127,7 @@
                         <p v-if="successMessage" class="alert alert-success">
 							{{ successMessage }}
 						</p>
-						
+
                         <div class="form-group">
 							<a
 								href="javascript:;"
@@ -136,7 +136,7 @@
 
 								Update Account
 							</a>
-							
+
 						</div>
 					</div>
 				</div>
@@ -182,8 +182,8 @@
 				}
             });
 
-            Object.assign( 
-                this.formFields, 
+            Object.assign(
+                this.formFields,
                 {
                     id : this.authUser.id,
                     firstName : this.authUser.firstName,
@@ -191,7 +191,7 @@
                     email : this.authUser.email
                 }
             );
-            
+
 		},
 		computed: {
             ...mapGetters( [ "authUser" ] )
@@ -225,7 +225,7 @@
 								self.errorMessage = "Your account not be updated.  The message received was: " + err.response.data.messages.join( '. ' );
 							}
 						})
-						.then( xhr => { 
+						.then( xhr => {
 							self.isLoading = false;
 						} );
 					}

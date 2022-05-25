@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="(n,index) in itemsOnStage" :key="`grid-loading-${index}`" class="col-md-3">
+        <div v-for="(n,index) in itemsOnStage" :key="`grid-loading-${index}`" class="col-lg-3">
             <product-item-loading></product-item-loading>
         </div>
     </div>

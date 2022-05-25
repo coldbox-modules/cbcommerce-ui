@@ -4,8 +4,13 @@
 @import "~bootstrap-vue/src/variables";
 /* Import colors and mixins */
 @import './partials/variables';
+@import "~bootstrap/scss/bootstrap-grid";
 @import "~bootstrap-vue/src/index";
+$fa-css-prefix: 'fa';
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/v4-shims";
 @import "~animate-scss/animate";
 @import "~slick-carousel/slick/slick";
 @import "~viewerjs/src/css/viewer";

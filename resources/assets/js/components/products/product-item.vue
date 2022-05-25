@@ -1,24 +1,24 @@
 <template>
 
-    <div>
+    <div class="container">
 
-        <div v-if="!isLoading">
+        <template v-if="!isLoading">
 
             <div class="text-center item">
 
                 <article class="product light">
-                    <figure class="figure-hover-overlay">                                                                        
+                    <figure class="figure-hover-overlay">
                         <a :href="`/store/product/${product.id}`"  class="figure-href"></a>
                         <div v-if="isNew" class="product-new">new</div>
-                        <div 
-                            class="product-sale" 
+                        <div
+                            class="product-sale"
                             v-if="hasPricing && product.startingPrice.basePrice < product.startingPrice.MSRP">{{ percentOff }}% <br> off</div>
 
                         <wishlist-add-icon :skuId="product.startingPrice.SKU"></wishlist-add-icon>
-                        
+
                         <comparison-add-icon :skuId="product.startingPrice.SKU"></comparison-add-icon>
-                        
-                        
+
+
                         <div class="product-item-image" v-if="productImageSrc.length" :style="`background-image:url(${productImageSrc})`"></div>
                         <div class="product-item-image-placeholder" v-else>
                         </div>
@@ -39,7 +39,7 @@
                                 </div>
                         </div>
                     </div>
-                    <p class="tag_number">
+                    <p v-if="product.externalId" class="tag_number">
                         {{product.externalId}}
                     </p>
                     <div v-if="product.startingPrice.pickUpInStore" class="round_section_label">
@@ -50,7 +50,7 @@
                     </div>
 
                     <div v-if="hasPricing" class="product-cart">
-                        <a 
+                        <a
                             @click="addItemToCart( { sku: product.startingPrice.SKU, quantity: 1 } )"
                             v-tooltip="'Add this item to your cart'"
                             class="btn"><i class="fa fa-shopping-cart"></i> Add to cart</a>
@@ -66,11 +66,11 @@
 
             </div>
 
-        </div>
+        </template>
 
-        <div v-if="isLoading">
+        <template v-else>
             <product-item-loading></product-item-loading>
-        </div>
+        </template>
 
     </div>
 
@@ -125,9 +125,9 @@ export default {
         productImageSrc(){
             var self = this;
             var mediaSrc = '';
-            this.product.media.forEach( mediaItem => {
-                if( !mediaSrc.length && self.isImage( mediaItem ) ){
-                    mediaSrc = mediaItem.src;
+            this.product.media.forEach( media => {
+                if( !mediaSrc.length && self.isImage( media.mediaItem ) ){
+                    mediaSrc = media.mediaItem.src;
                 }
             });
 
@@ -141,12 +141,12 @@ export default {
             "addItemToWishlist"
         ]),
         isImage: function( mediaItem ){
-            return this.$options.filters.isImage( mediaItem );
+            return this.$options.filters.isImage( mediaItem.mediaItem || mediaItem );
         },
         imageProgress: function( instance, image ){
             var result = image.src ? 'loaded' : 'broken';
         }
-        
+
 
     }
 }

@@ -136,9 +136,9 @@ export default {
             let promise = this.getListOfCustomers( self.searchParams );
             return promise.then( ( results ) => {
                 self.isLoading = false;
-                self.currentPage = parseInt( results.meta.pagination.page );
-                self.perPage = parseInt( results.meta.pagination.maxrows );
-                self.totalRows = parseInt( results.meta.pagination.total );
+                self.currentPage = parseInt( results.pagination.page );
+                self.perPage = parseInt( results.pagination.maxrows );
+                self.totalRows = parseInt( results.pagination.total );
                 const customersArray = self.$options.filters.denormalize( results );
                 return( customersArray );
             })

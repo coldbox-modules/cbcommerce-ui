@@ -11,7 +11,7 @@
 			    	<i class="fa fa-times"></i>
 			    </button>
 		    </div>
-		    <div id="navbar-main-collapse">
+		    <div id="navbar-main-collapse" v-if="rootMenu">
 		        <ul :class="rootMenu.menuClass">
 					<template v-if="prependCategories">
 						<cbcommerce-nav-item

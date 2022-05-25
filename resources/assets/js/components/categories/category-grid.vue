@@ -1,23 +1,19 @@
 <template>
-
     <div class="row">
-        <div 
-            v-if="isLoading" 
-            v-for="fake in fakes" 
-            v-bind:key="fake.id"
-        >
-            <category-grid-item-loading></category-grid-item-loading>
-        </div>
-
-        <div v-if="!isLoading">
-            <category-grid-item
-                v-for="category in categories"
-                :key="category.id"
-                :category="category"
-            ></category-grid-item>
-        </div>
-
-    </div>
+		<template v-if="isLoading">
+			<category-grid-item-loading
+				v-for="fake in fakes"
+				v-bind:key="fake.id"
+			></category-grid-item-loading>
+		</template>
+		<template v-else>
+			<category-grid-item
+				v-for="category in categories"
+				:key="category.id"
+				:category="category"
+			></category-grid-item>
+		</template>
+</div>
 
 </template>
 
@@ -42,11 +38,11 @@ export default {
         var self = this;
         this.isLoading = true;
         // Fetch the categories
-        this.fetchCategories().then( () => self.isloading=false )
+        this.fetchCategories().then( () => self.isLoading=false )
 
     },
     computed: {
-        ...mapGetters({ 
+        ...mapGetters({
             categories: 'categoriesListArray'
         })
     },
@@ -59,7 +55,7 @@ export default {
     methods: {
 
         fetchCategories: function(){
-            return this.$store.dispatch( 'getCategories' );        
+            return this.$store.dispatch( 'getCategories' );
         }
 
     }

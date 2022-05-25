@@ -6,7 +6,7 @@
 		<div class="block-form">
 			<form role="form" action="javascript:void(0)" data-vv-scope="form-account">
 				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
+					<div class="col-lg-6 col-lg-offset-3">
 						<div class="form-group">
 							<label for="email" class="control-label">Email:
 								<span class="text-danger">*</span>
@@ -131,7 +131,7 @@
 
 								Create Account
 							</a>
-							
+
 						</div>
 					</div>
 				</div>
@@ -212,7 +212,7 @@
 								self.errorMessage = "An account not be created.  The message received was: " + err.response.data.messages.join( '. ' );
 							}
 						})
-						.then( xhr => { 
+						.then( xhr => {
 							self.isLoading = false;
 						} );
 					}

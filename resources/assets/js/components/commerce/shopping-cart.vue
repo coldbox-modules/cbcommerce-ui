@@ -3,20 +3,20 @@
      	<div v-if="isLoadingCart" class="overlay">
      		<generic-loader message="Your cart is loading. Please wait..."></generic-loader>
      	</div>
-        <div v-else-if="cartProducts && !cartProducts.length" class="col-sm-12 text-center">
+        <div v-else-if="cartProducts && !cartProducts.length" class="col-md-12 text-center">
             <h3>Your Shopping Cart is empty.</h3>
             <p>Learn what's featuring today.</p>
             <p><a href="/" class="btn btn-lg btn-animate">Go to Homepage</a></p>
         </div>
         <div v-else>
-	    	<div class="col-sm-9">
+	    	<div class="col-md-9">
 	    		<div
 	    			v-for="(item, index) in cartProducts"
 	    			:key="index">
 	    			<cart-item :item= "item"></cart-item>
 	    		</div>
 		     </div>
-		     <div class="col-sm-3">
+		     <div class="col-md-3">
 		     	<div class="cart-buy-box text-center">
 			     	<div class="cart-buy-subtotal">
 			     		<span>Subtotal </span>

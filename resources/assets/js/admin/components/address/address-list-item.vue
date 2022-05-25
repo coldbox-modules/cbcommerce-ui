@@ -1,6 +1,6 @@
 <template>
 
-	<div class="col-md-12 mb-2">
+	<div class="col-lg-12 mb-2">
 
 		<address-details-card
 			:type="type"

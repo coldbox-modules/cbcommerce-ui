@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="isLoading"></div>
 		<div v-else>
-			<div class="col-sm-6">
+			<div class="col-md-6">
 				<h3>Order Number: {{ orderNumber }}</h3>
 				<p>Order will be shipped to:</p>
 				<div class="well">
@@ -12,7 +12,7 @@
 					{{ order.shippingAddress.city }}, {{ order.shippingAddress.province }} &nbsp;&nbsp;{{ order.shippingAddress.postalCode }}<br/>
 				</div>
 			</div>
-			<div class="col-sm-12">
+			<div class="col-md-12">
 				<table class="table">
 					<thead>
 						<tr>

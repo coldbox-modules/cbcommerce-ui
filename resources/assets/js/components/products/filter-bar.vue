@@ -2,29 +2,29 @@
 
     <div class="block-products-modes color-scheme-2">
         <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
                 <div class="product-view-mode">
-                    <a 
+                    <a
                         v-tooltip="{ content: 'View products as a grid' }"
                         class="productGridBtn"
-                        v-bind:class="{ active: isGrid }" 
+                        v-bind:class="{ active: isGrid }"
                         @click="productLayoutChange('grid')"><i class="fa fa-th-large"></i></a>
-                    <a 
+                    <a
                         v-tooltip="{ content: 'View products as a list' }"
                         class="productListBtn"
-                        v-bind:class="{ active: isList }" 
+                        v-bind:class="{ active: isList }"
                         @click="productLayoutChange('list')"><i class="fa fa-th-list"></i></a>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
                 <div class="row">
-                    <div class="col-md-3 col-md-offset-1">
+                    <div class="col-lg-3 col-lg-offset-1">
                         <label class="pull-right">Sort by</label>
                     </div>
-                    <div class="col-md-5">
-                        <select 
-                            name="sort-type" 
-                            class="form-control" 
+                    <div class="col-lg-5">
+                        <select
+                            name="sort-type"
+                            class="form-control"
                             @change="$emit('sortTypeChange', $event.target.value)">
                             <option value="position:asc">--</option>
                             <option value="price:asc" selected="selected">Price: Lowest first</option>
@@ -34,9 +34,9 @@
                             <option value="quantity:desc">In stock</option>
                         </select>
                     </div>
-                    <div class="col-md-3">
-                        <select 
-                            name="products-per-page" 
+                    <div class="col-lg-3">
+                        <select
+                            name="products-per-page"
                             class="form-control"
                             :value="perPage"
                             @change="$emit('perPageChange', $event.target.value)">

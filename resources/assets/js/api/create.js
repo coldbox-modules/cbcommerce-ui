@@ -68,11 +68,14 @@ const apiAxios = Axios.create({
   timeout,
   headers : {
     "Authorization": `Bearer ${token}`,
-    "Content-Type" : "application/json",
-    "CSRF-Token": window.cbcGlobalData ? window.cbcGlobalData[ "@token" ] : ""
+    "Content-Type" : "application/json"
   }
 });
 
+apiAxios.interceptors.request.use((config) => {
+	config.headers[ "CSRF-Token" ] = window.cbcGlobalData ? window.cbcGlobalData[ "@token" ] : ""
+	return config;
+});
 
 const finalAPI = apiAxios;
 

@@ -2,15 +2,15 @@
 
 	<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
 
-		<router-link 
-			to="/" 
-			class="navbar-brand col-sm-3 col-md-2 mr-0">CBCommerce Admin</router-link>
+		<router-link
+			to="/"
+			class="navbar-brand col-md-3 col-lg-2 mr-0">CBCommerce Admin</router-link>
 
-		<input 
+		<input
 			v-if="authUser"
-			class="form-control form-control-dark w-100" 
-			type="text" 
-			placeholder="Search" 
+			class="form-control form-control-dark w-100"
+			type="text"
+			placeholder="Search"
 			aria-label="Search" />
 
 		<ul class="navbar-nav px-3">

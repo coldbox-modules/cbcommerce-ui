@@ -2,7 +2,7 @@
     <div class="page-wrap" fluid>
         <nav-cart></nav-cart>
 
-        <main role="main" class="col-xs-12">
+        <main role="main" class="col-sm-12">
 
             <router-view></router-view>
 

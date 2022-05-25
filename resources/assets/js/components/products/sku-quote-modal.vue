@@ -8,7 +8,7 @@
                         <div class="modal-header header-for-light">
                                      <article class="product list" v-if="sku">
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+                                            <div class="col-sm-12 col-md-4 col-lg-4 text-center">
                                                 <figure class="figure-hover-overlay text-center">
                                                     <a :href="`/store/product/${sku.product.id}`" class="figure-href"></a>
 
@@ -17,7 +17,7 @@
 
                                                 </figure>
                                             </div>
-                                            <div class="col-xs-12 col-sm-8 col-md-8">
+                                            <div class="col-sm-12 col-md-8 col-lg-8">
                                                 <div class="product-caption">
 
                                                     <div class="block-name">
@@ -31,7 +31,7 @@
 
                         <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="inputFirstName" class="control-label">Name:<span class="text-error">*</span></label>
                                             <div>
@@ -45,7 +45,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="inputLastName" class="control-label">Email:<span class="text-error">*</span></label>
                                             <div>
@@ -58,7 +58,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="inputSubject" class="control-label">Phone:<span class="text-error">*</span></label>
                                             <div>
@@ -71,13 +71,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 fm-hp">
+                                    <div class="col-lg-12 fm-hp">
                                         <div class="form-group">
                                             <label>Do not enter text in to the following field</label>
                                             <input type="text" v-model="formData.hpInfo"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="inputText" class="control-label">Message/Additional Items Requested:</label>
                                             <div>

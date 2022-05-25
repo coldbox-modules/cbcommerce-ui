@@ -1,49 +1,29 @@
 <template>
 
-    <div class="col-xs-12 col-sm-6 col-md-4 text-center mb-25">
+    <div class="col-sm-12 col-md-6 col-lg-4 text-center mb-25">
 
         <article class="category light">
+			<figure class="figure-hover-overlay">
+				<a :href="`/store/category/${category.id}`">
+					<img
+						v-if="primaryImageSrc"
+						:src="thumbnailSrc"
+						:alt="category.name"
+						class="img-responsive" />
+				</a>
 
-            <div v-if="!isLoading">
+				<div class="category-caption">
+					<div class="block-name">
+						<a :href="`/store/category/${category.id}`" class="category-name">{{ category.name }}</a>
+					</div>
+				</div>
 
-                <div v-bind:class="{ loading: isLoading }" >
-                    <div class="spinner" v-if="isLoading">
-                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                        <span class="sr-only">Loading product category...</span>
-                    </div>
-                </div>
+				<sub-category-links
+					v-for="(subCat, index) in category.children"
+					:key="index"
+					:subCat="subCat"></sub-category-links>
 
-                <figure class="figure-hover-overlay">
-
-                    <img 
-                        v-images-loaded:on.progress="imageProgress"
-                        :src="primaryImage()" 
-                        :alt="category.name"
-                        class="img-responsive" />
-
-                </figure>
-
-                <div class="category-caption">
-                    <div class="block-name">
-                        <a :href="`/store/category/${category.id}`" class="category-name">{{ category.name }}</a>
-
-                    </div>
-                </div>
-                <p class="tag_number">
-                        {{product.externalId}}
-                </p>
-
-                <sub-category-links 
-                    v-for="(subCat, index) in category.children"
-                    :key="index"
-                    :subCat="subCat"></sub-category-links>
-
-            </div>
-
-            <div v-if="isLoading">
-                <category-grid-item-loading></category-grid-item-loading>
-            </div>
-
+			</figure>
         </article>
 
     </div>
@@ -65,34 +45,23 @@ export default {
     props: [
         'category'
     ],
-
-    created: function(){
-        this.isLoading = false;
-    },
-
-    data() {
-        return {
-            isLoading  : true
-        }
-    },
-
-    mounted() {},
-
-    destroyed() {},
-
-    methods: {
-        primaryImage: function(){
-            return this.category.media.length ? this.category.media[ 0 ] : '';
+    computed: {
+		primaryImageSrc(){
+            return this.category.media.length ? this.category.media[ 0 ].mediaItem.src : '';
         },
-        imageProgress: function( instance, image ){
-            var result = image.isLoaded ? 'loaded' : 'broken';
-        }
-    },
-
-    computed: {}
+		thumbnailSrc(){
+			if( this.primaryImageSrc ){
+				let parts = this.primaryImageSrc.split( "." );
+				parts[ parts.length-2 ] += "_400x400";
+				return parts.join( "." )+"?fit";
+			} else {
+				return "";
+			}
+		}
+	}
 }
 </script>
 
 <style>
-    
+
 </style>

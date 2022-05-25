@@ -1,7 +1,7 @@
 <template>
     <div class="row wishlist-item-row">
-		<div class="col-sm-7 wishlist-item">
-            <div class="wishlist-detail-item-image col-md-4 col-sm-6 col-xs-12">
+		<div class="col-md-7 wishlist-item">
+            <div class="wishlist-detail-item-image col-lg-4 col-md-6 col-sm-12">
                 <a :href="`/store/product/${item.sku.product.id}`">
                     <img
                         class="img-responsive"
@@ -10,7 +10,7 @@
                         :src="item.image" />
                 </a>
             </div>
-            <div class="wishlist-item-text col-md-8 col-sm-6 col-xs-12">
+            <div class="wishlist-item-text col-lg-8 col-md-6 col-sm-12">
                 <div class="wishlist-item-name">
                     <a :href="'store/product/'+ item.sku.product.id">{{ item.sku.product.name }}</a>
                 </div>
@@ -48,12 +48,12 @@
                 </div>
             </div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-md-2">
 			<div class="wishlist-item-price">
 				<span class="sr-only">unit price</span>{{ item.sku.basePrice | currency }}
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="wishlist-item-quantity">
                 <quantity-control
                     :showLabel="false"

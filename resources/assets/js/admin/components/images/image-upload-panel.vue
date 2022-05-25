@@ -4,21 +4,21 @@
 
 		<div class="row">
 
-			<div class="col-md-11 mt-2">
-    
+			<div class="col-lg-11 mt-2">
+
 			    <h2>{{ sidebarTitle }}</h2>
-			    
+
 			</div>
 
-			<div class="col-md-1 mt-2">
+			<div class="col-lg-1 mt-2">
 				<span class="pull-right">
-					<i 
-						class="fa fa-close closePanelIcon" 
+					<i
+						class="fa fa-close closePanelIcon"
 						@click="closePanel()"></i>
 				</span>
 			</div>
-		    
-		    <div class="col-md-12 mt-3">
+
+		    <div class="col-lg-12 mt-3">
 
 				<div class="card mb-1">
 
@@ -26,23 +26,23 @@
 
 				    	<div class="row">
 
-				    		<div class="col-md-6">
+				    		<div class="col-lg-6">
 
 								<vue-dropzone
 									v-if="false"
 									v-on:vdropzone-sending="onSendFile"
 									v-on:vdropzone-success="onFileUploaded"
 									v-on:vdropzone-queue-complete="onUploadQueueComplete"
-									ref="pictureInput" 
-									id="dropzone" 
+									ref="pictureInput"
+									id="dropzone"
 									:options="dropzoneOptions"
 								></vue-dropzone>
 
 						    </div>
 
 
-						    <div class="col-md-6" v-if="imageToUpload">
-									
+						    <div class="col-lg-6" v-if="imageToUpload">
+
 								<b-form-group
 									:label="$t( 'caption' )"
 									label-for="imageCaption">
@@ -70,11 +70,11 @@
                 			:options="booleanOptions"
                       name="isPrimary"
                       ></b-form-radio-group>
-                </b-form-group>							
+                </b-form-group>
 
 								</b-form-group>
 
-								<button 
+								<button
 									v-if="imageToUpload"
 									@click="attemptUpload"
 									class="btn btn-success">
@@ -82,7 +82,7 @@
 								</button>
 
 						    </div>
-							<div class="col-md-6" v-else></div>
+							<div class="col-lg-6" v-else></div>
 
 					    </div>
 
@@ -93,7 +93,7 @@
 			</div>
 
 		</div>
-    
+
     </div>
 
 </template>
@@ -150,7 +150,7 @@ export default {
 }
 </script>
 <style scoped>
-i.closePanelIcon { 
+i.closePanelIcon {
 	cursor: pointer;
 	font-size: 24px;
 }

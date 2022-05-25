@@ -3,7 +3,7 @@
     <div>
     	<generic-loader v-if="checkoutStatus == 'pending'" message="Processing Your Order. Please wait..."></generic-loader>
     	<div v-else>
-	    	<div class="col-sm-9 block-form tabs-steps">
+	    	<div class="col-md-9 block-form tabs-steps">
 				<!-- Nav tabs -->
 	            <ul class="nav nav-pills  nav-justified">
 	                <li :class="{ 'active' : activeTab === 'shipping' }" id="shipping">
@@ -62,7 +62,7 @@
 	                    <hr>
 	                    <form role="form" method="post" action="#" data-vv-scope="form-shipping">
 	                        <div class="row">
-	                            <div class="col-md-6">
+	                            <div class="col-lg-6">
 	                                <div class="form-group">
 	                                    <label for="shippingFirstName" class="control-label">First Name:
 	                                    	<span class="text-danger">*</span>
@@ -108,7 +108,7 @@
 	                                    </div>
 	                                </div>
 	                            </div>
-	                            <div class="col-md-6">
+	                            <div class="col-lg-6">
 	                                <div class="form-group">
 	                                    <label for="shippingAddress1" class="control-label">Address /1:
 	                                    	<span class="text-danger">*</span>
@@ -229,7 +229,7 @@
 
 	                    <form role="form" method="post" action="#" data-vv-scope="form-payment">
 		                    <div class="row">
-		                    	<div class="col-md-6 ">
+		                    	<div class="col-lg-6 ">
 		                    		<div class="form-group">
 		                                <label for="card-name" class="control-label">Name on Card:<span class="text-danger">*</span></label>
 		                                <div>
@@ -253,19 +253,19 @@
 		                    	</div>
 		                    </div>
 		                    <div class="row payment-fields">
-		                    	<div class="col-md-6 ">
+		                    	<div class="col-lg-6 ">
 		                    		<div class="fieldset">
 		                    			<label for="card-number" data-tid="elements_examples.form.card_label">Card:<span class="text-danger">*</span></label>
 							            <div id="card-number" ref="cardNumber" class="field empty"></div>
 							        </div>
 		                        </div>
-		                        <div class="col-md-4">
+		                        <div class="col-lg-4">
 		                            <div class="form-group">
 		                                <label for="card-expiry" class="control-label">Expiration Date:<span class="text-danger">*</span></label>
 		                                <div id="card-expiry" ref="cardExpiry" class="field empty"></div>
 		                            </div>
 		                        </div>
-		                        <div class="col-md-2">
+		                        <div class="col-lg-2">
 		                            <div class="form-group">
 		                                <label for="card-cvc" class="control-label">CCV:<span class="text-danger">*</span></label>
 		                                <div id="card-cvc" ref="cardCvc" class="field empty"></div>
@@ -273,7 +273,7 @@
 		                        </div>
 		                    </div>
 		               		<div class="row">
-		               			<div class="col-sm-12">
+		               			<div class="col-md-12">
 		               				<transition name="fade">
 			               				<div class="error" role="alert" v-if="hasCardErrors">
 								            <span class="message text-danger error-message">{{ cardErrorMessage }}</span>
@@ -284,7 +284,7 @@
 		               		<div class="row">
 		                    	<br>
 			                    <h3>Contact Info</h3>
-			                    <div class="col-md-6">
+			                    <div class="col-lg-6">
 				                    <div class="form-group">
 		                                <label for="contactPhone" class="control-label">Phone:
 		                                	<span class="text-danger">*</span>
@@ -308,7 +308,7 @@
 		                                </div>
 		                            </div>
 		                        </div>
-		                        <div class="col-md-6">
+		                        <div class="col-lg-6">
 				                    <div class="form-group">
 		                                <label for="contactEmail" class="control-label">Email:
 		                                	<span class="text-danger">*</span>
@@ -352,7 +352,7 @@
 			                    </div>
 			                    <div v-else>
 				                    <div class="row">
-			                            <div class="col-md-6">
+			                            <div class="col-lg-6">
 			                                <div class="form-group">
 			                                    <label for="billingFirstName" class="control-label">
 			                                    	First Name:<span class="text-danger">*</span>
@@ -400,7 +400,7 @@
 			                                    </div>
 			                                </div>
 			                            </div>
-			                            <div class="col-md-6">
+			                            <div class="col-lg-6">
 			                                <div class="form-group">
 			                                    <label for="billingAddress1" class="control-label">
 			                                    	Address /1:
@@ -545,7 +545,7 @@
 	            </div>
 	    	</div>
 
-	    	<div class="col-sm-3">
+	    	<div class="col-md-3">
 		     	<div class="cart-buy-box">
 					<div v-if="isValidated.payment && isValidated.shipping">
 						<button

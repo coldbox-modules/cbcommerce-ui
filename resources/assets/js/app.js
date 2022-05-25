@@ -54,7 +54,10 @@ export default new Vue({
     i18n,
     store: storeInstance,
     router: routerInstance,
-    filters: createFilters(Vue)
+    filters: createFilters(Vue),
+	created(){
+		this.$store.dispatch( "refreshToken" );
+	}
 });
 
 Vue.use( VueTruncate );
