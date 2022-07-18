@@ -99,10 +99,10 @@
               <div
                 v-if="sku.media.length"
                 class="pull-left sku-select-img-wrap"
-                :style="`background-image: url('${sku.media[0].src}');background-size:cover;`"
+                :style="`background-image: url('${sku.media[0].mediaItem.src}');background-size:cover;`"
               ></div>
               <div class="sku-option-description">
-                {{ sku.modelNumber }}
+                {{  sku.summary || sku.modelNumber }}
                 <span v-if="sku.condition.name !== 'New'">( {{sku.condition.name}} )</span>
               </div>
             </div>
@@ -274,7 +274,7 @@ import { StarRating } from "vue-rate-it";
 import "ez-plus/src/jquery.ez-plus.js";
 import ProductImagesGallery from "./product-images-gallery";
 import ProductReview from "./product-review";
-import QuantityControl from "@cbCommerce/admin/components/ui/quantity-control";
+import QuantityControl from "@cbCommerce/components/quantity-control";
 import ProductReviewForm from "./product-review-form";
 import RelatedProductCarousel from "./related-product-carousel";
 import ProductDetailLoading from "./product-detail-loading";

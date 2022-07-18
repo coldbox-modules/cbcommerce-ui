@@ -15,15 +15,15 @@
 	    	</thead>
 
 	    	<tbody>
-	    		
+
 	    		<tr
 	    			v-for="(product, index) in products"
 	                :key="index">
 
 	    			<td class="card_product_image" data-th="Image">
-	    				<img 
-                			:title="product.productName" 
-                			:alt="product.productName" 
+	    				<img
+                			:title="product.productName"
+                			:alt="product.productName"
                 			:src="product.image" />
 	    			</td>
 	    			<td class="card_product_name" data-th="Product Name">
@@ -31,7 +31,7 @@
 	    			</td>
 	    			<td class="card_product_quantity" data-th="Quantity">
 
-	    				<quantity-control 
+	    				<quantity-control
 		                	:componentID="'quantity_' + index"
 		                    :showLabel="false"
 		                    v-if="product.inStock && product.listPrice"
@@ -44,7 +44,7 @@
 	    			</td>
 	    			<td class="card_product_add_to_cart" data-th="Add to Cart">
 
-                    	<a 
+                    	<a
                     		@click="addToCart( $event )"
                     		:data-id="index"
             				:data-product-id="product.id"
@@ -54,14 +54,14 @@
                     	</a>
 
                     	<div v-if="!product.listPrice" class="product-request">
-	                    	<a 
-	                    		href="#" 
+	                    	<a
+	                    		href="#"
 	                    		class="btn">
 	                    		<i class="fa fa-envelope"></i> Request quote
 	                    	</a>
                     	</div>
 
-	    			</td> 
+	    			</td>
 
 	        	</tr>
 
@@ -76,7 +76,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import imagesLoaded from 'vue-images-loaded';
-import QuantityControl from '@cbCommerce/admin/components/ui/quantity-control';
+import QuantityControl from '@cbCommerce/components/quantity-control';
 export default {
     components: {
         QuantityControl

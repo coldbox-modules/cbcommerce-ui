@@ -24,28 +24,15 @@ elixir.config.mergeConfig({
 module.exports = elixir(function(mix) {
 	mix
     .sass("app.scss")
-    .sass("admin/app.scss")
 	.sass(
             [
                 "resources/assets/sass/vendor.scss"
-
             ],
             {
                 name: "vendor",
                 entryDirectory: ""
             }
-        )
-    .sass(
-        [
-            "resources/assets/sass/admin/vendor.scss"
-
-        ],
-        {
-            name: "vendor-admin",
-            entryDirectory: ""
-        }
-    );
+        );
 
     mix.vue("app.js");
-    mix.vue("admin.js");
 });

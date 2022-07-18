@@ -67,7 +67,7 @@
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
-import QuantityControl from '@cbCommerce/admin/components/ui/quantity-control';
+import QuantityControl from '@cbCommerce/components/quantity-control';
 export default{
     props : {
         item : {

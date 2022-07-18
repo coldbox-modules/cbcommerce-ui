@@ -214,7 +214,7 @@
 import { mapGetters, mapActions } from "vuex";
 import imagesLoaded from 'vue-images-loaded';
 import { StarRating } from 'vue-rate-it';
-import QuantityControl from '@cbCommerce/admin/components/ui/quantity-control';
+import QuantityControl from '@cbCommerce/components/quantity-control';
 import SkuQuoteMixin from '@cbCommerce/mixins/sku-quote-mixin';
 export default {
 	mixins : [ SkuQuoteMixin ],

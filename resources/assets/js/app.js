@@ -44,6 +44,7 @@ Vue.use(VueI18n);
 
 // Create VueI18n instance with options
 const messages = window.cbcGlobalData.i18n;
+console.log( window.cbcGlobalData.i18n );
 const i18n = new VueI18n({
     locale: window.cbcGlobalData.fwLocale, // set locale
     messages, // set locale messages

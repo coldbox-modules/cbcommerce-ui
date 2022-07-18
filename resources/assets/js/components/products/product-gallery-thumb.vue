@@ -7,7 +7,7 @@
         :data-zoom-image="zoomImage"
         class="elevatezoom-gallery">
         <img
-            :src="thumbImage" 
+            :src="thumbImage"
         />
     </a>
 
@@ -45,7 +45,7 @@ export default {
 
             var smallImage = this.$el.getAttribute( 'data-image' );
             var largeImage = this.$el.getAttribute( 'data-zoom-image' );
-            
+
             if( $( '#product-zoom' ).length ){
                 var ez = $( '#product-zoom' ).data( 'ezPlus' );
                 ez.swaptheimage( smallImage, largeImage );
@@ -55,9 +55,9 @@ export default {
         parseContent: function(){
             var self          = this;
             var parsedContent = self.galleryItem;
-            self.mainImage    = parsedContent.src;
-            self.zoomImage    = parsedContent.src;
-            self.thumbImage   = parsedContent.src;
+            self.mainImage    = parsedContent.mediaItem.src;
+            self.zoomImage    = parsedContent.mediaItem.src;
+            self.thumbImage   = parsedContent.mediaItem.src;
         }
 
     }

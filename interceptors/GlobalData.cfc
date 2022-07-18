@@ -33,6 +33,10 @@
 
 
         // Scope in i18n Resource bundles and format for Vue plugin
+		templateCache.clear( "cbCommerce_global_i18n" );
+
+		var resourceService = getInstance( "ResourceService@cbi18n");
+		var bundles = resourceService.getBundles();
         prc.globalData[ "i18n" ] = templateCache.getOrSet(
             "cbCommerce_global_i18n",
             function(){
@@ -40,7 +44,7 @@
                 var bundles = resourceService.getBundles();
                 var commerceBundles = structKeyArray( bundles )
                                         .filter( function( key ){
-                                            return left( key, 10 ) == 'cbcommerce';
+                                            return left( key, 10 ) == 'cbCommerce';
                                         } );
                 var i18nGlobals = {};
                 commerceBundles.each( function( bundleName ){

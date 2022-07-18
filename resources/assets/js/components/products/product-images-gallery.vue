@@ -1,15 +1,15 @@
 <template>
-    
+
     <div class="product-images-gallery" v-if="media.length">
 
-        <div 
+        <div
             v-images-loaded:on.progress="imageProgress"
             class="product-image zoomWrapper">
-            
-            <img 
-                id="product-zoom" 
-                :src="media[ 0 ].src" 
-                :data-zoom-image="media[ 0 ].src" 
+
+            <img
+                id="product-zoom"
+                :src="media[ 0 ].mediaItem.src"
+                :data-zoom-image="media[ 0 ].mediaItem.src"
                 :alt="media[ 0 ].caption" />
 
         </div>
@@ -49,8 +49,8 @@ export default{
     mounted(){
         $( '#product-zoom' ).ezPlus(
             {
-                gallery: 'thumbnailNestedGallery', 
-                cursor: 'crosshair', 
+                gallery: 'thumbnailNestedGallery',
+                cursor: 'crosshair',
                 galleryActiveClass: 'active',
                 imageCrossfade: true
             }
@@ -60,7 +60,7 @@ export default{
         thumbLoadedResponse: function(){
             if( !this.productGallery ) return;
             this.thumbLoadCount++;
-             
+
         },
 
         imageProgress: function( instance, image ){

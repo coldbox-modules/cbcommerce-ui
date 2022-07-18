@@ -30,6 +30,15 @@ component {
 			"storeName" : "cbCommerce Demo Store"
 		};
 
+		cbi18n={
+			// Extra resource bundles to load
+			resourceBundles = {
+				"cbCommerce" : "/cbcUI/includes/i18n/cbCommerce",
+				"cbCommerceAdmin" : "/cbcUI/includes/i18n/cbCommerceAdmin",
+				"cbCommerceOrders" : "/cbcUI/includes/i18n/cbCommerceOrders"
+			}
+		}
+
         // Custom Declared Interceptors
 		interceptors = [
 			{
@@ -71,17 +80,6 @@ component {
 						.route( "sitemap" )
 						.to( "cbCommerce:Sitemap.index" );
 		}
-
-		moduleSettings = {
-			"cbi18n" : {
-				// Extra resource bundles to load
-				resourceBundles = {
-					"cbCommerce" : "/cbcUI/includes/i18n/cbCommerce",
-					"cbCommerceAdmin" : "/cbcUI/includes/i18n/cbCommerceAdmin",
-					"cbCommerceOrders" : "/cbcUI/includes/i18n/cbCommerceOrders"
-				}
-			}
-		};
 
 	}
 
