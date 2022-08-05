@@ -9,7 +9,7 @@
                 <article class="product light">
                     <figure class="figure-hover-overlay">
                         <a :href="`/store/product/${product.id}`"  class="figure-href"></a>
-                        <div v-if="isNew" class="product-new">new</div>
+                        <div v-if="isNew" class="product-new">New</div>
                         <div
                             class="product-sale"
                             v-if="hasPricing && product.startingPrice.basePrice < product.startingPrice.MSRP">{{ percentOff }}% <br> off</div>
@@ -17,7 +17,6 @@
                         <wishlist-add-icon :skuId="product.startingPrice.SKU"></wishlist-add-icon>
 
                         <comparison-add-icon :skuId="product.startingPrice.SKU"></comparison-add-icon>
-
 
                         <div class="product-item-image" v-if="productImageSrc.length" :style="`background-image:url(${productImageSrc})`"></div>
                         <div class="product-item-image-placeholder" v-else>
@@ -44,9 +43,6 @@
                     </p>
                     <div v-if="product.startingPrice.pickUpInStore" class="round_section_label">
                         <p class="pickup" >In Store Pick Up</p>
-                    </div>
-                    <div v-else class="round_section_label_dis">
-                        <p class="pickup" >&nbsp;</p>
                     </div>
 
                     <div v-if="hasPricing" class="product-cart">

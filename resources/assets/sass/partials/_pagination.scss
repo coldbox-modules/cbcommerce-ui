@@ -6,20 +6,20 @@
   ul > {
     .active > {
       a, span {
-        border-color: #eb2c33;
+        border-color: $brand;
         color: #ffffff;
-        background-color: #eb2c33;
+        background-color: $brand;
       }
       a:hover, span:hover {
-        background: #eb2c33;
-        border-color: #eb2c33;
+        background: $brand;
+        border-color: $brand;
       }
     }
     li {
       > a {
         &:focus, &:hover {
-          border-color: #eb2c33;
-          background: #eb2c33;
+          border-color: $brand;
+          background: $brand;
           color: #ffffff;
         }
         border: 1px solid #eaeaea;

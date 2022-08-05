@@ -20,8 +20,8 @@
     text-align: center;
     vertical-align: top;
     &:hover {
-      border-color: #b10505;
-      background-color: #b10505;
+      border-color: $secondary;
+      background-color: $secondary;
       color: #ffffff;
     }
     i {
@@ -30,8 +30,7 @@
       font-size: 22px;
     }
   }
-  .next,
-  .owl-next {
+  .next{
     float: right;
   }
 }

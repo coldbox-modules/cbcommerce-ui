@@ -17,8 +17,8 @@
         <div id="thumbnailNestedGallery" v-if="media.length > 1">
 
             <product-gallery-thumb
-                v-for="(mediaItem, index) in media"
-                :key="index"
+                v-for="(mediaItem) in media"
+                :key="mediaItem.id"
                 :galleryItem="mediaItem"
                 :totalThumbs="media.length"
                 v-on:thumbLoaded="thumbLoadedResponse"

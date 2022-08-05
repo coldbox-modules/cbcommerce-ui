@@ -27,6 +27,9 @@
 			"features"
 		];
 
+		prc.globalData[ "fwLocale" ] = getFwLocale();
+		prc.globalData[ "moduleRoot" ] = event.getModuleRoot( "cbcommerce-ui" );
+
 		exposedSettings.each( function( setting ){
 			prc.globalData[ setting ] = moduleSettings[ setting ];
 		} );

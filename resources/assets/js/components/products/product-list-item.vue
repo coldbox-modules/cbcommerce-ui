@@ -48,9 +48,6 @@
                             <div v-if="product.startingPrice.pickUpInStore" class="round_section_label">
                                 <p class="pickup" >In Store Pick Up</p>
                             </div>
-                            <div v-else class="round_section_label_dis">
-                                <p class="pickup" >&nbsp;</p>
-                            </div>
 
                             <div v-if="product.startingPrice && product.startingPrice.basePrice" class="product-cart">
                                 <a
@@ -146,7 +143,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

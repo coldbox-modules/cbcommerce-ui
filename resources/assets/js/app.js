@@ -1,8 +1,6 @@
 // Import our jQuery and Bootstrap extensions
 import Vue from "vue";
 import "bootstrap/dist/js/bootstrap.js";
-import { WOW } from "wowjs/dist/wow.js";
-import 'owl.carousel/dist/owl.carousel.min.js';
 import VueTruncate from 'vue-truncate-filter';
 import VTooltip from 'v-tooltip';
 import VueCurrencyFilter from "vue-currency-filter";
@@ -13,6 +11,7 @@ import VueI18n from "vue-i18n";
 import createStore from "@cbCommerce/store/index";
 import createRouter from "@cbCommerce/store/router";
 import createFilters from "@cbCommerce/filters/index";
+import { WOW } from "wowjs/dist/wow.js";
 
 // Import our cbCommerce components
 import "@cbCommerce/global-components";
@@ -44,9 +43,12 @@ Vue.use(VueI18n);
 
 // Create VueI18n instance with options
 const messages = window.cbcGlobalData.i18n;
-console.log( window.cbcGlobalData.i18n );
+
+// Dynamic locale from the browser
+let locale = navigator.language.replace( "-", "_" );
+
 const i18n = new VueI18n({
-    locale: window.cbcGlobalData.fwLocale, // set locale
+    locale: window.cbcGlobalData.i18n[ locale ] ? locale : window.cbcGlobalData.fwLocale, // set locale
     messages, // set locale messages
 });
 
@@ -64,4 +66,4 @@ export default new Vue({
 Vue.use( VueTruncate );
 Vue.use( VTooltip );
 
-new WOW().init();
+new WOW({ live: false } ).init();

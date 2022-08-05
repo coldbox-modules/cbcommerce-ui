@@ -24,8 +24,6 @@
 			#announce( "cbui_beforeContent" )#
 			<!--- Main View --->
 			<section id="body-main" class="body-main-page">
-				<!--- Blank breadcrumbs, for now, so our page layout remains intact --->
-				<div id="body-breadcrumbs" class="col-md-12"></div>
 				<!--- Determine span length due to sidebar or homepage --->
 				<cfif ( prc.isContentBoxContext && cb.isHomePage() ) OR !args.sidebar>
 					<cfset args.span = 12>

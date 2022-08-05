@@ -27,7 +27,16 @@ component {
 				"used" : getSystemSetting( "CBCOMMERCE_ENABLE_USED_PRODUCTS", true )
 			},
 			"displayCategoriesNav" : true,
-			"storeName" : "cbCommerce Demo Store"
+			"storeName" : "cbCommerce Demo Store",
+			"socialFB" : "https://www.facebook.com/ortussolutions",
+			"socialT" : "https://twitter.com/ortussolutions",
+			"socialGP" : "",
+			"socialIG" : "https://www.instagram.com/ortussolutions",
+			"socialYT" : "https://www.youtube.com/c/OrtusSolutions",
+			"socialSL" : "",
+			"socialGH" : "https://github.com/ortus-solutions",
+			"headerText" : "",
+			"headerLogo" : "includes/static/cbcommerce-logo.png"
 		};
 
 		cbi18n={

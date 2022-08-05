@@ -44,7 +44,7 @@
 	    height: 30px;
 	    text-align: center;
 	    line-height: 28px;
-	    color: #790000;
+	    color: $brand-dark;
 	    border: 1px solid rgba(121, 0, 0, 0.5);
     }
 
@@ -88,7 +88,7 @@
       background-color: #f9f9f9;
     }
     .product-price {
-      color: #eb2c33;
+      color: $brand;
       font-size: 16px;
       font-weight: 700;
     }
@@ -121,12 +121,12 @@
         &:before {
           content: "\f006";
           padding: 0 2px;
-          color: rgba(235, 44, 51, 0.9);
+          color: rgba(55, 155, 193, 0.9);
         }
         &:hover {
           &:before, ~ span.star:before {
             content: "\f005";
-            color: #eb2c33;
+            color: $brand;
           }
         }
       }
@@ -139,7 +139,7 @@
       top: 7px;
       text-decoration: none;
       &:hover {
-        color: #eb2c33;
+        color: $brand;
       }
     }
   }
@@ -147,7 +147,7 @@
     text-decoration: none;
     color: #0e0e0e;
     &:hover {
-      color: #eb2c33;
+      color: $brand;
     }
   }
   th {
@@ -193,16 +193,16 @@
       font-size: 16px;
       text-align: center;
       line-height: 38px;
-      color: #790000;
+      color: $brand-dark;
       border: 1px solid rgba(121, 0, 0, 0.5);
       &:hover {
-        background-color: #790000;
+        background-color: $brand-dark;
         color: #ffffff;
       }
       &.addToCart {
         cursor: pointer;
         width: 140px;
-        background-color: #790000;
+        background-color: $brand-dark;
         color: #ffffff;
       }
     }
@@ -258,10 +258,10 @@
           height: 40px;
           text-align: center;
           line-height: 38px;
-          color: #790000;
+          color: $brand-dark;
           border: 1px solid rgba(121, 0, 0, 0.5);
           &:hover {
-            background-color: #790000;
+            background-color: $brand-dark;
             color: #ffffff;
           }
       }
@@ -278,10 +278,10 @@
     text-align: center;
   }
   .btn-default-1 {
-    border: 1px solid #790000;
+    border: 1px solid $brand-dark;
     color: #0e0e0e;
     &:hover {
-      background-color: #790000;
+      background-color: $brand-dark;
       color: #ffffff;
     }
   }

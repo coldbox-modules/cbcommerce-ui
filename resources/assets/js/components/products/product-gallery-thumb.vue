@@ -29,16 +29,10 @@ export default {
             thumbImage: null
         }
     },
-
-    created: function(){
+    mounted(){
         this.parseContent();
         this.$emit( 'thumbLoaded' );
     },
-
-    mounted() {},
-
-    destroyed() {},
-
     methods: {
 
         swap: function(){

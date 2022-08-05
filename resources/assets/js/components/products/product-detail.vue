@@ -14,7 +14,7 @@
         ></h1>
       </div>
     </div>
-    <div class="col-lg-12 col-xl-12">
+    <div class="row">
       <div class="col-lg-9" v-if="activeSku">
         <div class="block-product-detail">
           <div class="row">
@@ -62,7 +62,7 @@
                     v-bind:activeSku="activeSku"
                   ></slot>
 
-                  <div class="clearfix">
+                  <div class="clearfix" v-if="currentProduct.manufacturer">
                     <label class="pull-left">Brand:</label>
                     {{ currentProduct.manufacturer }}
                   </div>
@@ -83,27 +83,28 @@
                     {{activeSku.condition.name}}
                     <span v-if="activeSku.subCondition.name">( {{activeSku.subCondition.name}} )</span>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div id="model-numbers" v-if="currentProduct.skus.length > 1" class="row sku-options">
-            <div
-              v-for="sku in currentProduct.skus"
-              :class="`sku-option${activeSku.id === sku.id ? ' selected' : ''}`"
-              :id="sku.id"
-              :key="`sku_select_${sku.id}`"
-              @click="selectActiveSku(sku)"
-            >
-              <div
-                v-if="sku.media.length"
-                class="pull-left sku-select-img-wrap"
-                :style="`background-image: url('${sku.media[0].mediaItem.src}');background-size:cover;`"
-              ></div>
-              <div class="sku-option-description">
-                {{  sku.summary || sku.modelNumber }}
-                <span v-if="sku.condition.name !== 'New'">( {{sku.condition.name}} )</span>
+                    <div id="model-numbers" v-if="currentProduct.skus.length > 1" class="sku-options clearfix">
+						<label>Options:</label>
+                        <div
+                            v-for="sku in currentProduct.skus"
+                            :class="`sku-option${activeSku.id === sku.id ? ' selected' : ''}`"
+                            :id="sku.id"
+                            :key="`sku_select_${sku.id}`"
+                            @click="selectActiveSku(sku)"
+                        >
+                        <div
+                            v-if="sku.media.length"
+                            class="pull-left sku-select-img-wrap"
+                            :style="`background-image: url('${sku.media[0].mediaItem.src}');background-size:cover;`"
+                        ></div>
+                        <div class="sku-option-description">
+                            {{  sku.summary || sku.modelNumber }}
+                            <span v-if="sku.condition.name !== 'New'">( {{sku.condition.name}} )</span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
@@ -170,23 +171,24 @@
 
       <!-- tab box -->
 
-      <div class="box-border block-form" v-if="!isLoading">
+      <div class="container" v-if="!isLoading">
+
         <!-- Nav tabs -->
-        <ul class="nav nav-pills nav-justified">
-          <li class="active">
-            <a href="#description" data-toggle="tab">Description</a>
+        <ul class="nav nav-tabs" id="product-additional-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="description-tab" href="#description" role="tab" data-toggle="tab">Description</a>
           </li>
-          <li>
-            <a href="#additional" data-toggle="tab">Additional</a>
+          <li class="nav-item">
+            <a class="nav-link" id="additional-tab" href="#additional" role="tab" data-toggle="tab">Additional</a>
           </li>
-          <li>
-            <a href="#review" data-toggle="tab">Review</a>
+          <li class="nav-item">
+            <a class="nav-link" id="review-tab" href="#review" role="tab" data-toggle="tab">Review</a>
           </li>
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content">
-          <div class="tab-pane active" id="description">
+        <div class="tab-content" id="production-additional-tabcontent">
+          <div class="tab-pane show active fade" id="description" role="tabpanel" aria-labelledby="description-tab">
             <div v-if="activeSku.condition.name !== 'New'">
               <h3>Condition: {{activeSku.condition.name}}</h3>
               <p>{{activeSku.conditionDescription}}</p>
@@ -196,7 +198,7 @@
             <hr>
             <p v-html="activeSku.description || currentProduct.description"></p>
           </div>
-          <div class="tab-pane" id="additional">
+          <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="additional-tab">
             <br>
             <h3>Additional Details</h3>
             <hr>
@@ -233,7 +235,7 @@
               </li>
             </ul>
           </div>
-          <div class="tab-pane" id="review">
+          <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
             <br>
             <div class="row" v-if="currentProductReviews.length">
               <div class="col-lg-12">
@@ -362,10 +364,8 @@ export default {
     activeSku: function() {
       if (!this.currentProduct) return;
       var self = this;
-      let activeSkus = this.currentProduct.skus.filter(
-        sku => sku.id === self.activeSkuId
-      );
-      if (activeSkus.length) return this.currentProduct.skus[0];
+      let activeSku = this.currentProduct.skus.find( sku => sku.id === this.activeSkuId );
+      return activeSku || this.currentProduct.skus[0];
     },
     cartTotalPrice: function() {
       if (!this.activeSku) return 0;
@@ -373,7 +373,7 @@ export default {
     },
     displayedMedia: function() {
       if (!this.activeSku) return [];
-      return this.activeSku.media.concat(this.currentProduct.media);
+      return [ ...this.activeSku.media, ...this.currentProduct.media ];
     }
   },
   methods: {
@@ -414,15 +414,15 @@ export default {
             this.$set(sku, "label", sku.modelNumber);
           }
         });
-        self.setactiveSku(product.skus[0]);
+        self.setActiveSku(product.skus[0]);
         self.updateProductViews(self.productId);
       });
     },
-    setactiveSku(sku) {
+    setActiveSku(sku) {
       this.$set(this, "activeSkuId", sku.id);
     },
     selectActiveSku(sku) {
-      this.setactiveSku(sku);
+      this.setActiveSku(sku);
       let skus_elements = this.getSKUsElements();
       for (let index = 0; index < skus_elements.length; index++) {
         this.removeSelectedClass(skus_elements[index].id);

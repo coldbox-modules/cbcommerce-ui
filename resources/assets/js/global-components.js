@@ -2,22 +2,19 @@
  * Global Third-Party Imports
  **/
 import Vue from "vue";
-import { WOW } from "wowjs/dist/wow.js";
-import "owl.carousel/dist/owl.carousel.min.js";
 import VueTruncate from "vue-truncate-filter";
 import VTooltip from "v-tooltip";
-import Vuex from "vuex";
 import VueCurrencyFilter from "vue-currency-filter";
 import VeeValidate from "vee-validate";
-import VueI18n from "vue-i18n";
 import VueScrollTo from "vue-scrollto";
 import titleMixin from '@cbCommerce/mixins/title-mixin';
+import VueCarousel from 'vue-carousel';
+Vue.use(VueCarousel);
 
 /**
  * Vue applications
  */
 Vue.use( VeeValidate );
-Vue.use( VueI18n );
 Vue.use( VueTruncate );
 Vue.use( VTooltip );
 Vue.mixin(titleMixin);
@@ -51,9 +48,6 @@ Vue.use(
         symbolSpacing: false
     }
 );
-// extensions
-import createStore from "@cbCommerce/store/index";
-import createFilters from "@cbCommerce/filters/index";
 
 /**
  * Global cbCommerce Vue components
@@ -77,21 +71,13 @@ Vue.component( "ComparisonAddIcon", require( "@cbCommerce/components/products/co
 Vue.component( "UsedProducts", require( "@cbCommerce/components/products/used-products" ).default );
 Vue.component( "ProductFilterPage", require( "@cbCommerce/components/products/product-filter-page" ).default );
 Vue.component( "ProductDetail", require( "@cbCommerce/components/products/product-detail" ).default );
+Vue.component( "ProductSearch", require( "@cbCommerce/components/products/product-search" ).default );
 Vue.component( "SkuQuoteModal", require( "@cbCommerce/components/products/sku-quote-modal" ).default );
 Vue.component( "ProductCarousel", require( "@cbCommerce/components/products/product-carousel" ).default );
 Vue.component( "ContactForm", require( "@cbCommerce/components/contact-form" ).default );
 Vue.component( "ProductComparison", require( "@cbCommerce/components/products/product-comparison" ).default );
 Vue.component( "ProductWishlist", require( "@cbCommerce/components/products/product-wishlist" ).default );
 Vue.component( "ShoppingCart", require( "@cbCommerce/components/commerce/shopping-cart" ).default );
-Vue.component( "cbSlickSlider", require( "@cbCommerce/components/cb-slick-slider" ).default );
 Vue.component( "cbMediaGallery", require( "@cbCommerce/components/cb-media-gallery" ).default );
-Vue.component( "MediaOwlCarousel", require( "@cbCommerce/components/media-owl-carousel" ).default );
 Vue.component( "CbcommerceNav", require( "@cbCommerce/components/cbcommerce-nav" ).default );
 Vue.component( "LoginForm", require( "@cbCommerce/components/login-form" ).default );
-
-export default {
-    storeInstance : createStore(Vue, Vuex),
-    filters : createFilters( Vue ),
-    WOWInstance : WOW,
-    i18nInstance : VueI18n
-}

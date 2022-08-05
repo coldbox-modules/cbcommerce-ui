@@ -5,34 +5,19 @@
         <product-grid-loading :itemsOnStage="itemsOnStage"  v-if="isLoading"></product-grid-loading>
 
         <carousel
-			:loop="loop"
 			:autoplay="autoPlay"
-			:nav="showNav"
-			:dots="showDots"
-			:margin="margin"
-			:items="itemsOnStage"
-			:responsive="{
-				0:{
-					items:1
-				},
-				600:{
-					items:this.itemsOnStage - 1
-				},
-				1000:{
-					items:this.itemsOnStage
-				}
-			}"
+			:navigationEnabled="showNav"
+			:paginationEnabled="showDots"
+			:perPage="itemsOnStage"
 		>
-			<template slot="default">
+			<slide v-for="(product, index) in productsListArray" :key="index">
 				<product-item
-					v-for="(product, index) in this.productsListArray"
+
 					:key="index"
 					:product="product"
 					v-on:quote-sku="showSkuQuoteForm"
 				></product-item>
-			</template>
-			<template slot="prev"><a class="prev"><i class="fa fa-angle-left"></i></a></template>
-			<template slot="next"><a class="next"><i class="fa fa-angle-right"></i></a></template>
+			</slide>
 		</carousel>
         <sku-quote-modal v-if="quotedSKUId && showQuoteModal" v-on:quote-modal-close="toggleModal" :skuId="quotedSKUId"></sku-quote-modal>
 
@@ -42,7 +27,6 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import carousel from 'vue-owl-carousel';
 import ProductItem from './product-item';
 import ProductItemLoading from './product-item-loading';
 import ProductGridLoading from "@cbCommerce/components/products/product-grid-loading";
@@ -51,7 +35,6 @@ import SkuQuoteMixin from '@cbCommerce/mixins/sku-quote-mixin';
 export default {
     mixins : [ SkuQuoteMixin ],
     components: {
-		carousel,
         ProductItemLoading,
         ProductItem,
         ProductGridLoading
@@ -60,17 +43,9 @@ export default {
     props: {
         carouselId: {
             type   : String,
-            default: 'owl-bestseller'
+            default: 'carousel-bestseller'
         },
         itemsOnStage: {             // items on screen
-            type   : Number,
-            default: 4
-        },
-        loop: {
-            type   : Boolean,
-            default: false
-        },
-        margin: {                   // right marging of each item
             type   : Number,
             default: 4
         },

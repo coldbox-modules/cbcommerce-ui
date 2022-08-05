@@ -2,20 +2,24 @@
 
     <div>
 
-        <div v-if="isLoading"
-            v-for="(fake, index) in fakes"
-            :key="index">
+		<template v-if="isLoading">
+			<div
+				v-for="(fake, index) in fakes"
+				:key="index"
+			>
+				<product-list-item-loading></product-list-item-loading>
+			</div>
+		</template>
 
-            <product-list-item-loading></product-list-item-loading>
+		<template v-else>
+			<div
+				v-for="(product, index) in products"
+				:key="index"
+			>
+				<product-list-item :product="product" v-on:quote-sku="showSkuQuoteForm"></product-list-item>
 
-        </div>
-
-        <div v-if="!isLoading"
-            v-for="(product, index) in products"
-            :key="index">
-            <product-list-item :product="product" v-on:quote-sku="showSkuQuoteForm"></product-list-item>
-
-        </div>
+			</div>
+		</template>
 
         <sku-quote-modal v-if="quotedSKUId && showQuoteModal" v-on:quote-modal-close="toggleModal" :skuId="quotedSKUId"></sku-quote-modal>
 

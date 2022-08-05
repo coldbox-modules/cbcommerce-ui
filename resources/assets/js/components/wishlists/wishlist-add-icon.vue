@@ -35,7 +35,6 @@
             v-bind:class="{ 'addToCart has-tooltip':true ,'product-wishlist' : true, 'in-wishlist' : inDefaultWishlist }">
             <i :class="targetIconClass"></i>
         </a>
-        <br/>
     </span>
 </template>
 <script>
@@ -63,7 +62,7 @@ export default{
             }
         }),
         targetIconClass(){
-            return this.isAdding ? 'fa fa-spin fa-spinner' : this.$t('wishlist_icon')
+            return this.isAdding ? 'fa fa-spin fa-spinner' : 'fa fa-heart-o'
         }
     },
     methods : {

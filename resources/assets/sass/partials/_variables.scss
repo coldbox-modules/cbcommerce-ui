@@ -3,9 +3,11 @@ $font-size-base : 16px;
 $font-family-serif : Helvetica, Arial, sans-serif;
 $font-family-sans-serif: 'Raleway', sans-serif;
 /* color scheme */
-$primary: #000000;
-$secondary: #8fc73e;
-$tertiary: #000000;
+$primary: #343434;
+$brand: #379BC1;
+$brand-dark: #185B75;
+$secondary: $brand-dark;
+$tertiary: #343434;
 
 $dark-grey: #e1e1e1;
 $muted-grey: #999999;

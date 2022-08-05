@@ -45,5 +45,7 @@
 }
 
 div.v-popover{
-	display: inline-block;
+	.trigger {
+		display: block!important;
+	}
 }

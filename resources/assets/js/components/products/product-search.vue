@@ -1,10 +1,9 @@
 <template>
     <div class="category-detail">
-        <div class="col-xs-12 productDetailHeader" v-if="activeCategory">
-            <h1 class="wow fadeInRight animated animated" data-wow-duration="1s">{{activeCategory.name}}</h1>
-            <p v-html="activeCategory.description"></p>
+        <div class="col-xs-12 productDetailHeader">
+            <h1 class="wow fadeInRight animated animated" data-wow-duration="1s">Product Search</h1>
         </div>
-        <div class="col-sm-12 category-products" v-if="!isLoading">
+        <div class="col-sm-12 category-products">
             <product-filter-page :initialParams="initialParams"></product-filter-page>
         </div>
     </div>
@@ -55,27 +54,14 @@ export default{
     title(){
         return !this.activeCategory ? null : this.activeCategory.name + ' | ' + document.title;
     },
-    created(){
+    beforeMount(){
         var self = this;
-        this.$set( self, "isLoading", true );
-        this.$set(
-            self,
-            "initialParams",
-            {
-                category : this.categoryId,
-                condition: this.categoryId !== "used" ? "New" : undefined
-            }
-        );
         let queryParams = new URLSearchParams( window.location.search );
         queryParams.forEach( ( value, key ) => {
 			if( self.excludeParams.indexOf( key.toLowerCase() ) == -1 ){
 				self.initialParams[ key ] = value;
 			}
         }  );
-        this.getCategory( { id: self.categoryId, params : { includes : "children.children.children" } } ).then( category => {
-            self.updateCategoryViews( self.categoryId );
-            this.$set( self, "isLoading", false );
-        } );
     }
 
 }

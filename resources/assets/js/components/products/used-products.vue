@@ -22,14 +22,21 @@ export default{
         return {
             searchParams : {
                 condition : "Used"
-            }
+            },
+			excludeParams : [
+				"fwreinit",
+				"cftoken",
+				"cfide"
+			]
         }
     },
     created(){
         var self = this;
         let queryParams = new URLSearchParams( window.location.search );
         queryParams.forEach( ( value, key ) => {
-            this.searchParams[ key ] = value;
+			if( this.excludeParams.indexOf( key.toLowerCase() ) == -1 ){
+				this.searchParams[ key ] = value;
+			}
         }  );
     }
 }

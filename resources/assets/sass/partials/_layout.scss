@@ -44,6 +44,9 @@ a {
         div {
             color: white;
         }
+		.top-search-form {
+			padding-top: 10px;
+		}
     }
     .header-bg {
         min-height: 150px;
@@ -154,6 +157,10 @@ a {
     }
 }
 
+.body-main-page {
+	padding-top: 50px;
+}
+
 .box-border {
     padding: 20px 30px;
     background-color: #fff;
@@ -175,7 +182,6 @@ a {
 
      .page-title{
          color: #fff;
-         text-transform: uppercase;
          font-size: 4.2em;
          font-weight: bold;
      }
@@ -188,12 +194,6 @@ a {
      #body-header{
          margin-top: 150px;
      }
- }
- .body-main-home{
-     padding-top: 130px;
- }
- .body-main-page{
-     padding-top: 148px;
  }
  #body-breadcrumbs{
      background-color: #f2f1f1;
@@ -267,7 +267,6 @@ a {
 
             a {
                 text-decoration: none;
-                text-transform: uppercase;
                 color: #eaeaea;
             }
 
@@ -344,7 +343,6 @@ a {
      margin-right: -15px;
 
      h1 {
-         text-transform: uppercase;
          margin-bottom: 40px;
      }
  }
@@ -364,8 +362,8 @@ a {
     transition: all 0.3s ease;
 
     &:hover{
-        border-color: #eb2c33;
-        background-color: #eb2c33
+        border-color: $brand;
+        background-color: $brand
     }
 
     i{
@@ -487,11 +485,10 @@ a {
   border: 1px solid rgba(14, 14, 14, 0.3);
   color: #ffffff;
   padding: 9px 20px;
-  text-transform: uppercase;
   &:hover {
     text-decoration: none;
     background-color: #ffffff;
-    color: #eb2c33;
+    color: $brand;
     border-color: #ffffff;
   }
 }

@@ -1,14 +1,13 @@
 <template>
     <span>
         <v-popover  v-if="inComparison" class="text-center">
-            
-            <a 
+
+            <a
                 v-tooltip="{ content: $t('compare_this_item') }"
                 :title="$t('compare_this_item')"
                 class="addToCart has-tooltip product-compare in-comparison">
-                <i :class="$t('compare_icon')"></i>
-                {{ $t('compare_this_item') }}
-            </a> 
+                <i class="fa fa-random"></i>
+            </a>
 
             <template slot="popover" class="text-center">
                 <p class="text-center">
@@ -20,13 +19,12 @@
 
         </v-popover>
         <a
-            v-else 
+            v-else
             @click="addItemToComparisonList( skuId )"
             v-tooltip="{ content: $t('compare_this_item') }"
             :title="$t('compare_this_item')"
             class="addToCart has-tooltip product-compare">
-            <i :class="$t('compare_icon')"></i>
-            {{ $t('compare_this_item') }}
+            <i class="fa fa-random"></i>
         </a>
     </span>
 </template>

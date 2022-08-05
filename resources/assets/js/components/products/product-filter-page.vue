@@ -134,7 +134,7 @@
                 :isList="isList"
                 :perPage="perPage"></filter-bar>
 
-            <div class="block-pagination block-pagination-top" v-if="!isLoading">
+            <div class="block-pagination block-pagination-top" v-if="!isLoading && pageCount > 1">
 
                 <paginate
                     :initial-page="currentPage-1"
@@ -148,13 +148,7 @@
 
             </div>
 
-            <template v-if="isLoading">
-                <div class="col-lg-4" v-for="(n, index) in 25" :key="`loading-${index}`">
-                    <product-item-loading></product-item-loading>
-                </div>
-            </template>
-
-            <template v-else-if="!this.productsListArray.length">
+            <template v-if="!isLoading && !productsListArray.length">
                 <div class="text-center alert alert-info">
                     <h5 class="text-center">There are no products matching the requested criteria</h5>
                 </div>
@@ -163,21 +157,21 @@
 
             <template v-else>
                 <products-grid
-                    v-if="this.isGrid"
-                    :products="this.productsListArray"
+                    v-if="isGrid"
+                    :products="productsListArray"
                     :isLoading="isLoading"
                     :fakes="fakes"
                 ></products-grid>
 
                 <products-list
-                    v-if="this.isList"
-                    :products="this.productsListArray"
+                    v-if="isList"
+                    :products="productsListArray"
                     :isLoading="isLoading"
                     :fakes="fakes"
                 ></products-list>
             </template>
 
-            <div class="block-pagination" v-if="!isLoading">
+            <div class="block-pagination" v-if="!isLoading && pageCount > 1">
 
                 <paginate
                     :initial-page="currentPage-1"
@@ -220,7 +214,7 @@ export default {
     },
     data() {
         return {
-            fakes    : 3,
+            fakes    : 6,
             products : null,
             isLoading: true,
             categoriesLoading: false,
@@ -244,6 +238,9 @@ export default {
         var self = this;
         if( this.initialParams ){
             Object.assign( this.searchParams, this.initialParams );
+			if( this.initialParams.search ){
+				this.refine_ = this.initialParams.search;
+			}
         }
         this.fetchProducts();
 
