@@ -28,7 +28,7 @@
 								Model: {{ item.productSnapshot.sku.modelNumber}}
 							</td>
 							<td>{{ item.quantityOrdered }}</td>
-							<td>{{ item.productSnapshot.sku.basePrice | currency }}</td>
+							<td>{{ item.productSnapshot.sku.displayPrice | currency }}</td>
 						</tr>
 					</tbody>
 				</table>

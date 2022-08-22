@@ -118,9 +118,9 @@ export default {
         productImageSrc(){
             var self = this;
             var mediaSrc = '';
-            this.product.media.forEach( mediaItem => {
-                if( !mediaSrc.length && self.isImage( mediaItem ) ){
-                    mediaSrc = mediaItem.src;
+            this.product.media.forEach( media => {
+                if( !mediaSrc.length && self.isImage( media.mediaItem ) ){
+                    mediaSrc = media.mediaItem.src;
                 }
             });
 

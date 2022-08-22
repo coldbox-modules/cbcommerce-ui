@@ -19,7 +19,7 @@
             <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
                 <div class="row">
                     <div class="col-lg-3 col-lg-offset-1">
-                        <label class="pull-right">Sort by</label>
+                        <label class="float-right">Sort by</label>
                     </div>
                     <div class="col-lg-5">
                         <select

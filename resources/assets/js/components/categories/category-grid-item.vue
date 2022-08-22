@@ -9,7 +9,7 @@
 						v-if="primaryImageSrc"
 						:src="thumbnailSrc"
 						:alt="category.name"
-						class="img-responsive" />
+						class="img-fluid" />
 				</a>
 
 				<div class="category-caption">

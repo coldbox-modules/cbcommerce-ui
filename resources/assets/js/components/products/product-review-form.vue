@@ -55,7 +55,7 @@
 	    <input
 	    	type="submit"
 	    	id="submitReviewBtn"
-	    	class="btn-default-1"
+	    	class="btn btn-primary"
 	    	value="Add Review" />
 	</form>
 

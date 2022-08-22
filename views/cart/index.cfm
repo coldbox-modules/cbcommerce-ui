@@ -1,7 +1,7 @@
 <cfoutput>
 	<section id="shoppingCart">
 
-		<div class="container-fluid">
+		<div class="container">
 			<div class="header-for-light">
 				<h1>Shopping <span>Cart</span></h1>
 			</div>

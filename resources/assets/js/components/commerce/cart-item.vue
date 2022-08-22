@@ -5,16 +5,17 @@
 				<div class="cart-product-image">
 					<a :href="`/store/product/${item.product.id}`">
                         <img
+							class="img-fluid mt-2"
                             :title="item.product.name"
                             :alt="item.product.name"
-                            :src="item.sku.image ? item.sku.image.src : item.product.image.src" />
+                            :src="primaryImage" />
                     </a>
                 </div>
                 <div class="cart-product-text">
 					<div class="cart-product-name">
 						<a :href="'store/product/'+ item.product.id">{{ item.product.name | removeHTML }}</a>
 					</div>
-					<div class="cart-product-actions" v-if="showActions">
+					<div class="cart-product-actions mt-2" v-if="showActions">
 						<ul class="list-inline">
 							<li>
 								<a href="" @click.prevent="deleteCartItem( item.sku.id )">Remove</a>
@@ -26,7 +27,7 @@
 		</div>
 		<div class="col-md-2">
 			<div class="cart-product-price">
-				<span class="sr-only">unit price</span>{{ item.sku.basePrice | currency }}
+				<span class="sr-only">unit price</span>{{ item.sku.displayPrice | currency }}
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -59,6 +60,11 @@
 	        	default: true
 	        }
 	    },
+		computed: {
+            primaryImage( state ){
+                return this.item.sku.image ? this.item.sku.image.mediaItem.src : ( this.item.product.image ? this.item.product.image.mediaItem.src : this.$store.state.globalData.placeholderImage );
+            }
+		},
 	    methods: {
 	        ...mapActions([
 				"deleteCartItem",

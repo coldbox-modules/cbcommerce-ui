@@ -26,6 +26,7 @@ component {
 				"consignment" : getSystemSetting( "CBCOMMERCE_ENABLE_CONSIGNMENT", true ),
 				"used" : getSystemSetting( "CBCOMMERCE_ENABLE_USED_PRODUCTS", true )
 			},
+			"currency" : "USD",
 			"displayCategoriesNav" : true,
 			"storeName" : "cbCommerce Demo Store",
 			"socialFB" : "https://www.facebook.com/ortussolutions",

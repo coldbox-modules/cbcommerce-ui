@@ -89,10 +89,7 @@ export default{
             return available;
         }
     },
-    created: function(){
-        if( !this.authUser ){
-            window.location.assign( '/store/account/login' );
-        }
+    mounted: function(){
         this.isLoading = true;
         this.fetchWishlistDetail();
     },
@@ -114,14 +111,9 @@ export default{
             this.saveWishlist( { id : this.wishlist.id, name : this.wishlist.name } );
         },
         onDeleteItem( id ){
-            var itemIndex = null;
-            this.wishlist.items.forEach( ( item, index ) => {
-                if( item.id === id ){
-                    itemIndex = index;
-                }
-            } );
-            if( itemIndex !== null ){
-                this.$delete( this.wishlist.items, itemIndex );
+            var itemIndex = this.wishlist.items.findIndex( ( item ) => item.id == id );
+            if( itemIndex > -1 ){
+				this.wishlist.items.splice( itemIndex, 1 );
             }
         },
         addAllToCart(){
@@ -141,7 +133,7 @@ export default{
                         window.location.assign( '/store/wishlists' )
                     } )
                     .catch( err => {
-                        console.error( err );
+						window.location.assign( '/store/account/login' );
                     } );
         }
     }

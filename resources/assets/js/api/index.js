@@ -9,9 +9,17 @@ import cart from "./cart";
 import checkout from "./checkout";
 import util from './util';
 
+const getSettings = api => () => {
+	return api.get( '/settings' );
+  };
+
 export const finalAPI = (apiInstance = defaultAPI) => ({
 	get: Object.assign(
-		{},
+		{
+			"settings" : {
+				get : getSettings( apiInstance )
+			}
+		},
 		products( apiInstance ).get,
 		orders( apiInstance ).get,
 		categories( apiInstance ).get,
@@ -33,6 +41,7 @@ export const finalAPI = (apiInstance = defaultAPI) => ({
 	),
 	put: Object.assign(
 		products( apiInstance ).put,
+		customers( apiInstance ).put,
 		wishlists( apiInstance ).put,
 		cart( apiInstance ).put,
 		categories( apiInstance ).put

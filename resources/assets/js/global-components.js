@@ -78,6 +78,5 @@ Vue.component( "ContactForm", require( "@cbCommerce/components/contact-form" ).d
 Vue.component( "ProductComparison", require( "@cbCommerce/components/products/product-comparison" ).default );
 Vue.component( "ProductWishlist", require( "@cbCommerce/components/products/product-wishlist" ).default );
 Vue.component( "ShoppingCart", require( "@cbCommerce/components/commerce/shopping-cart" ).default );
-Vue.component( "cbMediaGallery", require( "@cbCommerce/components/cb-media-gallery" ).default );
 Vue.component( "CbcommerceNav", require( "@cbCommerce/components/cbcommerce-nav" ).default );
 Vue.component( "LoginForm", require( "@cbCommerce/components/login-form" ).default );

@@ -4,10 +4,10 @@
             <div class="wishlist-detail-item-image col-lg-4 col-md-6 col-sm-12">
                 <a :href="`/store/product/${item.sku.product.id}`">
                     <img
-                        class="img-responsive"
+                        class="img-fluid"
                         :title="item.sku.product.name"
                         :alt="item.sku.product.name"
-                        :src="item.image" />
+                        :src="item.image.mediaItem.src" />
                 </a>
             </div>
             <div class="wishlist-item-text col-lg-8 col-md-6 col-sm-12">
@@ -50,7 +50,7 @@
 		</div>
 		<div class="col-md-2">
 			<div class="wishlist-item-price">
-				<span class="sr-only">unit price</span>{{ item.sku.basePrice | currency }}
+				<span class="sr-only">unit price</span>{{ item.sku.displayPrice | currency }}
 			</div>
 		</div>
 		<div class="col-md-3">

@@ -5,14 +5,16 @@ import Vue from "vue";
 const initialState = {};
 
 const getters = {
-    authUser: ( state, getters, rootState ) => rootState.globalData.cbcAuthUser || null
+    authUser: ( state, getters, rootState ) => rootState.globalData.cbcAuthUser || null,
+	hasPermission: ( state, getters ) => ( thePermission ) => getters.authUser ? getters.authUser.scope.split( " " ).some( perm => thePermission.split( "," ).indexOf( perm ) > -1 ) : false,
+	isInRole: ( state, getters ) => ( theRole ) => getters.authUser ? getters.authUser.roles.some( role => theRole.split( "," ).indexOf( role.name ) > -1 ) : false
 };
 const actions = {
     authenticate: ( context, { email, password } ) => {
         return new Promise( (resolve, reject) => {
             api().post.authentication.login( { email, password } )
 						.then( XHR => {
-							context.commit( 'setAuthUser', { rootState: context.rootState, authUser : XHR.data } );
+							context.commit( 'setAuthUser', XHR.data, { root: true } );
 							resolve( XHR.data );
 						} )
 						.catch( err => {
@@ -25,7 +27,7 @@ const actions = {
     	new Promise( (resolve, reject) => {
 	        api().delete.authentication.logout()
                 .then( XHR => {
-                    context.commit( 'setAuthUser', { rootState: context.rootState, authUser : null } );
+                    context.commit( 'setAuthUser', null, { root: true } );
                     window.location.reload();
                     resolve( XHR.data );
                 } )
@@ -36,15 +38,9 @@ const actions = {
 	    } );
     }
 };
-const mutations = {
-    setAuthUser( state, { rootState, authUser } ) {
-        Vue.set(rootState.globalData, "cbcAuthUser", authUser );
-    }
-};
 
 export default {
     state: initialState,
     getters,
-    actions,
-    mutations
+    actions
 }

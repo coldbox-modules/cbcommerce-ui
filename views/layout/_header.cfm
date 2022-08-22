@@ -7,7 +7,7 @@
 	<header id="header">
 		<!--- header-top-row --->
 		<div class="header-top-row">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="row">
 					<div class="col-lg-3 hidden-xs hidden-sm">
                         <div class="top-welcome">

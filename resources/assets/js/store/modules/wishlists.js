@@ -26,14 +26,9 @@ const getters = {
 
 const actions = {
 	addItemToWishlist: ({ state, commit, getters }, { sku, wishlist } ) => {
-		if( !getters.authUser) {
-			return;
-		}
 		if( !wishlist ) wishlist = state.wishlists.resultsMap[ getters.defaultWishList ];
 
 		const wishlistItem = wishlist.items.find( item => item.id === sku );
-
-		console.log( sku );
 
 		if (!wishlistItem) {
 			api()
@@ -42,21 +37,19 @@ const actions = {
 					commit( "addItemToWishlist", XHR.data );
 				})
 				.catch(err => {
-					console.error( err );
+					window.location.assign( '/store/account/login' );
 				});
 		}
 	},
 	saveWishlistItem: ( context, params ) => api().put.wishlists.updateItem( params ),
 	deleteWishlistItem: ( context, params ) => api().delete.wishlists.deleteItem( params.FK_wishlist, params.id ),
 	getWishlists: ({ state, commit, getters }, params ) => {
-		if( !getters.authUser ) return;
-		return api()
-			.get.wishlists.list( params )
+		return api().get.wishlists.list( params )
 			.then(XHR => {
 				commit( "setWishLists", XHR.data );
 			})
 			.catch(err => {
-
+				window.location.assign( '/store/account/login' );
 			})
 	},
 	fetchWishlist : ({ state }, params ) => {

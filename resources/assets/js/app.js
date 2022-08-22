@@ -59,6 +59,7 @@ export default new Vue({
     router: routerInstance,
     filters: createFilters(Vue),
 	created(){
+		this.$store.dispatch( "getSettings" );
 		this.$store.dispatch( "refreshToken" );
 	}
 });

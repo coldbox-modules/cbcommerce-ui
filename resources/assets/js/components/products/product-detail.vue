@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="clearfix" v-if="activeSku.showPricing">
-                  <p class="product-price">{{ activeSku.basePrice | currency }}</p>
+                  <p class="product-price">{{ activeSku.displayPrice | currency }}</p>
                 </div>
 
                 <div class="clearfix" v-if="activeSku.showPricing">
@@ -121,9 +121,9 @@
                 v-on:quantityChange="quantityChangeReaction"
               ></quantity-control>
 
-              <div class="product-cart-total-price clearfix">
-                <label class="pull-left">Total:</label>
-                <p>{{cartTotalPrice | currency}}</p>
+              <div v-if="chosenQuantity > 1" class="product-cart-total-price clearfix">
+                <span class="pull-left text-muted">Total:</span>
+                <span class="pull-right product-price">{{cartTotalPrice | currency}}</span>
               </div>
 
               <div v-if="isAvailable" class="shopping-cart-buttons">
@@ -155,7 +155,6 @@
 
             <div class="shopping-cart-buttons mt-20">
               <wishlist-add-icon :skuId="activeSku.id"></wishlist-add-icon>
-
               <comparison-add-icon :skuId="activeSku.id"></comparison-add-icon>
             </div>
 
@@ -174,7 +173,7 @@
       <div class="container" v-if="!isLoading">
 
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" id="product-additional-tabs" role="tablist">
+        <ul class="nav nav-tabs mt-3" id="product-additional-tabs" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="description-tab" href="#description" role="tab" data-toggle="tab">Description</a>
           </li>
@@ -187,7 +186,7 @@
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content" id="production-additional-tabcontent">
+        <div class="tab-content border-bottom" id="production-additional-tabcontent">
           <div class="tab-pane show active fade" id="description" role="tabpanel" aria-labelledby="description-tab">
             <div v-if="activeSku.condition.name !== 'New'">
               <h3>Condition: {{activeSku.condition.name}}</h3>
@@ -263,7 +262,7 @@
       </div>
 
       <!-- end tab box -->
-      <div class="container">
+      <div class="container mt-5">
         <related-product-carousel></related-product-carousel>
       </div>
     </div>
@@ -369,7 +368,7 @@ export default {
     },
     cartTotalPrice: function() {
       if (!this.activeSku) return 0;
-      return this.chosenQuantity * this.activeSku.basePrice;
+      return this.chosenQuantity * this.activeSku.displayPrice;
     },
     displayedMedia: function() {
       if (!this.activeSku) return [];

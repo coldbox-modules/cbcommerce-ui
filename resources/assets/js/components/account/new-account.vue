@@ -202,9 +202,9 @@
 						.then( XHR => {
 							console.log( XHR.data );
 							if( document.referrer.indexOf( "checkout" ) > -1 ) {
-							   window.location.assign( '/store/checkout' );
+							   window.location.assign( '/' + self.$store.state.globalData.moduleEntryPoint + '/checkout' );
 							} else {
-								window.location.assign( '/store/shopping-cart' );
+								window.location.assign( '/' + self.$store.state.globalData.moduleEntryPoint + '/shopping-cart' );
 							}
 						})
 						.catch( err => {

@@ -3,7 +3,7 @@ import ProductFilterPage from "@cbCommerce/components/products/product-filter-pa
 import ProductDetail from "@cbCommerce/components/products/product-detail";
 import ContactForm from "@cbCommerce/components/contact-form";
 import ProductComparison from "@cbCommerce/components/products/product-comparison";
-import ProductWishlist from "@cbCommerce/components/products/product-wishlist";
+import WishlistsGrid from "@cbCommerce/components/wishlists/wishlists-grid";
 import ShoppingCart from "@cbCommerce/components/commerce/shopping-cart";
 import Storefront from "@cbCommerce/components/storefront";
 import Vue from "vue";
@@ -39,7 +39,7 @@ export const createRouter = (Vue, Router) => {
 					},
 					{
 						path: "wishlist",
-						component: ProductWishlist,
+						component: WishlistsGrid,
 						name: "wishlist"
 					},
 					{

@@ -52,7 +52,8 @@ export default{
                 gallery: 'thumbnailNestedGallery',
                 cursor: 'crosshair',
                 galleryActiveClass: 'active',
-                imageCrossfade: true
+                imageCrossfade: true,
+				responsive: true
             }
         );
     },

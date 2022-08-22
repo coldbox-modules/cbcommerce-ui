@@ -72,7 +72,7 @@
                 </p>
             </div>
             <div class="clearfix"></div>
-            <button type="submit" class="pull-right btn btn-secondary btn-lg">Send</button>
+            <button type="submit" class="float-right btn btn-secondary btn-lg">Send</button>
             <div class="clearfix"></div>
         </form>
 

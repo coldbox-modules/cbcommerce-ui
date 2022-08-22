@@ -1,28 +1,22 @@
 <template>
     <article class="wishlist light">
-        <div v-if="wishlist.isDefault" class="btn btn-secondary light-header-callout">
-            <span class="text-upper pull-left">Active</span>
-            <span class="pull-right">
-                <strong>Updated:</strong> {{ lastUpdateDisplay }}
-            </span>
-        </div>
-        
-        <div v-else class="btn light-header-callout">
-            <span class="pull-right">
-                <strong>Updated:</strong> {{ lastUpdateDisplay }}
-            </span>
-        </div>
 
         <figure class="figure-hover-overlay">
             <a :href="`/store/wishlist/${wishlist.id}`">
-                <div class="wishlist-item-image" v-if="primaryImage" :style="`background-image:url(${primaryImage})`"></div>
+                <div class="wishlist-item-image" v-if="primaryImage" :style="`background-image:url(${primaryImage})`">
+					<div class="btn btn-secondary light-header-callout float-right">
+						<span>
+							<strong>Updated:</strong> {{ lastUpdateDisplay }}
+						</span>
+					</div>
+				</div>
             </a>
         </figure>
 
         <div class="wishlist-caption">
-            <div class="block-name">
+            <h4 class="block-name">
                 <a :href="`/store/wishlist/${wishlist.id}`" class="wishlist-name">{{ wishlist.name }}</a>
-            </div>
+            </h4>
         </div>
 
         <p class="wishlist-caption"><strong>Products:</strong> {{wishlist.items.length}}</p>
@@ -42,16 +36,14 @@ export default{
     computed : {
         ...mapState({
             primaryImage( state ){
-                return this.wishlist.items.length ? this.wishlist.items[ 0 ].image : state.globalData.placeholderImage;
+                return this.wishlist.items.length && this.wishlist.items[ 0 ].image.id ? this.wishlist.items[ 0 ].image.mediaItem.src : state.globalData.placeholderImage;
             }
         }),
         lastUpdateDisplay(){
             let today = moment( new Date() );
             let lastModified = moment( new Date( this.wishlist.modifiedTime ) );
-            
             let diff = parseInt( moment.duration( today.diff( lastModified ) ).asDays() );
-            console.log( diff );
-            if( diff > 0 ){ 
+            if( diff > 0 ){
                 return diff + ( diff > 1  ? " days" : "day" ) + " ago";
             } else {
                 return "Today";

@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-popover  v-if="inComparison" class="text-center">
+        <v-popover  v-if="inComparison">
 
             <a
                 v-tooltip="{ content: $t('compare_this_item') }"

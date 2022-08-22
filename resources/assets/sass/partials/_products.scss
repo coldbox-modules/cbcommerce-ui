@@ -119,12 +119,12 @@
     background-color: #ffffff;
     min-height: 100px;
     .product-name {
-      font-size: 14px;
+      font-size: 1.2em;
       padding: 0 0 5px;
       display: block;
       text-decoration: none;
       font-family: $font-family-sans-serif;
-      color: #0e0e0e;
+      color: $brand-dark;
       &:hover {
         color: $brand;
       }
@@ -435,12 +435,12 @@
       background-color: #ffffff;
       min-height: 100px;
       .product-name {
-        font-size: 14px;
+        font-size: 1.2em;
         padding: 5px 0 5px;
         display: block;
         text-decoration: none;
         font-family: $font-family-sans-serif;
-        color: #0e0e0e;
+        color: $brand-dark;
         &:hover {
           color: $brand;
         }
@@ -668,12 +668,12 @@
     background-color: #ffffff;
     min-height: 100px;
     .product-name {
-      font-size: 14px;
+      font-size: 1.2em;
       padding: 5px 0 5px;
       display: block;
       text-decoration: none;
       font-family: $font-family-sans-serif;
-      color: #0e0e0e;
+      color: $brand-dark;
       &:hover {
         color: $brand;
       }

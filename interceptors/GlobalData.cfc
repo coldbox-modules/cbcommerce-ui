@@ -24,11 +24,13 @@
 
 		var exposedSettings = [
 			"baseAPIHref",
-			"features"
+			"features",
+			"currency"
 		];
 
 		prc.globalData[ "fwLocale" ] = getFwLocale();
 		prc.globalData[ "moduleRoot" ] = event.getModuleRoot( "cbcommerce-ui" );
+		prc.globalData[ "moduleEntryPoint" ] = event.getModuleEntryPoint( "cbcommerce-ui" );
 
 		exposedSettings.each( function( setting ){
 			prc.globalData[ setting ] = moduleSettings[ setting ];

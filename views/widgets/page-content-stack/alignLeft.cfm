@@ -5,7 +5,7 @@
 	<cfelse>
 		<div id="page-#args.contentResults.pages[ args.x ].getSlug()#" class="content content-left">
 	</cfif>
-		<div class="container-fluid #args.flexClass#">
+		<div class="container #args.flexClass#">
 			<cfif args.contentResults.pages[ args.x ].getFeaturedImageURL() is not "" >
 				<div class="col-lg-5">
 					#args.contentResults.pages[ args.x ].renderContent()#

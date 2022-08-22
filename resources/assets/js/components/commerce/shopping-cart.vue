@@ -4,9 +4,8 @@
      		<generic-loader message="Your cart is loading. Please wait..."></generic-loader>
      	</div>
         <div v-else-if="cartProducts && !cartProducts.length" class="col-md-12 text-center">
-            <h3>Your Shopping Cart is empty.</h3>
-            <p>Learn what's featuring today.</p>
-            <p><a href="/" class="btn btn-lg btn-animate">Go to Homepage</a></p>
+            <h3>{{ $t( 'cart_empty_msg' ) }}.</h3>
+            <p><a :href="`/${$store.state.globalData.moduleEntryPoint}`" class="btn btn-lg btn-animate">{{ $t( 'Continue_Shopping' ) }}</a></p>
         </div>
         <div v-else>
 	    	<div class="col-md-9">
@@ -19,11 +18,11 @@
 		     <div class="col-md-3">
 		     	<div class="cart-buy-box text-center">
 			     	<div class="cart-buy-subtotal">
-			     		<span>Subtotal </span>
+			     		<span>{{ $t( 'order_subtotal' ) }} </span>
 			     		<span class="text-muted">(
 			     			<span>{{ totalItems }}</span>
-			     			<span v-if="totalItems > 1">items</span>
-			     			<span v-else>item</span>
+			     			<span v-if="totalItems > 1">{{ $t('items') }}</span>
+			     			<span v-else>{{ $t('item') }}</span>
 			     				)
 			     		</span><br/>
 			     		<span>{{ subtotal | currency }} </span>
@@ -42,7 +41,7 @@
                     style="margin-bottom:30px"
                     v-tooltip="'Request a quote for your shopping cart'"
                     class="btn btn-secondary btn-lg">
-						<i class="fa fa-envelope"></i> Request a Quote
+						<i class="fa fa-envelope"></i> {{ $t('Request_a_Quote') }}
 					</a>
 			    </div>
 		    </div>
@@ -80,7 +79,8 @@ export default {
 
     computed: {
         ...mapState( {
-    		globalData   : 'globalData'
+    		globalData   : 'globalData',
+			checkoutURL :  state => `/${state.globalData.moduleEntryPoint}/checkout`
     	}),
         ...mapGetters([
         	"isLoadingCart",
@@ -94,7 +94,7 @@ export default {
         subtotal(){
         	var subTotal = 0;
         	for( var i in this.cartProducts ){
-        		let itemPrice = this.cartProducts[ i ].sku.basePrice;
+        		let itemPrice = this.cartProducts[ i ].sku.displayPrice;
         		let qty = this.cartProducts[ i ].quantity;
 
         		subTotal = subTotal + ( itemPrice * qty )
@@ -115,13 +115,6 @@ export default {
         		return true;
         	} else {
         		return false;
-        	}
-        },
-        checkoutURL(){
-        	if( this.isLoggedIn ){
-        		return '/store/checkout'
-        	} else {
-        		return '/store/checkout/login'
         	}
         }
     },

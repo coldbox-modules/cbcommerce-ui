@@ -140,9 +140,6 @@ const actions = {
 				.then(XHR => {
 					let list = XHR.data;
 					const reviews = context.rootState.filters.denormalize( list );
-					if (!reviews || reviews.length === 0) {
-						throw new Error("No reviews found");
-					}
 					context.commit( "setCurrentProductReviews", reviews);
 					resolve(reviews);
 				})

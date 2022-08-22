@@ -48,6 +48,7 @@
 <style>
 	#cb.themeSetting( 'cssStyleOverrides' )#
 </style>
+#prc.assetBag.renderHead()#
 </cfif>
 
 <!--- ********************************************************************************* --->

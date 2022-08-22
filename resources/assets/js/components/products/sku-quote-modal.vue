@@ -119,7 +119,7 @@
                             <slot name="footer">
                                 <a href="javascript:;" class="btn btn-link text-muted pull-left" @click="closeModal"><i class="fa fa-undo"></i> Cancel</a>
                                 &nbsp;&nbsp;
-                                <button class="btn btn-primary btn-lg pull-right" type="submit">Send Request</button>
+                                <button class="btn btn-primary btn-lg float-right" type="submit">Send Request</button>
                             </slot>
                         </div>
                         <div class="modal-footer text-center" v-else>

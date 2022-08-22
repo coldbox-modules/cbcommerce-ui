@@ -66,7 +66,7 @@
 		computed : {
 			...mapGetters([ "authUser", "apiInstance" ] ),
 			redirectUrl(){
-				return this.successUrl || document.referrer.indexOf( "login" ) === -1 ? document.referrer : '/'
+				return this.successUrl ? this.successUrl : ( document.referrer.indexOf( "login" ) === -1 ? document.referrer : '/' );
 			}
 		},
 		methods: {

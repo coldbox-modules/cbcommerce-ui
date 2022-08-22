@@ -29,7 +29,9 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="input-group">
-                            <span class="input-group-addon">&dollar;</span>
+							<div class="input-group-prepend">
+								<span class="input-group-text">{{ currencySymbol }}</span>
+							</div>
                             <input
                                 @keyup.tab="minPriceRangeChange()"
                                 @keyup.enter="minPriceRangeChange()"
@@ -42,7 +44,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="input-group">
-                            <span class="input-group-addon">&dollar;</span>
+							<div class="input-group-prepend">
+								<span class="input-group-text">{{ currencySymbol }}</span>
+							</div>
                             <input
                                 @keyup.tab="maxPriceRangeChange()"
                                 @keyup.enter="maxPriceRangeChange()"
@@ -223,8 +227,8 @@ export default {
             sortBy   : 'price:asc',
             perPage  : 15,
             currentPage : 1,
-            minPrice : 0,
-            maxPrice : 1000,
+            minPrice : "",
+            maxPrice : "",
             pageCount: 10,
             searchParams : {
                 condition : "New"
@@ -261,7 +265,8 @@ export default {
             "productsList",
             "currentProductID",
             "activeCategory",
-            "categoriesListArray"
+            "categoriesListArray",
+			"currencySymbol"
         ])
     },
 
@@ -323,10 +328,7 @@ export default {
             if( isNaN( this.minPrice ) ){
                 delete this.searchParams.minimumPrice;
             } else {
-                this.searchParam.minimumPrice=this.minPrice;
-            }
-            if( this.minPrice >= this.maxPrice ){
-                this.minPrice = this.maxPrice - 1;
+                this.searchParams.minimumPrice=this.minPrice;
             }
             this.fetchProducts();
         },
@@ -335,9 +337,6 @@ export default {
                 delete this.searchParams.maximumPrice
             } else {
                 this.searchParams.maximumPrice=this.maxPrice;
-            }
-            if( this.maxPrice <= this.minPrice ){
-                this.maxPrice = this.minPrice + 1;
             }
             this.fetchProducts();
         },

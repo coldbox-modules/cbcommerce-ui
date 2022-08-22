@@ -1,7 +1,7 @@
 <cfoutput>
     <section>
 
-        <div class="container-fluid">
+        <div class="container">
             <div class="col-lg-4 col-lg-offset-2 col-md-6">
                 <!--- TODO: Use setting to get the app name --->
                 <h2>Sign In to your Account</h2>

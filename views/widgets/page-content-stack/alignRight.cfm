@@ -1,7 +1,7 @@
 <cfoutput >
 	<a name="#args.contentResults.pages[ args.x ].getSlug()#"></a>
 	<div id="page-#args.contentResults.pages[ args.x ].getSlug()#" class="content content-right" style="background-color:###args.inlineStyle.bgColor#">
-		<div class="container-fluid #args.flexClass#">
+		<div class="container #args.flexClass#">
 			<cfif args.contentResults.pages[ args.x ].getFeaturedImageURL() is not "" >
 				<div class="col-lg-7">
 					<img src="#args.contentResults.pages[ args.x ].getFeaturedImageURL()#" class="img-featured img-responsive"/>

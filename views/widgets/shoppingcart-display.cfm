@@ -1,7 +1,7 @@
 <cfoutput>
 	<section id="shoppingCart">
 
-		<div class="container-fluid">
+		<div class="container">
 
 			<div class="header-for-light">
                 <h1 class="wow fadeInRight animated animated" data-wow-duration="1s">

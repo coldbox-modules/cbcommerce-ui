@@ -10,6 +10,7 @@ import wishlists from "@cbCommerce/store/modules/wishlists";
 import cart from "@cbCommerce/store/modules/cart";
 import api from "@cbCommerce/api/index";
 import createFilters from "@cbCommerce/filters/index";
+import VueJwtDecode from 'vue-jwt-decode';
 
 const vuexLocalStorage = new VuexPersist({
 	key: 'cbCommerce', // The key to store the state on in the storage provider.
@@ -46,7 +47,11 @@ export const createStore = (Vue, Vuex) => {
 		getters: {
 			comparisonItems : state => state.productComparisonList,
 			baseHref : state => window.location.origin + '/',
-			apiInstance : () => api()
+			apiInstance : () => api(),
+			storeBaseHref : state => '/' + state.globalData.moduleEntryPoint,
+			currencySymbol : state => (0).toLocaleString( state.globalData.fwLocale.replace( "_", "-" ), { style: 'currency', currency: state.globalData.currency, minimumFractionDigits: 0, maximumFractionDigits: 0 } ).replace(/\d/g, '').trim(),
+			enabledProcessors : state => state.globaData.settings.payments.processors,
+			isStripeConfigured : state => state.globalData.settings.payments.processors.find( proc => proc.stripeKey )
 		},
 		mutations: {
 			setComparisonListItems(state, items ) {
@@ -54,20 +59,33 @@ export const createStore = (Vue, Vuex) => {
 			},
 			addItemToComparisonList(state, sku) {
 				state.productComparisonList.push(sku);
+			},
+			setAuthUser( state, user ){
+				Vue.set( state.globalData, "cbcAuthUser", Object.freeze( user ) );
 			}
 		},
 		actions: {
-			refreshToken( {state, commit } ){
-				console.log( api() );
+			refreshToken( { state, commit } ){
 				api().get.authentication.token()
 					.then( XHR => {
 						window.cbcGlobalData[ "@token" ] = XHR.data[ "@token" ];
-						state.globalData[ "@token" ] = XHR.data[ "@token" ];
+						Vue.set( state.globalData, "@token", XHR.data[ "@token" ] );
+						let authUser = VueJwtDecode.decode( XHR.data[ "@token" ] );
+						if( authUser.id ){
+							commit( "setAuthUser", authUser, { root: true } );
+						}
 					} )
 					.catch(err => {
 						console.error(err);
 						reject("Error: Could could not retrieve an api token" );
 					})
+			},
+			getSettings( { state, commit } ){
+				api().get.settings.get()
+					.then( XHR => {
+						Vue.set( state.globalData, "settings", XHR.data );
+					} )
+					.catch( err => console.log( err ) );
 			},
 			addItemToComparisonList: ({ state, commit }, sku) =>
 				new Promise((resolve, reject) => {

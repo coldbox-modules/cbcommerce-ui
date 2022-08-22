@@ -19,11 +19,11 @@
 						<div class="item">
 							<div class="pic" v-if="getValue( item.name, 'href' ) != ''">
 								<a :href="getValue( item.name, 'href' )">
-									<img class="img-responsive" :src="getMediaPath( item.name )" :alt="getValue( item.name, 'alt' )" />
+									<img class="img-fluid" :src="getMediaPath( item.name )" :alt="getValue( item.name, 'alt' )" />
 								</a>
 							</div>
 							<div class="pic" v-else>
-								<img class="img-responsive" :src="getMediaPath( item.name )" :alt="getValue( item.name, 'alt' )" />
+								<img class="img-fluid" :src="getMediaPath( item.name )" :alt="getValue( item.name, 'alt' )" />
 							</div>
 						</div>
 					</slide>

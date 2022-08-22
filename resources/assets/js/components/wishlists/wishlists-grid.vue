@@ -69,9 +69,12 @@ export default {
         }
     },
     mounted(){
-        if( !this.authUser ){
-            window.location.assign( '/store/account/login' );
-        }
+		if( !this.wishlists ){
+			this.$store.dispatch( "getWishlists", { includes : "items" } );
+		}
+        // if( !this.authUser ){
+        //     window.location.assign( '/store/account/login' );
+        // }
     }
 
 }

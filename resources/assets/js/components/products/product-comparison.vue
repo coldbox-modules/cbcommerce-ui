@@ -132,7 +132,7 @@
 							:sku="sku"
 		                	:componentID="'quantity_' + index"
 		                    :showLabel="false"
-		                    v-if="inStock( sku ) && sku.basePrice"
+		                    v-if="inStock( sku ) && sku.displayPrice"
 		                    v-on:quantityChange="quantityChangeReaction"
 		                ></quantity-control>
 
@@ -151,7 +151,7 @@
 	                	:data-th="sku.product.name | removeHTML">
 	                    <div class="product">
 	                        <div class="product-caption">
-	                            <p class="product-price" v-if="sku.showPricing">{{ sku.basePrice | currency }}</p>
+	                            <p class="product-price" v-if="sku.showPricing">{{ sku.displayPrice | currency }}</p>
 								<p class="text-muted" v-else>Available Upon Request</p>
 	                        </div>
 	                    </div>
@@ -264,6 +264,7 @@ export default {
 		},
 		inStock( item ){
 			let sku = this.getSkuFromList( item );
+			console.log( sku );
 			if( !sku ) return false;
             return ( sku.onHand || sku.allowBackorder );
 		},

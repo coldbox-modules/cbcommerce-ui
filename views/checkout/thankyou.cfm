@@ -1,7 +1,7 @@
 <cfoutput>
 	<section>
 
-		<div class="container-fluid">
+		<div class="container">
 			<div class="header-for-light">
 				<h1>Thank <span>You</span></h1>
 				<h2>Your order has been placed.</h2>

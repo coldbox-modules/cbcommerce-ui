@@ -54,7 +54,7 @@ const actions = {
 							resolve( XHR.data );
 							Swal.fire({
 								type: 'success',
-								title: 'Item Added',
+								text: 'Item Added',
 								showConfirmButton: false,
 								timer: 1500
 							  })

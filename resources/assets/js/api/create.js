@@ -64,12 +64,13 @@ const useLoggers = apiInstance => {
 };
 
 const apiAxios = Axios.create({
-  baseURL: base,
-  timeout,
-  headers : {
-    "Authorization": `Bearer ${token}`,
-    "Content-Type" : "application/json"
-  }
+	baseURL: base,
+	crossDomain : true,
+	withCredentials : true,
+	timeout,
+	headers : {
+		"Content-Type" : "application/json"
+	}
 });
 
 apiAxios.interceptors.request.use((config) => {

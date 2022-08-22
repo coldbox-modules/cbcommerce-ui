@@ -82,21 +82,23 @@ export default{
                 window.location.assign( '/store/account/login' );
             }
             else {
-                // give ourselves a few milliseconds to let the UI update
-                setTimeout( function(){
+				self.$nextTick(
+					function(){
 
-                    let wishlist = $( e.target ).hasClass( 'form-control' ) ? self.wishlists.resultsMap[ $( e.target ).val() ] : self.wishlists.resultsMap[ self.wishlists.results[ 0 ] ];
+						let wishlist = $( e.target ).hasClass( 'form-control' ) ? self.wishlists.resultsMap[ $( e.target ).val() ] : self.wishlists.resultsMap[ self.wishlists.results[ 0 ] ];
 
-                    self.addItemToWishlist( { sku : self.skuId, wishlist : wishlist } )
-                            .then( () => {
-                                this.$set( self, "isAdding", false );
-                                $actionTarget.addClass( 'in-wishlist' );
-                                $actionTarget.closest( '.product' ).addClass( 'in-wishlist' );
-                                // click outside the popover to close it
-                                $actionTarget.parent().click();
-                            } )
-                            .catch( err => console.error( err ) )
-                }, 300 )
+						self.addItemToWishlist( { sku : self.skuId, wishlist : wishlist } )
+								.then( () => {
+									self.$set( self, "isAdding", false );
+									$actionTarget.addClass( 'in-wishlist' );
+									$actionTarget.closest( '.product' ).addClass( 'in-wishlist' );
+									// click outside the popover to close it
+									$actionTarget.parent().click();
+								} )
+								.catch( err => console.error( err ) )
+								.finally( () => self.$set( self, "isAdding", false ) )
+					}
+				)
             }
         }
     }

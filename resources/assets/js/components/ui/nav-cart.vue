@@ -9,15 +9,18 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions } from "vuex";
 export default {
 
 	created() {
 		this.getCart();
-		this.getWishlists( { includes : "items" } );
 	},
 	computed: {
+		...mapState({
+			wishlists: state => state.wishlists.wishlists
+		}),
 		...mapGetters([
+			"authUser",
 			"cartTotalQuantity"
 		])
 	},
@@ -26,6 +29,16 @@ export default {
 			"getCart",
 			"getWishlists"
         ])
+	},
+	watch: {
+		authUser : {
+			handler( newVal, oldVal ){
+				if( newVal && newVal.id && !this.wishlists ){
+					this.getWishlists( { includes : "items" } );
+				}
+			},
+			deep: true
+		}
 	}
 }
 </script>

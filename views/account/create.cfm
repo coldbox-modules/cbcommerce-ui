@@ -1,7 +1,7 @@
 <cfoutput>
 	<section id="newAccount">
 
-		<div class="container-fluid">
+		<div class="container">
 			<div class="header-for-light">
 				<h1>Create <span>Account</span></h1>
 			</div>

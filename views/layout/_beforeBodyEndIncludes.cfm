@@ -7,4 +7,6 @@
 	<script type="text/javascript" src="#event.getModuleRoot()#/includes/js/runtime.js"></script>
 	<script type="text/javascript" src="#event.getModuleRoot()#/includes/js/vendor.js"></script>
 	<script type="text/javascript" src="#event.getModuleRoot()#/includes/js/app.js"></script>
+
+	#prc.assetBag.renderFooter()#
 </cfoutput>
