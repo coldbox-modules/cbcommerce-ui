@@ -24,8 +24,17 @@
 					<tbody>
 						<tr v-for="( item, itemIdx ) in order.items" :key="'item-' + item.id">
 							<td>
-								{{ item.productSnapshot.product.name | removeHTML }}<br/>
-								Model: {{ item.productSnapshot.sku.modelNumber}}
+								<a :href="`/store/product/${item.productSnapshot.product.id}`">
+									<img
+										class="img-fluid"
+										:title="item.productSnapshot.product.name"
+										:alt="item.productSnapshot.product.name"
+										:src="item.productSnapshot.sku.image.mediaItem.src"
+									/>
+									<span>{{ item.productSnapshot.product.name | removeHTML }}</span><br/>
+									Model: {{ item.productSnapshot.sku.modelNumber}}
+
+								</a>
 							</td>
 							<td>{{ item.quantityOrdered }}</td>
 							<td>{{ item.productSnapshot.sku.displayPrice | currency }}</td>
@@ -57,7 +66,7 @@
 							<td><strong>{{ order.subtotal | currency}}</strong></td>
 						</tr>
 						<tr>
-							<td>Payment Method: {{ payment.paymentMethod }}</td>
+							<td>Payment Method: {{ payment.paymentMethod }} ending in {{ payment.lastFour }}</td>
 							<td>Amount Paid</td>
 							<td class="text-danger">- {{ payment.amount | currency}}</td>
 						</tr>

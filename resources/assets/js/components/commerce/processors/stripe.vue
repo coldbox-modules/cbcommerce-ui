@@ -3,26 +3,56 @@
 	<br>
 	<h3>Billing Information</h3>
 	<hr>
-	<form role="form" method="post" action="#" data-vv-scope="form-payment">
+	<form role="form" method="post" action="#" data-vv-scope="form-payment" class="container">
 		<div class="row payment-fields">
-			<div class="col-lg-12 ">
-				<div class="form-group">
-					<label for="card-name" class="control-label">Name on Card:<span class="text-danger">*</span></label>
+			<div class="col-lg-12">
+				<address-form
+					v-model="payment.address"
+					designation="billing"
+				></address-form>
+				<div class="form-group" v-if="!authUser.primaryPhone">
+					<label for="contactPhone" class="control-label">Phone:
+						<span class="text-danger">*</span>
+					</label>
 					<div>
 						<input
 							type="text"
 							class="form-control"
-							id="nameOnCard"
-							name="nameOnCard"
-							v-validate="'required'"
-							data-vv-as="Name on Card"
-							v-model="payment.address.fullName">
+							id="contactPhone"
+							name="contactPhone"
+							v-validate="{ required : true, regex : /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im }"
+							data-vv-as="Phone"
+							v-model="payment.phone"
+						/>
 
 						<span
 							class="text-danger error-message"
-							v-show="errors.has('form-payment.nameOnCard')">
+							v-show="errors.has('form-payment.contactPhone')">
 
-							{{ errors.first( 'form-payment.nameOnCard' ) }}
+							{{ errors.first( 'form-payment.contactPhone' ) }}
+						</span>
+					</div>
+				</div>
+				<div class="form-group" v-if="!authUser.email">
+					<label for="contactEmail" class="control-label">Email:
+						<span class="text-danger">*</span>
+					</label>
+					<div>
+						<input
+							type="text"
+							class="form-control"
+							id="contactEmail"
+							name="contactEmail"
+							v-validate="'required|email'"
+							data-vv-as="Email"
+							v-model="payment.email"
+						/>
+
+						<span
+							class="text-danger error-message"
+							v-show="errors.has('form-payment.contactEmail')">
+
+							{{ errors.first( 'form-payment.contactEmail' ) }}
 						</span>
 					</div>
 				</div>
@@ -51,56 +81,6 @@
 						<span class="message text-danger error-message">{{ cardErrorMessage }}</span>
 					</div>
 				</transition>
-			</div>
-			<div class="col-lg-12">
-				<address-form
-					v-model="payment.address"
-					designation="billing"
-				></address-form>
-				<div class="form-group" v-if="!payment.phone">
-					<label for="contactPhone" class="control-label">Phone:
-						<span class="text-danger">*</span>
-					</label>
-					<div>
-						<input
-							type="text"
-							class="form-control"
-							id="contactPhone"
-							name="contactPhone"
-							v-validate="'required|numeric'"
-							data-vv-as="Phone"
-							v-model="payment.phone">
-
-						<span
-							class="text-danger error-message"
-							v-show="errors.has('form-payment.contactPhone')">
-
-							{{ errors.first( 'form-payment.contactPhone' ) }}
-						</span>
-					</div>
-				</div>
-				<div class="form-group" v-if="!payment.email">
-					<label for="contactEmail" class="control-label">Email:
-						<span class="text-danger">*</span>
-					</label>
-					<div>
-						<input
-							type="text"
-							class="form-control"
-							id="contactEmail"
-							name="contactEmail"
-							v-validate="'required|email'"
-							data-vv-as="Email"
-							v-model="payment.email">
-
-						<span
-							class="text-danger error-message"
-							v-show="errors.has('form-payment.contactEmail')">
-
-							{{ errors.first( 'form-payment.contactEmail' ) }}
-						</span>
-					</div>
-				</div>
 			</div>
 		</div>
 	</form>
@@ -136,7 +116,10 @@ export default {
 					postalCode: ""
 				}
 			},
-			hasCardErrors : false
+			hasCardErrors : false,
+			cardNumber : null,
+			cardExpiry : null,
+			cardCvc : null
 		}
 	},
 	beforeMount(){
@@ -149,15 +132,15 @@ export default {
 		this.stripeInstance = new Stripe( this.stripeSettings.stripeKey );
 		var elements = this.stripeInstance.elements();
 
-		var cardNumber = elements.create('cardNumber', { style: this.getBaseStyles(), classes: this.getElementClasses() });
-		var cardExpiry = elements.create('cardExpiry', {  style: this.getBaseStyles()  });
-		var cardCvc = elements.create('cardCvc', {  style: this.getBaseStyles() } );
+		this.cardNumber = elements.create('cardNumber', { style: this.getBaseStyles(), classes: this.getElementClasses() });
+		this.cardExpiry = elements.create('cardExpiry', {  style: this.getBaseStyles()  });
+		this.cardCvc = elements.create('cardCvc', {  style: this.getBaseStyles() } );
 
-		cardNumber.mount( this.$refs.cardNumber );
-		cardExpiry.mount( this.$refs.cardExpiry );
-		cardCvc.mount( this.$refs.cardCvc );
+		this.cardNumber.mount( this.$refs.cardNumber );
+		this.cardExpiry.mount( this.$refs.cardExpiry );
+		this.cardCvc.mount( this.$refs.cardCvc );
 
-		this.registerElements( [ cardNumber, cardExpiry, cardCvc ] );
+		this.registerElements( [ this.cardNumber, this.cardExpiry, this.cardCvc ] );
 
 	},
 	computed : {
@@ -182,7 +165,7 @@ export default {
 	            address_zip: billingData.postalCode ? billingData.postalCode : undefined,
         	};
 
-        	this.stripeInstance.createToken( cardNumber, additionalData ).then( function( result ) {
+        	this.stripeInstance.createToken( this.cardNumber, additionalData ).then( function( result ) {
 		      	// Access the token with result.token
 		      	if ( result.error ) {
 	  				self.hasCardErrors = true;
@@ -193,11 +176,11 @@ export default {
 						self.$scrollTo( $firstError[ 0 ] );
 					}
 	  			} else {
-	  				this.$set( self, 'token', result.token );
+	  				self.$set( self, 'token', result.token );
 	  				self.$validator.validate( 'form-payment.*' ).then(( result ) => {
 				    	if ( result && self.token != null ) {
 						  self.payment.token = self.token;
-				          self.$emit( "payment-validated", self.payment );
+				          self.$emit( "payment-validated", { "payment" : self.payment, "token" : self.token } );
 				        } else {
 							let $firstError = $( 'span.text-danger.error-message:visible', self.$el ).first();
 							if( $firstError.length ){
@@ -245,6 +228,10 @@ export default {
 		            } else {
 		            	self.hasCardErrors = false;
 		            }
+
+					if( elements.every( elem => !elem._implementation._empty ) ){
+						self.validatePayment();
+					}
 		        });
 
 		        element.on( 'focus', function ( event ) {

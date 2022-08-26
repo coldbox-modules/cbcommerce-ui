@@ -79,35 +79,37 @@
 	                    <br>
 	                    <h3>Shipping Address</h3>
 	                    <hr>
-						<address-form
-							v-model="selectedShippingAddress"
-							designation="shipping"
-						></address-form>
-						<div class="form-group">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox"
-										v-model="sameAddress"
-										:true-value="true"
-										:false-value="false"
-									>
-									Use Shipping Address for Billing
-								</label>
-							</div>
+						<div class="container">
+							<address-form
+								v-model="selectedShippingAddress"
+								designation="shipping"
+							></address-form>
+							<div class="form-group">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox"
+											v-model="sameAddress"
+											:true-value="true"
+											:false-value="false"
+										>
+										Use Shipping Address for Billing
+									</label>
+								</div>
 
+							</div>
+							<hr>
 						</div>
-	                    <hr>
-	                    <a :href="`/${$store.state.globalData.moduleEntryPoint}/shopping-cart`" class="btn btn-primary">Back to Cart</a>
-	                    <a href="#payment"
-	                    	class="btn btn-secondary"
-	                    	@click.prevent="validateAddress( 'shipping', 'payment' )">
-	                    	Next
-	                    </a>
+						<a :href="`/${$store.state.globalData.moduleEntryPoint}/shopping-cart`" class="btn btn-primary">Back to Cart</a>
+						<a href="#payment"
+							class="btn btn-secondary"
+							@click.prevent="validateAddress( 'shipping', 'payment' )">
+							Next
+						</a>
 	                </div>
 
 	                <div class="tab-pane" :class="{ 'active': activeTab === 'payment' }" id="payment">
 	                    <stripe-processor
-							v-if="isStripeConfigured && payment.processor == 'stripe'"
+							v-if="isStripeConfigured && payment.processor == 'Stripe'"
 							:billingAddress="sameAddress ? selectedShippingAddress : selectedBillingAddress"
 							@payment-validated="onPaymentValidated"
 						></stripe-processor>
@@ -241,7 +243,7 @@ export default {
             },
             sameAddress: true,
 			payment : {
-				"processor" : "stripe"
+				"processor" : "Stripe"
 			}
         }
     },
@@ -344,8 +346,9 @@ export default {
 					});
   			}
 		},
-		onPaymentValidated( payment ){
-			this.$set( this, "payment", { ...this.payment, ...payment } );
+		onPaymentValidated( { payment, token } ){
+			this.$set( this, "payment", { "token" : token, ...this.payment, ...payment } );
+			this.$set( this, "selectedBillingAddress", payment.address );
 			this.$set( this.isValidated, "payment", true );
 		}
 
