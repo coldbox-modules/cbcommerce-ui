@@ -25,6 +25,7 @@ includes/css
 includes/images
 includes/js
 includes/*.json
+*-latest.md
 # log files
 logs/**
 /nbproject/private/
