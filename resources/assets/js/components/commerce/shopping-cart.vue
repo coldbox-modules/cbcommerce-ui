@@ -7,7 +7,7 @@
             <h3>{{ $t( 'cart_empty_msg' ) }}.</h3>
             <p><a :href="`/${$store.state.globalData.moduleEntryPoint}`" class="btn btn-lg btn-animate">{{ $t( 'Continue_Shopping' ) }}</a></p>
         </div>
-        <div v-else>
+        <div class="row" v-else>
 	    	<div class="col-md-9">
 	    		<div
 	    			v-for="(item, index) in cartProducts"
@@ -34,15 +34,17 @@
 
 			     		Proceed to Checkout
 			     	</a>
-					<br>
-					<br>
-					<a  href="javascript:;"
-                    @click="toggleModal"
-                    style="margin-bottom:30px"
-                    v-tooltip="'Request a quote for your shopping cart'"
-                    class="btn btn-secondary btn-lg">
-						<i class="fa fa-envelope"></i> {{ $t('Request_a_Quote') }}
-					</a>
+					<template v-if="globalData.features.quoting">
+						<br>
+						<br>
+						<a  href="javascript:;"
+						@click="toggleModal"
+						style="margin-bottom:30px"
+						v-tooltip="'Request a quote for your shopping cart'"
+						class="btn btn-secondary btn-lg">
+							<i class="fa fa-envelope"></i> {{ $t('Request_a_Quote') }}
+						</a>
+					</template>
 			    </div>
 		    </div>
 		</div>

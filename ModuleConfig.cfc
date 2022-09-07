@@ -24,7 +24,8 @@ component {
 			"baseAPIHref" : getSystemSetting( "CBCOMMERCE_ENTRYPOINT", "/cbc/api/v1" ),
 			"features" : {
 				"consignment" : getSystemSetting( "CBCOMMERCE_ENABLE_CONSIGNMENT", true ),
-				"used" : getSystemSetting( "CBCOMMERCE_ENABLE_USED_PRODUCTS", true )
+				"used" : getSystemSetting( "CBCOMMERCE_ENABLE_USED_PRODUCTS", true ),
+				"quoting" : getSystemSetting( "CBCOMMERCE_ALLOW_QUOTES", false )
 			},
 			"currency" : "USD",
 			"displayCategoriesNav" : true,

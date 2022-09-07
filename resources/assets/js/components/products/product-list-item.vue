@@ -55,7 +55,7 @@
                                     v-tooltip="'Add this item to your cart'"
                                     class="btn"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                             </div>
-                            <div v-else class="product-request">
+                            <div v-else-if="globalData.features.quoting" class="product-request">
                                 <a href="javascript:;"
                                     @click="$emit( 'quote-sku', product.startingPrice.SKU )"
                                     v-tooltip="'Request a quote for this item'"
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions } from "vuex";
 import imagesLoaded from 'vue-images-loaded';
 import ProductListItemLoading from './product-list-item-loading';
 import moment from "moment";
@@ -105,6 +105,9 @@ export default {
     computed: {
         ...mapGetters([
             "cartProducts"
+        ]),
+		...mapState([
+            "globalData"
         ]),
         hasPricing(){
             return this.product.startingPrice && this.product.startingPrice.basePrice;

@@ -141,7 +141,7 @@
               <span class="heading-highlight" v-html="$t('pricing_disabled_message')"></span>
               <br>
               <br>
-              <div class="product-request">
+              <div class="product-request" v-if="globalData.features.quoting">
                 <a
                   href="javascript:;"
                   @click="toggleModal"

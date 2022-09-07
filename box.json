@@ -21,9 +21,6 @@
         "cbi18n":"modules/cbi18n/"
     },
     "scripts":{
-        "postVersion":"package set location='git@gitlab.ortushq.com:coldbox-modules/cbox-commerce.git#v`package version`'",
-        "onRelease":"publish",
-        "postPublish":"!git push && !git push --tags",
         "harness:install":"install && cd test-harness && install"
     },
     "ignore":[

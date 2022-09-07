@@ -29,7 +29,7 @@
 
         </div>
         <div class="col-lg-3 col-md-4 col-sm-12" v-if="!isLoading">
-            <div v-if="wishlist.items.length" class="product-request">
+            <div v-if="wishlist.items.length && globalData.features.quoting" class="product-request">
                 <a  href="javascript:;"
                     @click="toggleModal"
                     style="margin-bottom:30px"
@@ -76,6 +76,9 @@ export default{
         WishlistQuoteModal
     },
     computed : {
+		...mapState([
+            "globalData"
+        ]),
         ...mapGetters( [ "authUser" ] ),
         wishlistId : () => {
             var locationParts = window.location.pathname.split( '/' );

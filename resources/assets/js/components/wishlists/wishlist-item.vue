@@ -29,7 +29,7 @@
                             </a>
 
                             <a
-                                v-else
+                                v-else-if="globalData.features.quoting"
                                 href="javascript:;"
                                 @click="$emit( 'quote-open' )"
                                 v-tooltip="'Request a quote for this item'"
@@ -73,11 +73,14 @@ export default{
         item : {
             type : Object,
             reuquired : true
-        },
-        ...mapState( {
-            allWishlists : ( state ) => state.wishlists.wishlists
-        } )
+        }
     },
+	computed: {
+        ...mapState( {
+            allWishlists : ( state ) => state.wishlists.wishlists,
+			globalData : state => state.globalData
+        } )
+	},
     components: {
         QuantityControl
     },
