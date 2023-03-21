@@ -15,54 +15,6 @@ if (!token) {
   }
 }
 
-const useLoggers = apiInstance => {
-  apiInstance.interceptors.request.use(
-    config => {
-      console.groupCollapsed(
-        "%c Request: ",
-        "color: #0dcfda; font-weight: bold",
-        config.url
-      );
-      console.log(
-        "%c Request Data:",
-        "color: #03A9F4; font-weight: bold",
-        config.data
-      );
-      return config;
-    },
-    error => {
-      console.log(
-        "%c !Request Error:",
-        "color: #ff0808; font-weight: bold",
-        error
-      );
-      console.groupEnd();
-      return Promise.reject(error);
-    }
-  );
-  apiInstance.interceptors.response.use(
-    response => {
-      console.log(
-        "%c Responce Data:",
-        "color: #4CAF50; font-weight: bold",
-        response.data
-      );
-      console.groupEnd();
-      return response;
-    },
-    error => {
-      console.log(
-        "%c Response Error:",
-        "color: #ff0808; font-weight: bold",
-        error
-      );
-      console.groupEnd();
-      return Promise.reject(error);
-    }
-  );
-  return apiInstance;
-};
-
 const apiAxios = Axios.create({
 	baseURL: base,
 	crossDomain : true,
@@ -74,9 +26,20 @@ const apiAxios = Axios.create({
 });
 
 apiAxios.interceptors.request.use((config) => {
-	config.headers[ "CSRF-Token" ] = window.cbcGlobalData ? window.cbcGlobalData[ "@token" ] : ""
+	config.headers[ "x-csrf-token" ] = window.cbcGlobalData ? window.cbcGlobalData[ "@csrfToken" ] : ""
 	return config;
 });
+
+// Response interception to scope in CSRF tokens
+apiAxios.interceptors.response.use(
+	function( response ) {
+		console.log( "interceptor response", response );
+		if( response.headers  && response.headers[ "x-csrf-token" ] ){
+			window.cbcGlobalData[ "@csrfToken" ] = response.headers[ "x-csrf-token" ];
+		}
+    	return response;
+  	}
+);
 
 const finalAPI = apiAxios;
 

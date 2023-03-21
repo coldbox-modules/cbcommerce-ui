@@ -15,13 +15,15 @@
     "description":"User interface module for the cbCommerce e-commerce module platform",
     "type":"modules",
     "dependencies":{
-        "cbi18n":"^2.2.0"
+        "cbi18n":"^3.2.0",
+        "coldbox-asset-bag":"^1.0.3"
     },
     "installPaths":{
-        "cbi18n":"modules/cbi18n/"
+        "cbi18n":"modules/cbi18n/",
+        "coldbox-asset-bag":"modules/coldbox-asset-bag/"
     },
     "scripts":{
-        "harness:install":"install && cd test-harness && install"
+        "harness:install":"install --force && cd test-harness && install --force"
     },
     "ignore":[
         "test-harness",
